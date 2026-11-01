@@ -3,38 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Bluecat Store - ระบบจัดการร้านค้าและคลังสินค้าออนไลน์ที่ใช้งานง่ายที่สุด">
-  <title>หน้าแรก | Bluecat Store</title>
+  <title>Bluecat Store — ร้านค้าอุปกรณ์ไอทีและระบบจัดการคลังสินค้า</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --navy-900: #0f172a;
       --navy-800: #1e293b;
-      --navy-700: #1e3a8a;
-      --blue-600: #1d4ed8;
-      --blue-500: #2563eb;
+      --blue-700: #1d4ed8;
+      --blue-600: #2563eb;
+      --blue-500: #3b82f6;
       --blue-100: #dbeafe;
       --blue-50: #eff6ff;
-
-      --bg-page: #f8fafc;
-      --bg-surface: #ffffff;
-      --bg-subtle: #f1f5f9;
-      --text-primary: #0f172a;
-      --text-secondary: #475569;
-      --text-muted: #64748b;
-      --border-color: #e2e8f0;
-
+      --slate-700: #334155;
+      --slate-600: #475569;
+      --slate-500: #64748b;
+      --slate-200: #e2e8f0;
+      --slate-100: #f1f5f9;
+      --slate-50: #f8fafc;
+      --white: #ffffff;
+      --green-700: #15803d;
+      --green-50: #f0fdf4;
+      --green-200: #bbf7d0;
+      --amber-700: #b45309;
+      --amber-50: #fffbeb;
+      --amber-200: #fde68a;
+      --red-700: #b91c1c;
+      --red-600: #dc2626;
+      --red-50: #fef2f2;
+      --red-200: #fecaca;
+      --radius-lg: 14px;
+      --radius-md: 10px;
       --radius-sm: 8px;
-      --radius-md: 12px;
-      --radius-lg: 16px;
-      --shadow-sm: 0 2px 6px rgba(15, 23, 42, 0.05);
-      --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
-      --focus-ring: 0 0 0 3px rgba(37, 99, 235, 0.25);
-
-      --font-sans: 'Noto Sans Thai', 'Sarabun', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      --container-max: 1140px;
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06);
+      --shadow-md: 0 8px 24px -4px rgba(15, 23, 42, 0.08);
     }
 
     *, *::before, *::after {
@@ -44,443 +47,783 @@
     }
 
     body {
-      font-family: var(--font-sans);
-      background-color: var(--bg-page);
-      color: var(--text-primary);
-      line-height: 1.65;
-      min-height: 100vh;
-      min-height: 100dvh;
+      font-family: 'Noto Sans Thai', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--slate-50);
+      color: var(--navy-900);
+      line-height: 1.6;
+      min-block-size: 100dvh;
       display: flex;
       flex-direction: column;
-      -webkit-font-smoothing: antialiased;
     }
 
-    .skip-link {
-      position: absolute;
-      top: -100px;
-      left: 1rem;
-      background: var(--navy-900);
-      color: #ffffff;
-      padding: 0.6rem 1rem;
-      border-radius: var(--radius-sm);
+    a {
+      color: inherit;
       text-decoration: none;
-      font-weight: 600;
-      z-index: 999;
     }
 
-    .skip-link:focus {
-      top: 1rem;
-      outline: none;
-      box-shadow: var(--focus-ring);
-    }
-
-    a, button {
-      font-family: inherit;
-    }
-
-    a:focus-visible, button:focus-visible {
-      outline: none;
-      box-shadow: var(--focus-ring);
+    button, input, select {
+      font: inherit;
     }
 
     .container {
-      width: 100%;
-      max-width: var(--container-max);
+      width: min(1160px, 100% - 2rem);
       margin-inline: auto;
-      padding-inline: 1.5rem;
-      min-width: 0;
     }
 
-    header, main, footer, section {
-      width: 100%;
-      min-width: 0;
+    /* Demo Banner */
+    .demo-banner {
+      background: var(--amber-50);
+      border-block-end: 1px solid var(--amber-200);
+      color: var(--amber-700);
+      padding: 0.6rem 1rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: none;
     }
 
-    /* ================= NAVBAR ================= */
-    .site-header {
-      background: var(--bg-surface);
-      border-bottom: 1px solid var(--border-color);
-      position: sticky;
-      top: 0;
-      z-index: 100;
+    .demo-banner.show {
+      display: block;
     }
 
-    .navbar {
+    .demo-banner-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      min-height: 68px;
       gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: var(--white);
+      border-block-end: 1px solid var(--slate-200);
+      position: sticky;
+      inset-block-start: 0;
+      z-index: 40;
+    }
+
+    .navbar-inner {
+      min-block-size: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-block: 0.5rem;
+      flex-wrap: wrap;
     }
 
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 0.7rem;
-      text-decoration: none;
-      color: var(--navy-900);
+      gap: 0.65rem;
       font-weight: 700;
-      font-size: 1.2rem;
+      font-size: 1.15rem;
+      color: var(--navy-900);
     }
 
     .brand-mark {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
       background: var(--blue-600);
-      color: #ffffff;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
+      color: var(--white);
+      display: grid;
+      place-items: center;
+    }
+
+    .brand-mark svg {
+      width: 20px;
+      height: 20px;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.35rem;
       list-style: none;
     }
 
     .nav-link {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 0.95rem;
       border-radius: var(--radius-sm);
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-weight: 600;
       font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--slate-600);
     }
 
     .nav-link:hover {
-      color: var(--blue-600);
-      background-color: var(--blue-50);
+      background: var(--slate-100);
+      color: var(--navy-900);
     }
 
     .nav-link.active {
+      background: var(--blue-50);
       color: var(--blue-600);
-      background-color: var(--blue-50);
     }
 
-    /* ================= BUTTONS ================= */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    /* Buttons */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
-      padding: 0.65rem 1.25rem;
+      gap: 0.45rem;
+      padding: 0.6rem 1.1rem;
       border-radius: var(--radius-sm);
+      font-size: 0.93rem;
       font-weight: 600;
-      font-size: 0.95rem;
-      text-decoration: none;
       cursor: pointer;
       border: 1px solid transparent;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
       white-space: nowrap;
     }
 
+    .btn-lg {
+      padding: 0.78rem 1.4rem;
+      font-size: 1rem;
+    }
+
+    .btn-sm {
+      padding: 0.42rem 0.85rem;
+      font-size: 0.86rem;
+    }
+
     .btn-primary {
-      background-color: var(--blue-600);
-      color: #ffffff;
+      background: var(--blue-600);
+      color: var(--white);
     }
 
     .btn-primary:hover {
-      background-color: var(--navy-700);
+      background: var(--blue-700);
     }
 
-    .btn-secondary {
-      background-color: var(--bg-surface);
+    .btn-outline {
+      background: var(--white);
       color: var(--navy-900);
-      border-color: var(--border-color);
+      border-color: var(--slate-200);
     }
 
-    .btn-secondary:hover {
-      background-color: var(--blue-50);
-      border-color: var(--blue-500);
-      color: var(--blue-600);
+    .btn-outline:hover {
+      background: var(--slate-100);
     }
 
-    .btn-lg {
-      padding: 0.85rem 1.6rem;
-      font-size: 1.02rem;
+    .btn-soft {
+      background: var(--blue-50);
+      color: var(--blue-700);
+      border-color: var(--blue-100);
     }
 
-    /* ================= HERO SECTION ================= */
-    .hero-section {
-      padding-block: clamp(3rem, 5vw, 4.5rem);
-      background: linear-gradient(180deg, #ffffff 0%, var(--bg-page) 100%);
-      border-bottom: 1px solid var(--border-color);
+    .btn-soft:hover {
+      background: var(--blue-100);
     }
 
-    .hero-grid {
+    .btn-danger-outline {
+      background: var(--white);
+      color: var(--red-700);
+      border-color: var(--red-200);
+    }
+
+    .btn-danger-outline:hover {
+      background: var(--red-50);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* User Pill */
+    .user-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.4rem 0.85rem;
+      border-radius: 999px;
+      background: var(--slate-100);
+      border: 1px solid var(--slate-200);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--navy-900);
+    }
+
+    .role-tag {
+      padding: 0.12rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: var(--blue-100);
+      color: var(--blue-700);
+    }
+
+    /* Notification Toast */
+    .toast-banner {
+      position: fixed;
+      inset-block-end: 1.25rem;
+      inset-inline-end: 1.25rem;
+      z-index: 90;
+      background: var(--navy-900);
+      color: var(--white);
+      padding: 0.85rem 1.2rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+      font-size: 0.92rem;
+      font-weight: 600;
+      display: none;
+      align-items: center;
+      gap: 0.65rem;
+      max-inline-size: 400px;
+    }
+
+    .toast-banner.show {
+      display: flex;
+    }
+
+    .toast-banner.success {
+      background: var(--green-700);
+    }
+
+    .toast-banner.error {
+      background: var(--red-700);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding-block: 3rem 2.25rem;
+      background: linear-gradient(180deg, var(--blue-50) 0%, var(--slate-50) 100%);
+      border-block-end: 1px solid var(--slate-200);
+    }
+
+    .hero-card {
+      background: var(--white);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-lg);
+      padding: clamp(1.75rem, 3.5vw, 2.75rem);
+      box-shadow: var(--shadow-md);
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 3rem;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2rem;
       align-items: center;
     }
 
     .hero-badge {
       display: inline-block;
-      padding: 0.35rem 0.85rem;
-      background-color: var(--blue-50);
-      border: 1px solid var(--blue-100);
-      color: var(--navy-700);
+      padding: 0.3rem 0.8rem;
       border-radius: 999px;
-      font-size: 0.88rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
-
-    .hero-title {
-      font-size: clamp(1.85rem, 1.35rem + 2vw, 2.75rem);
-      line-height: 1.25;
+      background: var(--blue-50);
+      color: var(--blue-700);
+      font-size: 0.84rem;
       font-weight: 700;
+      margin-block-end: 0.85rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(1.75rem, 1.3rem + 1.8vw, 2.5rem);
+      line-height: 1.25;
       color: var(--navy-900);
-      margin-bottom: 1rem;
+      margin-block-end: 0.75rem;
     }
 
-    .hero-title span {
-      color: var(--blue-600);
-    }
-
-    .hero-description {
-      font-size: 1.05rem;
-      color: var(--text-secondary);
-      margin-bottom: 1.75rem;
-      max-width: 54ch;
+    .hero p {
+      font-size: 1.02rem;
+      color: var(--slate-600);
+      margin-block-end: 1.5rem;
     }
 
     .hero-cta-group {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.85rem;
-    }
-
-    /* Summary Preview Box */
-    .overview-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-md);
-      padding: 1.5rem;
-    }
-
-    .overview-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-bottom: 1rem;
-      margin-bottom: 1rem;
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    .overview-title {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--navy-900);
-    }
-
-    .overview-status {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--blue-600);
-      background: var(--blue-50);
-      padding: 0.2rem 0.65rem;
-      border-radius: 999px;
-    }
-
-    .overview-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
       gap: 0.75rem;
-      margin-bottom: 1.25rem;
     }
 
-    .stat-box {
-      background: var(--bg-page);
-      border: 1px solid var(--border-color);
+    .hero-stats-box {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 1.35rem;
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .hero-stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      background: var(--white);
+      border: 1px solid var(--slate-200);
       border-radius: var(--radius-sm);
-      padding: 0.85rem;
-      text-align: center;
     }
 
-    .stat-label {
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      margin-bottom: 0.2rem;
+    .hero-stat-label {
+      font-size: 0.88rem;
+      color: var(--slate-600);
+      font-weight: 500;
     }
 
-    .stat-value {
+    .hero-stat-value {
       font-size: 1.15rem;
       font-weight: 700;
       color: var(--navy-900);
       font-variant-numeric: tabular-nums;
     }
 
-    .overview-footer {
-      text-align: center;
-    }
-
-    .overview-footer a {
-      width: 100%;
-    }
-
-    /* ================= FEATURES SECTION ================= */
-    .features-section {
-      padding-block: clamp(3rem, 5vw, 4.5rem);
+    /* Main Store Section */
+    .store-section {
+      padding-block: 2.25rem;
     }
 
     .section-header {
-      text-align: center;
-      max-width: 600px;
-      margin-inline: auto;
-      margin-bottom: 2.5rem;
-    }
-
-    .section-title {
-      font-size: clamp(1.45rem, 1.2rem + 1vw, 1.95rem);
-      font-weight: 700;
-      color: var(--navy-900);
-      margin-bottom: 0.5rem;
-    }
-
-    .section-subtitle {
-      color: var(--text-secondary);
-      font-size: 1rem;
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.5rem;
-    }
-
-    .feature-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-      padding: 1.5rem;
-      box-shadow: var(--shadow-sm);
       display: flex;
-      flex-direction: column;
-      gap: 0.65rem;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-block-end: 1.25rem;
+      flex-wrap: wrap;
     }
 
-    .feature-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
-      background: var(--blue-50);
-      color: var(--blue-600);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 0.25rem;
-    }
-
-    .feature-title {
-      font-size: 1.1rem;
-      font-weight: 700;
+    .section-header h2 {
+      font-size: 1.45rem;
       color: var(--navy-900);
     }
 
-    .feature-desc {
-      color: var(--text-secondary);
+    .section-header p {
+      font-size: 0.94rem;
+      color: var(--slate-600);
+    }
+
+    /* Store Toolbar */
+    .store-toolbar {
+      background: var(--white);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+      margin-block-end: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .filter-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex: 1;
+      min-inline-size: 260px;
+      flex-wrap: wrap;
+    }
+
+    .input-control,
+    .select-control {
+      padding: 0.58rem 0.9rem;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-sm);
+      background: var(--slate-50);
+      color: var(--navy-900);
       font-size: 0.94rem;
     }
 
-    /* ================= FOOTER ================= */
+    .input-control {
+      flex: 1;
+      min-inline-size: 200px;
+    }
+
+    .input-control:focus,
+    .select-control:focus {
+      outline: none;
+      border-color: var(--blue-600);
+      background: var(--white);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
+    }
+
+    /* Product Grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .product-card {
+      background: var(--white);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 1.35rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .product-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .sku-pill {
+      font-family: 'Inter', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--blue-700);
+      background: var(--blue-50);
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .status-ready {
+      background: var(--green-50);
+      color: var(--green-700);
+      border: 1px solid var(--green-200);
+    }
+
+    .status-low {
+      background: var(--amber-50);
+      color: var(--amber-700);
+      border: 1px solid var(--amber-200);
+    }
+
+    .status-out {
+      background: var(--red-50);
+      color: var(--red-700);
+      border: 1px solid var(--red-200);
+    }
+
+    .product-category {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--slate-500);
+      margin-block-top: 0.4rem;
+    }
+
+    .product-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy-900);
+      margin-block: 0.25rem 0.4rem;
+    }
+
+    .product-desc {
+      font-size: 0.9rem;
+      color: var(--slate-600);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .product-price-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding-block-start: 0.75rem;
+      border-block-start: 1px solid var(--slate-100);
+    }
+
+    .product-price {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--blue-600);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .product-stock {
+      font-size: 0.85rem;
+      color: var(--slate-600);
+      font-weight: 600;
+    }
+
+    .product-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .qty-picker {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-sm);
+      background: var(--slate-50);
+      overflow: hidden;
+    }
+
+    .qty-picker button {
+      width: 32px;
+      height: 36px;
+      border: none;
+      background: transparent;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--navy-900);
+    }
+
+    .qty-picker button:hover:not(:disabled) {
+      background: var(--slate-200);
+    }
+
+    .qty-picker input {
+      width: 44px;
+      height: 36px;
+      border: none;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.92rem;
+      background: var(--white);
+      color: var(--navy-900);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Customer Cart & Order History Panels */
+    .customer-panels {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-block-start: 2rem;
+    }
+
+    .panel-card {
+      background: var(--white);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-block-end: 1rem;
+      padding-block-end: 0.75rem;
+      border-block-end: 1px solid var(--slate-200);
+    }
+
+    .panel-header h3 {
+      font-size: 1.15rem;
+      color: var(--navy-900);
+    }
+
+    .cart-list,
+    .order-list {
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.85rem;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-sm);
+      background: var(--slate-50);
+      flex-wrap: wrap;
+    }
+
+    .cart-item-info {
+      flex: 1;
+      min-inline-size: 160px;
+    }
+
+    .cart-item-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--navy-900);
+    }
+
+    .cart-item-meta {
+      font-size: 0.84rem;
+      color: var(--slate-600);
+    }
+
+    .cart-item-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .cart-summary {
+      margin-block-start: 1.25rem;
+      padding-block-start: 1rem;
+      border-block-start: 2px solid var(--slate-200);
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .cart-summary-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .cart-total-amount {
+      font-size: 1.35rem;
+      color: var(--blue-600);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .order-card {
+      padding: 1rem;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-sm);
+      background: var(--slate-50);
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .order-card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--navy-900);
+    }
+
+    .order-items-text {
+      font-size: 0.86rem;
+      color: var(--slate-600);
+    }
+
+    .order-card-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-block-start: 0.45rem;
+      border-block-start: 1px solid var(--slate-200);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--blue-700);
+    }
+
+    .empty-box {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--slate-500);
+      font-size: 0.94rem;
+      background: var(--slate-50);
+      border: 1px dashed var(--slate-200);
+      border-radius: var(--radius-sm);
+    }
+
+    /* Dialog Modal */
+    dialog {
+      margin: auto;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-lg);
+      padding: 0;
+      width: min(520px, 100% - 2rem);
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.2);
+      background: var(--white);
+      color: var(--navy-900);
+    }
+
+    dialog::backdrop {
+      background-color: rgba(15, 23, 42, 0.5);
+      backdrop-filter: blur(2px);
+    }
+
+    .modal-head {
+      padding: 1.2rem 1.5rem;
+      border-block-end: 1px solid var(--slate-200);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-head h3 {
+      font-size: 1.15rem;
+    }
+
+    .modal-body {
+      padding: 1.5rem;
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .modal-foot {
+      padding: 1rem 1.5rem;
+      background: var(--slate-50);
+      border-block-start: 1px solid var(--slate-200);
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.65rem;
+    }
+
+    /* Footer */
     .site-footer {
-      margin-top: auto;
-      background: var(--navy-900);
-      color: #cbd5e1;
-      padding-block: 2rem;
+      margin-block-start: auto;
+      background: var(--white);
+      border-block-start: 1px solid var(--slate-200);
+      padding-block: 1.5rem;
+      font-size: 0.86rem;
+      color: var(--slate-500);
     }
 
     .footer-inner {
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      font-size: 0.9rem;
-    }
-
-    .footer-links {
-      list-style: none;
-      display: flex;
       flex-wrap: wrap;
-      gap: 1.25rem;
     }
 
-    .footer-links a {
-      color: #cbd5e1;
-      text-decoration: none;
-    }
-
-    .footer-links a:hover {
-      color: #ffffff;
-      text-decoration: underline;
-    }
-
-    /* ================= RESPONSIVE ================= */
     @media (max-width: 900px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-
-      .features-grid {
+      .hero-card {
         grid-template-columns: 1fr;
       }
-    }
-
-    @media (max-width: 640px) {
-      .container {
-        padding-inline: 1rem;
-      }
-
-      .navbar {
-        flex-wrap: wrap;
-        padding-block: 0.75rem;
-      }
-
-      .navbar nav {
-        order: 3;
-        width: 100%;
-      }
-
-      .nav-links {
-        width: 100%;
-        justify-content: space-between;
-        padding-top: 0.5rem;
-        border-top: 1px solid var(--border-color);
-      }
-
-      .nav-link {
-        padding: 0.45rem 0.65rem;
-        font-size: 0.9rem;
-      }
-
-      .overview-stats {
+      .customer-panels {
         grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
-  <a href="#main-content" class="skip-link">ข้ามไปยังเนื้อหาหลัก</a>
+
+  <!-- แถบแจ้งเตือนสถานะ Admin Demo -->
+  <div id="demoBanner" class="demo-banner" role="status">
+    <div class="container demo-banner-inner">
+      <span>คุณกำลังอยู่ใน <strong>Admin Demo Mode (โหมดทดลองผู้ดูแลระบบ)</strong> — สามารถทดสอบจัดการสินค้าหรือสลับไปหน้า Admin ได้ทันที</span>
+      <div style="display:flex; gap:0.5rem;">
+        <a href="admin.html" class="btn btn-sm btn-primary">ไปหน้า Admin Dashboard</a>
+        <button type="button" id="exitDemoBannerBtn" class="btn btn-sm btn-outline">ออกจาก Demo Mode</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Navbar -->
-  <header class="site-header">
-    <div class="container navbar">
-      <a href="index.html" class="brand">
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand" aria-label="Bluecat Store หน้าแรก">
         <span class="brand-mark" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"></path>
-            <path d="M12 12l8-4.5"></path>
-            <path d="M12 12v9"></path>
-            <path d="M12 12L4 7.5"></path>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+            <line x1="12" y1="22.08" x2="12" y2="12"/>
           </svg>
         </span>
         <span>Bluecat Store</span>
@@ -488,146 +831,829 @@
 
       <nav aria-label="เมนูหลัก">
         <ul class="nav-links">
-          <li><a href="index.html" class="nav-link active" aria-current="page">หน้าแรก</a></li>
-          <li><a href="login.html" class="nav-link">เข้าสู่ระบบ</a></li>
-          <li><a href="admin.html" class="nav-link">จัดการสินค้า</a></li>
+          <li><a href="index.html" class="nav-link active" aria-current="page">หน้าแรก / ร้านค้า</a></li>
+          <li><a href="#storeSection" class="nav-link">สินค้าแนะนำ</a></li>
+          <li><a href="#customerWorkspace" id="navCartLink" class="nav-link">ตะกร้าสินค้า (<span id="navCartCount">0</span>)</a></li>
         </ul>
       </nav>
 
-      <a href="login.html" class="btn btn-primary">เข้าสู่ระบบ</a>
+      <!-- ส่วนปุ่มสมาชิก (เปลี่ยนตามสถานะการเข้าสู่ระบบ) -->
+      <div class="nav-actions" id="guestNavActions">
+        <a href="login.html?mode=register" id="navRegisterBtn" class="btn btn-outline btn-sm">สร้างบัญชี</a>
+        <a href="login.html?mode=login" id="navLoginBtn" class="btn btn-primary btn-sm">เข้าสู่ระบบ</a>
+        <button type="button" id="navAdminDemoBtn" class="btn btn-soft btn-sm">ทดลองใช้ระบบ Admin</button>
+      </div>
+
+      <div class="nav-actions" id="userNavActions" style="display: none;">
+        <span class="user-badge">
+          <span id="navUserName">ผู้ใช้</span>
+          <span id="navUserRole" class="role-tag">Customer</span>
+        </span>
+        <a href="#storeSection" id="navBackToStoreBtn" class="btn btn-soft btn-sm">เข้าสู่หน้าร้านค้า</a>
+        <a href="admin.html" id="navGoAdminBtn" class="btn btn-primary btn-sm" style="display: none;">จัดการสินค้า (Admin)</a>
+        <button type="button" id="navLogoutBtn" class="btn btn-danger-outline btn-sm">ออกจากระบบ</button>
+      </div>
     </div>
   </header>
 
-  <!-- Main Content -->
-  <main id="main-content">
-    <!-- Hero Section -->
-    <section class="hero-section" aria-labelledby="hero-heading">
-      <div class="container hero-grid">
-        <div>
-          <span class="hero-badge">ระบบจัดการคลังสินค้า Bluecat Store</span>
-          <h1 id="hero-heading" class="hero-title">
-            จัดการสต็อกสินค้าและยอดรวมได้ง่ายใน<span>ที่เดียว</span>
-          </h1>
-          <p class="hero-description">
-            ตรวจสอบรายการสินค้า ปรับจำนวนคงเหลือ เพิ่มหรือแก้ไขข้อมูลสินค้า และคำนวณมูลค่ารวมทั้งหมดให้อัตโนมัติโดยไม่ต้องคำนวณเอง
-          </p>
-          <div class="hero-cta-group">
-            <a href="admin.html" class="btn btn-primary btn-lg">ไปที่หน้าจัดการสินค้า</a>
-            <a href="login.html" class="btn btn-secondary btn-lg">เข้าสู่ระบบผู้ดูแล</a>
+  <main>
+    <!-- Hero Landing Section -->
+    <section class="hero" aria-labelledby="heroHeading">
+      <div class="container">
+        <div class="hero-card">
+          <div>
+            <span class="hero-badge">Bluecat Store — Official E-commerce &amp; Inventory</span>
+            <h1 id="heroHeading">ยินดีต้อนรับสู่ Bluecat Store ร้านค้าอุปกรณ์ไอทีครบวงจร</h1>
+            <p id="heroDescription">
+              ศูนย์รวมคีย์บอร์ด เมาส์ไร้สาย จอมอนิเตอร์ และอุปกรณ์จัดโต๊ะทำงานคุณภาพสูง
+              พร้อมระบบสมาชิกสำหรับเลือกซื้อสินค้าลงตะกร้า และระบบจัดการคลังสินค้าแบบเรียลไทม์
+            </p>
+
+            <!-- ปุ่มหลักสำหรับผู้เยี่ยมชม (ยังไม่เข้าสู่ระบบ) -->
+            <div class="hero-cta-group" id="heroGuestButtons">
+              <a href="login.html?mode=register" id="heroRegisterBtn" class="btn btn-primary btn-lg">สร้างบัญชี</a>
+              <a href="login.html?mode=login" id="heroLoginBtn" class="btn btn-outline btn-lg">เข้าสู่ระบบ</a>
+              <button type="button" id="heroAdminDemoBtn" class="btn btn-soft btn-lg">ทดลองใช้ระบบ Admin</button>
+            </div>
+
+            <!-- ปุ่มหลักเมื่อเข้าสู่ระบบแล้ว -->
+            <div class="hero-cta-group" id="heroUserButtons" style="display: none;">
+              <a href="#storeSection" class="btn btn-primary btn-lg">เลือกซื้อสินค้าในร้านค้า</a>
+              <a href="#customerWorkspace" class="btn btn-outline btn-lg">ดูตะกร้าและคำสั่งซื้อของฉัน</a>
+              <a href="admin.html" id="heroGoAdminBtn" class="btn btn-soft btn-lg" style="display: none;">เปิดหน้า Admin Dashboard</a>
+              <button type="button" id="heroLogoutBtn" class="btn btn-danger-outline btn-lg">ออกจากระบบ</button>
+            </div>
+          </div>
+
+          <div class="hero-stats-box" aria-label="ข้อมูลภาพรวมร้านค้า">
+            <div class="hero-stat-row">
+              <span class="hero-stat-label">รายการสินค้าพร้อมจำหน่าย</span>
+              <span class="hero-stat-value" id="statProductCount">6 รายการ</span>
+            </div>
+            <div class="hero-stat-row">
+              <span class="hero-stat-label">สินค้าคงเหลือในคลังรวม</span>
+              <span class="hero-stat-value" id="statTotalStock">102 ชิ้น</span>
+            </div>
+            <div class="hero-stat-row">
+              <span class="hero-stat-label">สถานะผู้ใช้งานปัจจุบัน</span>
+              <span class="hero-stat-value" id="statCurrentUser" style="color: var(--blue-600); font-size: 1rem;">ผู้เยี่ยมชมทั่วไป</span>
+            </div>
           </div>
         </div>
-
-        <!-- Overview Preview Card -->
-        <aside class="overview-card" aria-label="สรุปข้อมูลคลังสินค้าปัจจุบัน">
-          <div class="overview-header">
-            <span class="overview-title">ภาพรวมคลังสินค้าปัจจุบัน</span>
-            <span class="overview-status">อัปเดตอัตโนมัติ</span>
-          </div>
-          <div class="overview-stats">
-            <div class="stat-box">
-              <div class="stat-label">จำนวนสินค้า</div>
-              <div id="homeTotalProducts" class="stat-value">6 รายการ</div>
-            </div>
-            <div class="stat-box">
-              <div class="stat-label">คงเหลือรวม</div>
-              <div id="homeTotalUnits" class="stat-value">102 ชิ้น</div>
-            </div>
-            <div class="stat-box">
-              <div class="stat-label">มูลค่ารวม</div>
-              <div id="homeTotalValue" class="stat-value">240,200 ฿</div>
-            </div>
-          </div>
-          <div class="overview-footer">
-            <a href="admin.html" class="btn btn-secondary">เปิดดูตารางสินค้าทั้งหมด</a>
-          </div>
-        </aside>
       </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="features-section" aria-labelledby="features-heading">
+    <!-- ส่วนแนะนำสินค้าและหน้าร้านค้า (Storefront) -->
+    <section id="storeSection" class="store-section" aria-labelledby="storeHeading">
       <div class="container">
         <div class="section-header">
-          <h2 id="features-heading" class="section-title">จุดเด่นของระบบ Bluecat Store</h2>
-          <p class="section-subtitle">ออกแบบให้เข้าใจง่าย ใช้งานได้ทันทีโดยไม่ต้องเรียนรู้นาน</p>
+          <div>
+            <h2 id="storeHeading">สินค้าแนะนำในร้าน Bluecat Store</h2>
+            <p>เลือกจำนวนที่ต้องการแล้วกด "เพิ่มลงตะกร้า" หรือกด "ดูรายละเอียด" เพื่ออ่านข้อมูลสินค้า</p>
+          </div>
         </div>
 
-        <div class="features-grid">
-          <article class="feature-card">
-            <div class="feature-icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-              </svg>
-            </div>
-            <h3 class="feature-title">จัดการสต็อกเข้าใจง่าย</h3>
-            <p class="feature-desc">
-              แสดงรหัส ชื่อสินค้า หมวดหมู่ สถานะ และจำนวนคงเหลืออย่างชัดเจน กดปุ่ม + หรือ - เพื่อปรับจำนวนสินค้าได้ทันที
-            </p>
-          </article>
+        <!-- แถบค้นหาและกรองสินค้า -->
+        <div class="store-toolbar">
+          <div class="filter-controls">
+            <input type="search" id="storeSearchInput" class="input-control" placeholder="ค้นหาชื่อสินค้า หรือรหัสสินค้า..." aria-label="ค้นหาสินค้า">
+            <select id="storeCategoryFilter" class="select-control" aria-label="กรองตามหมวดหมู่">
+              <option value="ALL">ทุกหมวดหมู่</option>
+              <option value="อุปกรณ์คอมพิวเตอร์">อุปกรณ์คอมพิวเตอร์</option>
+              <option value="จอมอนิเตอร์">จอมอนิเตอร์</option>
+              <option value="อุปกรณ์เสริม">อุปกรณ์เสริม</option>
+              <option value="เครื่องเสียง">เครื่องเสียง</option>
+              <option value="อุปกรณ์จัดโต๊ะทำงาน">อุปกรณ์จัดโต๊ะทำงาน</option>
+            </select>
+          </div>
+          <a href="#customerWorkspace" class="btn btn-soft">
+            ตะกร้าสินค้าของฉัน (<span id="toolbarCartCount">0</span> ชิ้น)
+          </a>
+        </div>
 
-          <article class="feature-card">
-            <div class="feature-icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="12" y1="1" x2="12" y2="23"></line>
-                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-              </svg>
-            </div>
-            <h3 class="feature-title">คำนวณยอดรวมอัตโนมัติ</h3>
-            <p class="feature-desc">
-              คำนวณมูลค่าสินค้าแต่ละรายการและสรุปยอดรวมทั้งหมดให้อัตโนมัติ ลดความผิดพลาดในการคิดเลขเอง
-            </p>
-          </article>
+        <!-- รายการสินค้า -->
+        <div id="productGrid" class="product-grid" aria-live="polite"></div>
 
-          <article class="feature-card">
-            <div class="feature-icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-              </svg>
+        <!-- พื้นที่ตะกร้าสินค้าและประวัติคำสั่งซื้อของ Customer -->
+        <div id="customerWorkspace" class="customer-panels">
+          <!-- ตะกร้าสินค้า -->
+          <div class="panel-card" aria-labelledby="cartPanelTitle">
+            <div class="panel-header">
+              <h3 id="cartPanelTitle">ตะกร้าสินค้าของคุณ</h3>
+              <button type="button" id="clearCartBtn" class="btn btn-sm btn-outline">ล้างตะกร้า</button>
             </div>
-            <h3 class="feature-title">บันทึกข้อมูลปลอดภัย</h3>
-            <p class="feature-desc">
-              มีหน้าต่างยืนยันก่อนลบหรือคืนค่าเริ่มต้น พร้อมบันทึกข้อมูลไว้ในเครื่องอัตโนมัติไม่สูญหายเมื่อรีเฟรชหน้าเว็บ
-            </p>
-          </article>
+            <div id="cartItemsContainer" class="cart-list"></div>
+            <div id="cartSummaryBox" class="cart-summary">
+              <div class="cart-summary-row">
+                <span>จำนวนสินค้ารวม</span>
+                <span id="cartTotalQty">0 ชิ้น</span>
+              </div>
+              <div class="cart-summary-row">
+                <span>ยอดชำระรวมทั้งหมด</span>
+                <span id="cartTotalAmount" class="cart-total-amount">0 บาท</span>
+              </div>
+              <button type="button" id="checkoutBtn" class="btn btn-primary btn-lg" style="width: 100%;">
+                ยืนยันคำสั่งซื้อ (Demo Checkout)
+              </button>
+            </div>
+          </div>
+
+          <!-- ประวัติคำสั่งซื้อ -->
+          <div class="panel-card" aria-labelledby="orderHistoryTitle">
+            <div class="panel-header">
+              <h3 id="orderHistoryTitle">ประวัติคำสั่งซื้อของฉัน</h3>
+              <span id="orderCountBadge" class="sku-pill">0 รายการ</span>
+            </div>
+            <div id="orderHistoryContainer" class="order-list"></div>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
+  <!-- Modal ดูรายละเอียดสินค้า -->
+  <dialog id="productDetailDialog" closedby="any" aria-labelledby="detailModalTitle">
+    <div class="modal-head">
+      <h3 id="detailModalTitle">รายละเอียดสินค้า</h3>
+      <button type="button" id="closeDetailModalBtn" class="btn btn-sm btn-outline">ปิด</button>
+    </div>
+    <div class="modal-body">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <span id="detailSku" class="sku-pill">BC-001</span>
+        <span id="detailStatus" class="status-badge status-ready">พร้อมจำหน่าย</span>
+      </div>
+      <div id="detailCategory" class="product-category">หมวดหมู่</div>
+      <h4 id="detailName" style="font-size:1.25rem; color:var(--navy-900);">ชื่อสินค้า</h4>
+      <p id="detailDesc" style="color:var(--slate-600); font-size:0.95rem;"></p>
+      <div class="product-price-row">
+        <div>
+          <div style="font-size:0.82rem; color:var(--slate-500);">ราคาต่อหน่วย</div>
+          <div id="detailPrice" class="product-price">0 บาท</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:0.82rem; color:var(--slate-500);">จำนวนคงเหลือ</div>
+          <div id="detailStock" style="font-weight:700; color:var(--navy-900);">0 ชิ้น</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button type="button" id="detailCancelBtn" class="btn btn-outline">ปิดหน้าต่าง</button>
+      <button type="button" id="detailAddToCartBtn" class="btn btn-primary">เพิ่มลงตะกร้า 1 ชิ้น</button>
+    </div>
+  </dialog>
+
+  <!-- Toast แจ้งเตือน -->
+  <div id="toastBanner" class="toast-banner" role="status" aria-live="polite"></div>
+
   <!-- Footer -->
   <footer class="site-footer">
     <div class="container footer-inner">
-      <span>&copy; 2026 Bluecat Store &mdash; ระบบจัดการคลังสินค้า (Workshop #2)</span>
-      <ul class="footer-links">
-        <li><a href="index.html">หน้าแรก</a></li>
-        <li><a href="login.html">เข้าสู่ระบบ</a></li>
-        <li><a href="admin.html">จัดการสินค้า</a></li>
-      </ul>
+      <span>© 2026 Bluecat Store — ระบบร้านค้าออนไลน์และจัดการคลังสินค้าจำลอง</span>
+      <span>หมายเหตุด้านความปลอดภัย: ระบบสาธิต (Frontend Demo) เก็บข้อมูลใน localStorage ไม่ใช้สำหรับ Production</span>
     </div>
   </footer>
 
   <script>
     (function () {
-      try {
-        const raw = localStorage.getItem('bluecat_inventory_v2');
-        if (!raw) return;
-        const products = JSON.parse(raw);
-        if (!Array.isArray(products)) return;
+      const KEYS = {
+        USERS: 'users',
+        PRODUCTS: 'products',
+        CARTS: 'carts',
+        ORDERS: 'orders',
+        SESSION: 'currentSession'
+      };
 
-        let totalUnits = 0;
-        let totalValue = 0;
-        products.forEach(function (p) {
-          const price = Math.max(0, Number(p.price) || 0);
-          const qty = Math.max(0, Number(p.qty) || 0);
-          totalUnits += qty;
-          totalValue += price * qty;
+      const DEFAULT_PRODUCTS = [
+        {
+          sku: 'BC-001',
+          name: 'Bluecat Mechanical Keyboard Pro',
+          category: 'อุปกรณ์คอมพิวเตอร์',
+          price: 3200,
+          qty: 15,
+          description: 'คีย์บอร์ดแมคคานิคอลไร้สาย สวิตช์นุ่มเงียบ ไฟ RGB ปรับแต่งได้ รองรับทั้ง Windows และ macOS'
+        },
+        {
+          sku: 'BC-002',
+          name: 'Bluecat Ergonomic Wireless Mouse',
+          category: 'อุปกรณ์คอมพิวเตอร์',
+          price: 1450,
+          qty: 24,
+          description: 'เมาส์ไร้สายทรงสรีรศาสตร์ ลดอาการปวดข้อมือ เซนเซอร์ความแม่นยำสูง ปรับ DPI ได้ 4 ระดับ'
+        },
+        {
+          sku: 'BC-003',
+          name: 'Bluecat 4K UltraSharp Monitor 27"',
+          category: 'จอมอนิเตอร์',
+          price: 9800,
+          qty: 8,
+          description: 'จอมอนิเตอร์ความละเอียด 4K UHD ขนาด 27 นิ้ว สีสันแม่นยำ sRGB 99% พอร์ต USB-C ในตัว'
+        },
+        {
+          sku: 'BC-004',
+          name: 'Bluecat USB-C Hub 8-in-1 Multiport',
+          category: 'อุปกรณ์เสริม',
+          price: 1290,
+          qty: 30,
+          description: 'ฮับแปลงพอร์ต USB-C เป็น HDMI 4K, USB 3.0, SD Card และ PD Fast Charge 100W'
+        },
+        {
+          sku: 'BC-005',
+          name: 'Bluecat Noise-Cancelling Headset Studio',
+          category: 'เครื่องเสียง',
+          price: 4500,
+          qty: 5,
+          description: 'หูฟังครอบหูตัดเสียงรบกวน Active Noise Cancelling ไมโครโฟนคมชัด แบตเตอรี่ใช้ได้นาน 35 ชม.'
+        },
+        {
+          sku: 'BC-006',
+          name: 'Bluecat Aluminum Laptop Stand Adjustable',
+          category: 'อุปกรณ์จัดโต๊ะทำงาน',
+          price: 890,
+          qty: 20,
+          description: 'ขาตั้งแล็ปท็อปอะลูมิเนียมแท้ ปรับระดับความสูงและองศาได้ ช่วยระบายความร้อนได้ดีเยี่ยม'
+        }
+      ];
+
+      const DEFAULT_USERS = [
+        {
+          id: 'u-admin',
+          fullName: 'ผู้ดูแลระบบ Bluecat',
+          username: 'admin',
+          email: 'admin@bluecat.store',
+          password: '1234',
+          role: 'Admin',
+          createdAt: '2026-01-01T00:00:00.000Z'
+        },
+        {
+          id: 'u-cust-demo',
+          fullName: 'สมชาย ใจดี',
+          username: 'customer',
+          email: 'customer@bluecat.store',
+          password: '123456',
+          role: 'Customer',
+          createdAt: '2026-01-01T00:00:00.000Z'
+        }
+      ];
+
+      function initStorage() {
+        try {
+          if (!localStorage.getItem(KEYS.USERS)) {
+            localStorage.setItem(KEYS.USERS, JSON.stringify(DEFAULT_USERS));
+          }
+          if (!localStorage.getItem(KEYS.PRODUCTS)) {
+            localStorage.setItem(KEYS.PRODUCTS, JSON.stringify(DEFAULT_PRODUCTS));
+          }
+          if (!localStorage.getItem(KEYS.CARTS)) {
+            localStorage.setItem(KEYS.CARTS, JSON.stringify({}));
+          }
+          if (!localStorage.getItem(KEYS.ORDERS)) {
+            localStorage.setItem(KEYS.ORDERS, JSON.stringify([]));
+          }
+        } catch (e) {}
+      }
+
+      function getProducts() {
+        try {
+          const raw = localStorage.getItem(KEYS.PRODUCTS);
+          const list = raw ? JSON.parse(raw) : DEFAULT_PRODUCTS;
+          return Array.isArray(list) ? list : DEFAULT_PRODUCTS;
+        } catch (e) {
+          return DEFAULT_PRODUCTS;
+        }
+      }
+
+      function saveProducts(list) {
+        localStorage.setItem(KEYS.PRODUCTS, JSON.stringify(list));
+      }
+
+      function getSession() {
+        try {
+          const s = sessionStorage.getItem(KEYS.SESSION) || localStorage.getItem(KEYS.SESSION);
+          return s ? JSON.parse(s) : null;
+        } catch (e) {
+          return null;
+        }
+      }
+
+      function setSession(sessionObj) {
+        const str = JSON.stringify(sessionObj);
+        localStorage.setItem(KEYS.SESSION, str);
+        sessionStorage.setItem(KEYS.SESSION, str);
+      }
+
+      function clearSession() {
+        localStorage.removeItem(KEYS.SESSION);
+        sessionStorage.removeItem(KEYS.SESSION);
+      }
+
+      function getCarts() {
+        try {
+          const raw = localStorage.getItem(KEYS.CARTS);
+          return raw ? JSON.parse(raw) : {};
+        } catch (e) {
+          return {};
+        }
+      }
+
+      function getUserCart() {
+        const session = getSession();
+        if (!session || !session.username) return [];
+        const carts = getCarts();
+        return Array.isArray(carts[session.username]) ? carts[session.username] : [];
+      }
+
+      function saveUserCart(cartItems) {
+        const session = getSession();
+        if (!session || !session.username) return;
+        const carts = getCarts();
+        carts[session.username] = cartItems;
+        localStorage.setItem(KEYS.CARTS, JSON.stringify(carts));
+      }
+
+      function getOrders() {
+        try {
+          const raw = localStorage.getItem(KEYS.ORDERS);
+          return raw ? JSON.parse(raw) : [];
+        } catch (e) {
+          return [];
+        }
+      }
+
+      function saveOrders(orders) {
+        localStorage.setItem(KEYS.ORDERS, JSON.stringify(orders));
+      }
+
+      let toastTimer = null;
+      function showToast(msg, type = 'success') {
+        const el = document.getElementById('toastBanner');
+        el.textContent = msg;
+        el.className = 'toast-banner show ' + type;
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          el.classList.remove('show');
+        }, 3200);
+      }
+
+      // เริ่มโหมดทดลอง Admin Demo
+      function startAdminDemo() {
+        const demoSession = {
+          username: 'admin_demo',
+          fullName: 'ผู้ทดลองระบบ (Admin Demo)',
+          email: 'demo@bluecat.store',
+          role: 'Admin Demo',
+          isDemo: true,
+          loginAt: new Date().toISOString()
+        };
+        setSession(demoSession);
+        window.location.href = 'admin.html';
+      }
+
+      function handleLogout() {
+        clearSession();
+        renderAll();
+        showToast('ออกจากระบบเรียบร้อยแล้ว', 'success');
+      }
+
+      function getStatusInfo(qty) {
+        if (qty <= 0) return { label: 'หมด', cls: 'status-out' };
+        if (qty <= 5) return { label: 'ใกล้หมด', cls: 'status-low' };
+        return { label: 'พร้อมจำหน่าย', cls: 'status-ready' };
+      }
+
+      function renderSessionUI() {
+        const session = getSession();
+        const guestNav = document.getElementById('guestNavActions');
+        const userNav = document.getElementById('userNavActions');
+        const heroGuest = document.getElementById('heroGuestButtons');
+        const heroUser = document.getElementById('heroUserButtons');
+        const demoBanner = document.getElementById('demoBanner');
+        const statCurrentUser = document.getElementById('statCurrentUser');
+        const navGoAdminBtn = document.getElementById('navGoAdminBtn');
+        const heroGoAdminBtn = document.getElementById('heroGoAdminBtn');
+
+        if (session && session.username) {
+          guestNav.style.display = 'none';
+          userNav.style.display = 'flex';
+          heroGuest.style.display = 'none';
+          heroUser.style.display = 'flex';
+
+          document.getElementById('navUserName').textContent = session.fullName || session.username;
+          document.getElementById('navUserRole').textContent = session.role || 'Customer';
+          statCurrentUser.textContent = `${session.fullName || session.username} (${session.role})`;
+
+          const isAdminRole = session.role === 'Admin' || session.role === 'Admin Demo';
+          navGoAdminBtn.style.display = isAdminRole ? 'inline-flex' : 'none';
+          heroGoAdminBtn.style.display = isAdminRole ? 'inline-flex' : 'none';
+          demoBanner.classList.toggle('show', session.role === 'Admin Demo');
+        } else {
+          guestNav.style.display = 'flex';
+          userNav.style.display = 'none';
+          heroGuest.style.display = 'flex';
+          heroUser.style.display = 'none';
+          demoBanner.classList.remove('show');
+          statCurrentUser.textContent = 'ผู้เยี่ยมชมทั่วไป (ยังไม่ได้เข้าสู่ระบบ)';
+        }
+      }
+
+      function renderStatsAndProducts() {
+        const products = getProducts();
+        const totalStock = products.reduce((sum, p) => sum + (Number(p.qty) || 0), 0);
+        document.getElementById('statProductCount').textContent = `${products.length.toLocaleString('th-TH')} รายการ`;
+        document.getElementById('statTotalStock').textContent = `${totalStock.toLocaleString('th-TH')} ชิ้น`;
+
+        const keyword = (document.getElementById('storeSearchInput').value || '').trim().toLowerCase();
+        const cat = document.getElementById('storeCategoryFilter').value;
+
+        const filtered = products.filter(p => {
+          const matchKeyword = !keyword ||
+            p.name.toLowerCase().includes(keyword) ||
+            p.sku.toLowerCase().includes(keyword) ||
+            (p.description || '').toLowerCase().includes(keyword);
+          const matchCat = cat === 'ALL' || p.category === cat;
+          return matchKeyword && matchCat;
         });
 
-        document.getElementById('homeTotalProducts').textContent = products.length.toLocaleString('en-US') + ' รายการ';
-        document.getElementById('homeTotalUnits').textContent = totalUnits.toLocaleString('en-US') + ' ชิ้น';
-        document.getElementById('homeTotalValue').textContent = totalValue.toLocaleString('en-US') + ' ฿';
-      } catch (e) {}
+        const grid = document.getElementById('productGrid');
+        if (filtered.length === 0) {
+          grid.innerHTML = `<div class="empty-box" style="grid-column: 1 / -1;">ไม่พบสินค้าที่ตรงกับเงื่อนไขการค้นหา</div>`;
+          return;
+        }
+
+        grid.innerHTML = filtered.map(p => {
+          const status = getStatusInfo(p.qty);
+          const disabledAttr = p.qty <= 0 ? 'disabled' : '';
+          return `
+            <article class="product-card" data-sku="${p.sku}">
+              <div>
+                <div class="product-card-top">
+                  <span class="sku-pill">${p.sku}</span>
+                  <span class="status-badge ${status.cls}">${status.label}</span>
+                </div>
+                <div class="product-category">${p.category}</div>
+                <h3 class="product-title">${p.name}</h3>
+                <p class="product-desc">${p.description || 'สินค้าคุณภาพมาตรฐานจาก Bluecat Store'}</p>
+              </div>
+              <div>
+                <div class="product-price-row">
+                  <span class="product-price">${Number(p.price).toLocaleString('th-TH')} บาท</span>
+                  <span class="product-stock">คงเหลือ ${Number(p.qty).toLocaleString('th-TH')} ชิ้น</span>
+                </div>
+                <div class="product-actions" style="margin-block-start: 0.85rem;">
+                  <div class="qty-picker" aria-label="เลือกจำนวนสินค้า">
+                    <button type="button" class="qty-step-down" data-sku="${p.sku}" ${disabledAttr} aria-label="ลดจำนวน">-</button>
+                    <input type="number" class="qty-input" id="qty-input-${p.sku}" value="1" min="1" max="${Math.max(1, p.qty)}" ${disabledAttr} aria-label="จำนวน ${p.name}">
+                    <button type="button" class="qty-step-up" data-sku="${p.sku}" data-max="${p.qty}" ${disabledAttr} aria-label="เพิ่มจำนวน">+</button>
+                  </div>
+                  <button type="button" class="btn btn-primary btn-sm add-to-cart-btn" data-sku="${p.sku}" style="flex:1;" ${disabledAttr}>
+                    ${p.qty > 0 ? '+ เพิ่มลงตะกร้า' : 'สินค้าหมด'}
+                  </button>
+                  <button type="button" class="btn btn-outline btn-sm view-detail-btn" data-sku="${p.sku}">
+                    ดูรายละเอียด
+                  </button>
+                </div>
+              </div>
+            </article>
+          `;
+        }).join('');
+      }
+
+      function addToCart(sku, requestedQty) {
+        const session = getSession();
+        if (!session || !session.username) {
+          showToast('กรุณาเข้าสู่ระบบก่อนเลือกซื้อสินค้าลงตะกร้า', 'error');
+          setTimeout(() => {
+            window.location.href = 'login.html?mode=login';
+          }, 600);
+          return;
+        }
+
+        const products = getProducts();
+        const product = products.find(p => p.sku === sku);
+        if (!product || product.qty <= 0) {
+          showToast('สินค้านี้หมดชั่วคราว', 'error');
+          return;
+        }
+
+        const qtyToAdd = Math.max(1, Number(requestedQty) || 1);
+        const cart = getUserCart();
+        const existing = cart.find(item => item.sku === sku);
+        const currentInCart = existing ? existing.qty : 0;
+
+        if (currentInCart + qtyToAdd > product.qty) {
+          showToast(`ไม่สามารถเพิ่มเกินจำนวนคงเหลือ (${product.qty} ชิ้น)`, 'error');
+          return;
+        }
+
+        if (existing) {
+          existing.qty += qtyToAdd;
+        } else {
+          cart.push({ sku: product.sku, qty: qtyToAdd });
+        }
+
+        saveUserCart(cart);
+        renderCartAndOrders();
+        showToast(`เพิ่ม "${product.name}" (${qtyToAdd} ชิ้น) ลงตะกร้าแล้ว`, 'success');
+      }
+
+      function updateCartItemQty(sku, delta) {
+        const products = getProducts();
+        const product = products.find(p => p.sku === sku);
+        let cart = getUserCart();
+        const item = cart.find(i => i.sku === sku);
+        if (!item) return;
+
+        const nextQty = item.qty + delta;
+        if (nextQty <= 0) {
+          cart = cart.filter(i => i.sku !== sku);
+        } else if (product && nextQty > product.qty) {
+          showToast(`มีสินค้าคงเหลือเพียง ${product.qty} ชิ้น`, 'error');
+          return;
+        } else {
+          item.qty = nextQty;
+        }
+
+        saveUserCart(cart);
+        renderCartAndOrders();
+      }
+
+      function removeCartItem(sku) {
+        const cart = getUserCart().filter(i => i.sku !== sku);
+        saveUserCart(cart);
+        renderCartAndOrders();
+        showToast('ลบรายการออกจากตะกร้าแล้ว', 'success');
+      }
+
+      function handleCheckout() {
+        const session = getSession();
+        if (!session || !session.username) {
+          window.location.href = 'login.html?mode=login';
+          return;
+        }
+
+        const cart = getUserCart();
+        if (cart.length === 0) {
+          showToast('ตะกร้าสินค้าของคุณยังว่างอยู่', 'error');
+          return;
+        }
+
+        const products = getProducts();
+        const orderItems = [];
+        let totalQty = 0;
+        let totalAmount = 0;
+
+        for (const item of cart) {
+          const prod = products.find(p => p.sku === item.sku);
+          if (!prod || prod.qty < item.qty) {
+            showToast(`สินค้า "${item.sku}" มีจำนวนคงเหลือไม่เพียงพอ`, 'error');
+            return;
+          }
+          const subtotal = prod.price * item.qty;
+          totalQty += item.qty;
+          totalAmount += subtotal;
+          orderItems.push({
+            sku: prod.sku,
+            name: prod.name,
+            price: prod.price,
+            qty: item.qty,
+            subtotal
+          });
+        }
+
+        // ตัดสต็อกสินค้าจริงใน localStorage
+        for (const item of cart) {
+          const prod = products.find(p => p.sku === item.sku);
+          if (prod) {
+            prod.qty = Math.max(0, prod.qty - item.qty);
+          }
+        }
+        saveProducts(products);
+
+        // บันทึกคำสั่งซื้อ
+        const orders = getOrders();
+        const newOrder = {
+          orderId: 'ORD-' + Date.now().toString().slice(-6),
+          username: session.username,
+          fullName: session.fullName || session.username,
+          items: orderItems,
+          totalQty,
+          totalAmount,
+          createdAt: new Date().toLocaleString('th-TH')
+        };
+        orders.unshift(newOrder);
+        saveOrders(orders);
+
+        // ล้างตะกร้า
+        saveUserCart([]);
+        renderAll();
+        showToast(`สั่งซื้อสำเร็จ! รหัสคำสั่งซื้อ ${newOrder.orderId} ยอดรวม ${totalAmount.toLocaleString('th-TH')} บาท`, 'success');
+      }
+
+      function renderCartAndOrders() {
+        const session = getSession();
+        const cartContainer = document.getElementById('cartItemsContainer');
+        const orderContainer = document.getElementById('orderHistoryContainer');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const clearCartBtn = document.getElementById('clearCartBtn');
+
+        if (!session || !session.username) {
+          document.getElementById('navCartCount').textContent = '0';
+          document.getElementById('toolbarCartCount').textContent = '0';
+          document.getElementById('cartTotalQty').textContent = '0 ชิ้น';
+          document.getElementById('cartTotalAmount').textContent = '0 บาท';
+          document.getElementById('orderCountBadge').textContent = '0 รายการ';
+          clearCartBtn.disabled = true;
+          checkoutBtn.textContent = 'เข้าสู่ระบบเพื่อสั่งซื้อสินค้า';
+          cartContainer.innerHTML = `<div class="empty-box">กรุณา <a href="login.html?mode=login" style="color:var(--blue-600);font-weight:700;text-decoration:underline;">เข้าสู่ระบบ</a> หรือ <a href="login.html?mode=register" style="color:var(--blue-600);font-weight:700;text-decoration:underline;">สร้างบัญชี</a> เพื่อเพิ่มสินค้าลงตะกร้าและสั่งซื้อ</div>`;
+          orderContainer.innerHTML = `<div class="empty-box">เข้าสู่ระบบเพื่อดูประวัติคำสั่งซื้อของคุณ</div>`;
+          return;
+        }
+
+        const products = getProducts();
+        const cart = getUserCart();
+        let totalQty = 0;
+        let totalAmount = 0;
+
+        if (cart.length === 0) {
+          cartContainer.innerHTML = `<div class="empty-box">ยังไม่มีสินค้าในตะกร้า เลือกสินค้าด้านบนแล้วกด "+ เพิ่มลงตะกร้า" ได้เลย</div>`;
+          clearCartBtn.disabled = true;
+          checkoutBtn.disabled = true;
+          checkoutBtn.textContent = 'ยืนยันคำสั่งซื้อ (Demo Checkout)';
+        } else {
+          clearCartBtn.disabled = false;
+          checkoutBtn.disabled = false;
+          checkoutBtn.textContent = 'ยืนยันคำสั่งซื้อ (Demo Checkout)';
+
+          cartContainer.innerHTML = cart.map(item => {
+            const prod = products.find(p => p.sku === item.sku) || { name: item.sku, price: 0, qty: 0 };
+            const sub = prod.price * item.qty;
+            totalQty += item.qty;
+            totalAmount += sub;
+            return `
+              <div class="cart-item">
+                <div class="cart-item-info">
+                  <div class="cart-item-title">${prod.name}</div>
+                  <div class="cart-item-meta">${prod.price.toLocaleString('th-TH')} บาท × ${item.qty} ชิ้น = <strong>${sub.toLocaleString('th-TH')} บาท</strong></div>
+                </div>
+                <div class="cart-item-controls">
+                  <button type="button" class="btn btn-sm btn-outline cart-dec-btn" data-sku="${item.sku}">-</button>
+                  <span style="min-inline-size:24px;text-align:center;font-weight:700;">${item.qty}</span>
+                  <button type="button" class="btn btn-sm btn-outline cart-inc-btn" data-sku="${item.sku}">+</button>
+                  <button type="button" class="btn btn-sm btn-danger-outline cart-del-btn" data-sku="${item.sku}">ลบ</button>
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
+
+        document.getElementById('navCartCount').textContent = totalQty;
+        document.getElementById('toolbarCartCount').textContent = totalQty;
+        document.getElementById('cartTotalQty').textContent = `${totalQty.toLocaleString('th-TH')} ชิ้น`;
+        document.getElementById('cartTotalAmount').textContent = `${totalAmount.toLocaleString('th-TH')} บาท`;
+
+        // ประวัติคำสั่งซื้อเฉพาะของผู้ใช้คนนี้
+        const userOrders = getOrders().filter(o => o.username === session.username);
+        document.getElementById('orderCountBadge').textContent = `${userOrders.length} รายการ`;
+
+        if (userOrders.length === 0) {
+          orderContainer.innerHTML = `<div class="empty-box">ยังไม่มีประวัติคำสั่งซื้อ</div>`;
+        } else {
+          orderContainer.innerHTML = userOrders.map(ord => {
+            const itemSummary = ord.items.map(i => `${i.name} (${i.qty} ชิ้น)`).join(', ');
+            return `
+              <div class="order-card">
+                <div class="order-card-head">
+                  <span>รหัสคำสั่งซื้อ: ${ord.orderId}</span>
+                  <span style="color:var(--green-700);">สั่งซื้อสำเร็จ</span>
+                </div>
+                <div class="order-items-text">${itemSummary}</div>
+                <div class="order-card-foot">
+                  <span style="color:var(--slate-500);font-weight:500;">${ord.createdAt}</span>
+                  <span>รวม ${ord.totalQty} ชิ้น — ${Number(ord.totalAmount).toLocaleString('th-TH')} บาท</span>
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
+      }
+
+      // เปิดหน้าต่างดูรายละเอียดสินค้า
+      let activeDetailSku = null;
+      const detailDialog = document.getElementById('productDetailDialog');
+
+      function openProductDetail(sku) {
+        const product = getProducts().find(p => p.sku === sku);
+        if (!product) return;
+        activeDetailSku = product.sku;
+        const status = getStatusInfo(product.qty);
+
+        document.getElementById('detailSku').textContent = product.sku;
+        const statusEl = document.getElementById('detailStatus');
+        statusEl.textContent = status.label;
+        statusEl.className = 'status-badge ' + status.cls;
+        document.getElementById('detailCategory').textContent = product.category;
+        document.getElementById('detailName').textContent = product.name;
+        document.getElementById('detailDesc').textContent = product.description || 'สินค้าคุณภาพมาตรฐานจาก Bluecat Store';
+        document.getElementById('detailPrice').textContent = `${Number(product.price).toLocaleString('th-TH')} บาท`;
+        document.getElementById('detailStock').textContent = `${Number(product.qty).toLocaleString('th-TH')} ชิ้น`;
+
+        const addBtn = document.getElementById('detailAddToCartBtn');
+        addBtn.disabled = product.qty <= 0;
+        addBtn.textContent = product.qty > 0 ? 'เพิ่มลงตะกร้า 1 ชิ้น' : 'สินค้าหมด';
+
+        detailDialog.showModal();
+      }
+
+      // Fallback สำหรับเบราว์เซอร์ที่ไม่รองรับ closedby
+      if (!('closedBy' in HTMLDialogElement.prototype)) {
+        detailDialog.addEventListener('click', (event) => {
+          if (event.target !== detailDialog) return;
+          const rect = detailDialog.getBoundingClientRect();
+          const isDialogContent = (
+            rect.top <= event.clientY &&
+            event.clientY <= rect.top + rect.height &&
+            rect.left <= event.clientX &&
+            event.clientX <= rect.left + rect.width
+          );
+          if (isDialogContent) return;
+          detailDialog.close();
+        });
+      }
+
+      function renderAll() {
+        renderSessionUI();
+        renderStatsAndProducts();
+        renderCartAndOrders();
+      }
+
+      // ผูก Event Listeners
+      document.getElementById('navAdminDemoBtn').addEventListener('click', startAdminDemo);
+      document.getElementById('heroAdminDemoBtn').addEventListener('click', startAdminDemo);
+      document.getElementById('exitDemoBannerBtn').addEventListener('click', handleLogout);
+      document.getElementById('navLogoutBtn').addEventListener('click', handleLogout);
+      document.getElementById('heroLogoutBtn').addEventListener('click', handleLogout);
+
+      document.getElementById('storeSearchInput').addEventListener('input', renderStatsAndProducts);
+      document.getElementById('storeCategoryFilter').addEventListener('change', renderStatsAndProducts);
+
+      document.getElementById('productGrid').addEventListener('click', (e) => {
+        const downBtn = e.target.closest('.qty-step-down');
+        if (downBtn) {
+          const sku = downBtn.dataset.sku;
+          const input = document.getElementById('qty-input-' + sku);
+          if (input) input.value = Math.max(1, (Number(input.value) || 1) - 1);
+          return;
+        }
+        const upBtn = e.target.closest('.qty-step-up');
+        if (upBtn) {
+          const sku = upBtn.dataset.sku;
+          const max = Number(upBtn.dataset.max) || 1;
+          const input = document.getElementById('qty-input-' + sku);
+          if (input) input.value = Math.min(max, (Number(input.value) || 1) + 1);
+          return;
+        }
+        const addBtn = e.target.closest('.add-to-cart-btn');
+        if (addBtn) {
+          const sku = addBtn.dataset.sku;
+          const input = document.getElementById('qty-input-' + sku);
+          const qty = input ? Number(input.value) || 1 : 1;
+          addToCart(sku, qty);
+          return;
+        }
+        const detailBtn = e.target.closest('.view-detail-btn');
+        if (detailBtn) {
+          openProductDetail(detailBtn.dataset.sku);
+        }
+      });
+
+      document.getElementById('cartItemsContainer').addEventListener('click', (e) => {
+        const dec = e.target.closest('.cart-dec-btn');
+        if (dec) return updateCartItemQty(dec.dataset.sku, -1);
+        const inc = e.target.closest('.cart-inc-btn');
+        if (inc) return updateCartItemQty(inc.dataset.sku, 1);
+        const del = e.target.closest('.cart-del-btn');
+        if (del) return removeCartItem(del.dataset.sku);
+      });
+
+      document.getElementById('clearCartBtn').addEventListener('click', () => {
+        saveUserCart([]);
+        renderCartAndOrders();
+        showToast('ล้างตะกร้าสินค้าเรียบร้อยแล้ว', 'success');
+      });
+
+      document.getElementById('checkoutBtn').addEventListener('click', handleCheckout);
+      document.getElementById('closeDetailModalBtn').addEventListener('click', () => detailDialog.close());
+      document.getElementById('detailCancelBtn').addEventListener('click', () => detailDialog.close());
+      document.getElementById('detailAddToCartBtn').addEventListener('click', () => {
+        if (activeDetailSku) {
+          detailDialog.close();
+          addToCart(activeDetailSku, 1);
+        }
+      });
+
+      window.addEventListener('storage', renderAll);
+
+      initStorage();
+      renderAll();
     })();
   </script>
 </body>

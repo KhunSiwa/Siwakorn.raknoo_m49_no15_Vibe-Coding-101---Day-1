@@ -3,45 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="เข้าสู่ระบบ Bluecat Store - ระบบจัดการร้านค้าและคลังสินค้าออนไลน์">
-  <title>เข้าสู่ระบบ | Bluecat Store</title>
+  <title>สมัครสมาชิก / เข้าสู่ระบบ — Bluecat Store</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --navy-900: #0f172a;
       --navy-800: #1e293b;
-      --navy-700: #1e3a8a;
-      --blue-600: #1d4ed8;
-      --blue-500: #2563eb;
+      --blue-700: #1d4ed8;
+      --blue-600: #2563eb;
       --blue-100: #dbeafe;
       --blue-50: #eff6ff;
-
-      --bg-page: #f8fafc;
-      --bg-surface: #ffffff;
-      --bg-subtle: #f1f5f9;
-      --text-primary: #0f172a;
-      --text-secondary: #475569;
-      --text-muted: #64748b;
-      --border-color: #e2e8f0;
-      --border-input: #cbd5e1;
-
-      --success-bg: #ecfdf5;
-      --success-text: #065f46;
-      --success-border: #6ee7b7;
-      --error-bg: #fef2f2;
-      --error-text: #991b1b;
-      --error-border: #fca5a5;
-
+      --slate-700: #334155;
+      --slate-600: #475569;
+      --slate-500: #64748b;
+      --slate-200: #e2e8f0;
+      --slate-100: #f1f5f9;
+      --slate-50: #f8fafc;
+      --white: #ffffff;
+      --green-700: #15803d;
+      --green-50: #f0fdf4;
+      --green-200: #bbf7d0;
+      --red-700: #b91c1c;
+      --red-50: #fef2f2;
+      --red-200: #fecaca;
+      --radius-lg: 14px;
+      --radius-md: 10px;
       --radius-sm: 8px;
-      --radius-md: 12px;
-      --radius-lg: 16px;
-      --shadow-md: 0 10px 28px rgba(15, 23, 42, 0.08);
-      --focus-ring: 0 0 0 3px rgba(37, 99, 235, 0.25);
-
-      --font-sans: 'Noto Sans Thai', 'Sarabun', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      --container-max: 1140px;
+      --shadow-md: 0 10px 30px -5px rgba(15, 23, 42, 0.08);
     }
 
     *, *::before, *::after {
@@ -51,184 +41,204 @@
     }
 
     body {
-      font-family: var(--font-sans);
-      background-color: var(--bg-page);
-      color: var(--text-primary);
-      line-height: 1.65;
-      min-height: 100vh;
-      min-height: 100dvh;
+      font-family: 'Noto Sans Thai', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--slate-50);
+      color: var(--navy-900);
+      line-height: 1.6;
+      min-block-size: 100dvh;
       display: flex;
       flex-direction: column;
-      -webkit-font-smoothing: antialiased;
     }
 
-    .skip-link {
-      position: absolute;
-      top: -100px;
-      left: 1rem;
-      background: var(--navy-900);
-      color: #ffffff;
-      padding: 0.6rem 1rem;
-      border-radius: var(--radius-sm);
+    a {
+      color: inherit;
       text-decoration: none;
-      font-weight: 600;
-      z-index: 999;
     }
 
-    .skip-link:focus {
-      top: 1rem;
-      outline: none;
-      box-shadow: var(--focus-ring);
-    }
-
-    a, button, input {
-      font-family: inherit;
-    }
-
-    a:focus-visible, button:focus-visible {
-      outline: none;
-      box-shadow: var(--focus-ring);
+    button, input {
+      font: inherit;
     }
 
     .container {
-      width: 100%;
-      max-width: var(--container-max);
+      width: min(1120px, 100% - 2rem);
       margin-inline: auto;
-      padding-inline: 1.5rem;
-      min-width: 0;
     }
 
-    header, main, footer, section {
-      width: 100%;
-      min-width: 0;
-    }
-
-    /* ================= NAVBAR ================= */
-    .site-header {
-      background: var(--bg-surface);
-      border-bottom: 1px solid var(--border-color);
-    }
-
+    /* Navbar */
     .navbar {
+      background: var(--white);
+      border-block-end: 1px solid var(--slate-200);
+    }
+
+    .navbar-inner {
+      min-block-size: 64px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      min-height: 68px;
       gap: 1rem;
+      flex-wrap: wrap;
+      padding-block: 0.4rem;
     }
 
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 0.7rem;
-      text-decoration: none;
-      color: var(--navy-900);
+      gap: 0.65rem;
       font-weight: 700;
-      font-size: 1.2rem;
+      font-size: 1.15rem;
+      color: var(--navy-900);
     }
 
     .brand-mark {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
       background: var(--blue-600);
-      color: #ffffff;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
+      color: var(--white);
+      display: grid;
+      place-items: center;
+    }
+
+    .brand-mark svg {
+      width: 20px;
+      height: 20px;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.35rem;
       list-style: none;
     }
 
     .nav-link {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 0.95rem;
       border-radius: var(--radius-sm);
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-weight: 600;
       font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--slate-600);
     }
 
     .nav-link:hover {
-      color: var(--blue-600);
-      background-color: var(--blue-50);
+      background: var(--slate-100);
+      color: var(--navy-900);
     }
 
     .nav-link.active {
+      background: var(--blue-50);
       color: var(--blue-600);
-      background-color: var(--blue-50);
     }
 
-    /* ================= LOGIN CARD ================= */
-    .login-main {
+    /* Main Auth Layout */
+    .auth-main {
       flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem 1.25rem;
+      display: grid;
+      place-items: center;
+      padding: 2rem 1rem;
     }
 
-    .login-card {
-      width: 100%;
-      max-width: 440px;
-      background: var(--bg-surface);
-      border: 1px solid var(--border-color);
+    .auth-card {
+      width: min(480px, 100%);
+      background: var(--white);
+      border: 1px solid var(--slate-200);
       border-radius: var(--radius-lg);
+      padding: clamp(1.5rem, 4vw, 2.25rem);
       box-shadow: var(--shadow-md);
-      padding: 2.25rem 2rem;
     }
 
-    .login-header {
+    .auth-header {
       text-align: center;
-      margin-bottom: 1.5rem;
+      margin-block-end: 1.25rem;
     }
 
-    .login-brand {
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--blue-600);
-      margin-bottom: 0.25rem;
-    }
-
-    .login-title {
-      font-size: 1.5rem;
-      font-weight: 700;
+    .auth-header h1 {
+      font-size: 1.45rem;
       color: var(--navy-900);
-      margin-bottom: 0.3rem;
+      margin-block-end: 0.25rem;
     }
 
-    .login-subtitle {
+    .auth-header p {
       font-size: 0.92rem;
-      color: var(--text-secondary);
+      color: var(--slate-600);
     }
 
-    .login-form {
-      display: flex;
-      flex-direction: column;
-      gap: 1.15rem;
+    /* Tabs */
+    .auth-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--slate-100);
+      padding: 0.3rem;
+      border-radius: var(--radius-md);
+      margin-block-end: 1.35rem;
+      gap: 0.3rem;
+    }
+
+    .tab-btn {
+      padding: 0.6rem 0.75rem;
+      border: none;
+      border-radius: var(--radius-sm);
+      background: transparent;
+      color: var(--slate-600);
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .tab-btn.active {
+      background: var(--white);
+      color: var(--blue-600);
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+    }
+
+    /* Alert Message */
+    .alert-box {
+      display: none;
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-block-end: 1.15rem;
+    }
+
+    .alert-box.show {
+      display: block;
+    }
+
+    .alert-box.success {
+      background: var(--green-50);
+      color: var(--green-700);
+      border: 1px solid var(--green-200);
+    }
+
+    .alert-box.error {
+      background: var(--red-50);
+      color: var(--red-700);
+      border: 1px solid var(--red-200);
+    }
+
+    /* Forms */
+    .auth-panel {
+      display: none;
+    }
+
+    .auth-panel.active {
+      display: block;
     }
 
     .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
+      margin-block-end: 1rem;
     }
 
     .form-label {
-      font-size: 0.92rem;
+      display: block;
+      font-size: 0.9rem;
       font-weight: 600;
-      color: var(--navy-900);
+      color: var(--slate-700);
+      margin-block-end: 0.35rem;
     }
 
-    .input-wrapper {
+    .input-wrap {
       position: relative;
       display: flex;
       align-items: center;
@@ -236,199 +246,134 @@
 
     .form-input {
       width: 100%;
-      padding: 0.72rem 0.95rem;
-      font-size: 0.96rem;
-      color: var(--navy-900);
-      background-color: var(--bg-page);
-      border: 1.5px solid var(--border-input);
+      padding: 0.68rem 0.9rem;
+      border: 1px solid var(--slate-200);
       border-radius: var(--radius-sm);
-      outline: none;
-    }
-
-    .form-input.has-toggle {
-      padding-right: 4.5rem;
+      background: var(--slate-50);
+      color: var(--navy-900);
+      font-size: 0.95rem;
     }
 
     .form-input:focus {
-      background-color: var(--bg-surface);
-      border-color: var(--blue-500);
-      box-shadow: var(--focus-ring);
+      outline: none;
+      border-color: var(--blue-600);
+      background: var(--white);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
     }
 
-    .password-toggle-btn {
+    .toggle-pw-btn {
       position: absolute;
-      right: 0.5rem;
-      background: var(--bg-subtle);
-      border: 1px solid var(--border-color);
-      color: var(--text-secondary);
-      font-size: 0.8rem;
-      font-weight: 600;
-      padding: 0.3rem 0.65rem;
+      inset-inline-end: 0.5rem;
+      padding: 0.25rem 0.6rem;
+      border: 1px solid var(--slate-200);
       border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .password-toggle-btn:hover {
-      background-color: var(--blue-50);
-      color: var(--blue-600);
-    }
-
-    .checkbox-group {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.55rem;
-      cursor: pointer;
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      user-select: none;
-    }
-
-    .checkbox-input {
-      width: 18px;
-      height: 18px;
-      accent-color: var(--blue-600);
-      cursor: pointer;
-    }
-
-    .btn-login {
-      width: 100%;
-      padding: 0.82rem 1.25rem;
-      background-color: var(--blue-600);
-      color: #ffffff;
-      border: none;
-      border-radius: var(--radius-sm);
-      font-size: 1rem;
+      background: var(--white);
+      color: var(--slate-600);
+      font-size: 0.78rem;
       font-weight: 600;
       cursor: pointer;
     }
 
-    .btn-login:hover {
-      background-color: var(--navy-700);
-    }
-
-    .login-message {
-      display: none;
-      padding: 0.85rem 1rem;
-      border-radius: var(--radius-sm);
-      font-size: 0.92rem;
-      font-weight: 500;
-      border: 1px solid transparent;
-    }
-
-    .login-message.show {
-      display: block;
-    }
-
-    .login-message.success {
-      background-color: var(--success-bg);
-      color: var(--success-text);
-      border-color: var(--success-border);
-    }
-
-    .login-message.error {
-      background-color: var(--error-bg);
-      color: var(--error-text);
-      border-color: var(--error-border);
-    }
-
-    .demo-box {
-      margin-top: 1.25rem;
-      padding: 0.9rem 1rem;
-      background-color: var(--blue-50);
-      border: 1px solid var(--blue-100);
-      border-radius: var(--radius-sm);
+    .checkbox-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.65rem;
-      font-size: 0.88rem;
+      gap: 0.5rem;
+      margin-block: 0.5rem 1.25rem;
+      font-size: 0.9rem;
+      color: var(--slate-600);
     }
 
-    .demo-info {
-      color: var(--navy-900);
-    }
-
-    .demo-info code {
-      font-weight: 700;
-      background: #ffffff;
-      padding: 0.1rem 0.4rem;
-      border-radius: 4px;
-      border: 1px solid var(--border-color);
-    }
-
-    .btn-fill-demo {
-      background: #ffffff;
-      color: var(--blue-600);
-      border: 1px solid var(--blue-500);
-      border-radius: 6px;
-      padding: 0.35rem 0.7rem;
-      font-size: 0.82rem;
-      font-weight: 600;
+    .checkbox-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
       cursor: pointer;
     }
 
-    .btn-fill-demo:hover {
+    .checkbox-label input {
+      width: 17px;
+      height: 17px;
+      accent-color: var(--blue-600);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.72rem 1.2rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.96rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid transparent;
+      width: 100%;
+    }
+
+    .btn-primary {
       background: var(--blue-600);
-      color: #ffffff;
+      color: var(--white);
     }
 
-    /* ================= FOOTER ================= */
+    .btn-primary:hover {
+      background: var(--blue-700);
+    }
+
+    .btn-outline {
+      background: var(--white);
+      color: var(--slate-700);
+      border-color: var(--slate-200);
+    }
+
+    .btn-outline:hover {
+      background: var(--slate-100);
+    }
+
+    /* Demo Helper Box */
+    .demo-helper {
+      margin-block-start: 1.35rem;
+      padding-block-start: 1.15rem;
+      border-block-start: 1px solid var(--slate-200);
+      display: grid;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      color: var(--slate-600);
+    }
+
+    .demo-btn-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+
+    .btn-xs {
+      padding: 0.48rem 0.65rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
     .site-footer {
-      margin-top: auto;
-      background: var(--navy-900);
-      color: #cbd5e1;
-      padding-block: 1.5rem;
+      background: var(--white);
+      border-block-start: 1px solid var(--slate-200);
+      padding-block: 1.2rem;
+      font-size: 0.84rem;
+      color: var(--slate-500);
       text-align: center;
-      font-size: 0.88rem;
-    }
-
-    @media (max-width: 640px) {
-      .container {
-        padding-inline: 1rem;
-      }
-
-      .navbar {
-        flex-wrap: wrap;
-        padding-block: 0.75rem;
-      }
-
-      .navbar nav {
-        order: 3;
-        width: 100%;
-      }
-
-      .nav-links {
-        width: 100%;
-        justify-content: space-between;
-        padding-top: 0.5rem;
-        border-top: 1px solid var(--border-color);
-      }
-
-      .nav-link {
-        padding: 0.45rem 0.65rem;
-        font-size: 0.9rem;
-      }
-
-      .login-card {
-        padding: 1.75rem 1.25rem;
-      }
     }
   </style>
 </head>
 <body>
-  <a href="#main-content" class="skip-link">ข้ามไปยังฟอร์มเข้าสู่ระบบ</a>
 
   <!-- Navbar -->
-  <header class="site-header">
-    <div class="container navbar">
+  <header class="navbar">
+    <div class="container navbar-inner">
       <a href="index.html" class="brand">
         <span class="brand-mark" aria-hidden="true">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"></path>
-            <path d="M12 12l8-4.5"></path>
-            <path d="M12 12v9"></path>
-            <path d="M12 12L4 7.5"></path>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+            <line x1="12" y1="22.08" x2="12" y2="12"/>
           </svg>
         </span>
         <span>Bluecat Store</span>
@@ -436,157 +381,400 @@
 
       <nav aria-label="เมนูหลัก">
         <ul class="nav-links">
-          <li><a href="index.html" class="nav-link">หน้าแรก</a></li>
-          <li><a href="login.html" class="nav-link active" aria-current="page">เข้าสู่ระบบ</a></li>
-          <li><a href="admin.html" class="nav-link">จัดการสินค้า</a></li>
+          <li><a href="index.html" class="nav-link">หน้าแรก / ร้านค้า</a></li>
+          <li><a href="login.html" class="nav-link active" aria-current="page">สมัครสมาชิก / เข้าสู่ระบบ</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <!-- Main Content -->
-  <main id="main-content" class="login-main">
-    <section class="login-card" aria-labelledby="login-heading">
-      <div class="login-header">
-        <div class="login-brand">Bluecat Store</div>
-        <h1 id="login-heading" class="login-title">เข้าสู่ระบบผู้ดูแล</h1>
-        <p class="login-subtitle">กรอกชื่อผู้ใช้งานและรหัสผ่านเพื่อเข้าจัดการสินค้า</p>
+  <main class="auth-main">
+    <section class="auth-card" aria-labelledby="authTitle">
+      <div class="auth-header">
+        <h1 id="authTitle">ระบบสมาชิก Bluecat Store</h1>
+        <p id="authSubtitle">สมัครสมาชิกเพื่อสั่งซื้อสินค้า หรือเข้าสู่ระบบด้วยบัญชีของคุณ</p>
       </div>
 
-      <form id="loginForm" class="login-form" action="admin.html" method="post" novalidate>
-        <div class="form-group">
-          <label for="username" class="form-label">ชื่อผู้ใช้งาน (Username)</label>
-          <div class="input-wrapper">
+      <!-- 2 Tabs: สมัครสมาชิก & เข้าสู่ระบบ -->
+      <div class="auth-tabs" role="tablist" aria-label="เลือกโหมดการใช้งาน">
+        <button type="button" id="tabBtnLogin" class="tab-btn active" role="tab" aria-selected="true" aria-controls="panelLogin">
+          เข้าสู่ระบบ
+        </button>
+        <button type="button" id="tabBtnRegister" class="tab-btn" role="tab" aria-selected="false" aria-controls="panelRegister">
+          สมัครสมาชิก
+        </button>
+      </div>
+
+      <!-- กล่องข้อความแจ้งผลลัพธ์ -->
+      <div id="authAlert" class="alert-box" role="alert" aria-live="polite"></div>
+
+      <!-- Tab 2: เข้าสู่ระบบ (Login Form) -->
+      <div id="panelLogin" class="auth-panel active" role="tabpanel" aria-labelledby="tabBtnLogin">
+        <form id="loginForm" novalidate>
+          <div class="form-group">
+            <label for="username" class="form-label">ชื่อผู้ใช้ (Username) หรือ อีเมล (Email)</label>
             <input
               type="text"
               id="username"
               name="username"
               class="form-input"
-              placeholder="เช่น admin"
+              placeholder="กรอก Username หรือ Email ของคุณ"
               autocomplete="username"
-              spellcheck="false"
-              autocorrect="off"
-              autocapitalize="none"
-              enterkeyhint="next"
               required
             >
           </div>
-        </div>
 
-        <div class="form-group">
-          <label for="password" class="form-label">รหัสผ่าน (Password)</label>
-          <div class="input-wrapper">
+          <div class="form-group">
+            <label for="password" class="form-label">รหัสผ่าน (Password)</label>
+            <div class="input-wrap">
+              <input
+                type="password"
+                id="password"
+                name="password"
+                class="form-input"
+                placeholder="กรอกรหัสผ่าน"
+                autocomplete="current-password"
+                required
+                style="padding-inline-end: 4.5rem;"
+              >
+              <button type="button" id="toggleLoginPw" class="toggle-pw-btn">แสดงรหัส</button>
+            </div>
+          </div>
+
+          <div class="checkbox-row">
+            <label for="remember" class="checkbox-label">
+              <input type="checkbox" id="remember" name="remember" checked>
+              <span>จดจำการเข้าสู่ระบบ (Remember Me)</span>
+            </label>
+          </div>
+
+          <button type="submit" id="loginSubmitBtn" class="btn btn-primary">เข้าสู่ระบบ</button>
+        </form>
+
+        <div class="demo-helper">
+          <div><strong>ทางลัดสำหรับทดสอบระบบ:</strong></div>
+          <div class="demo-btn-row">
+            <button type="button" id="fillCustomerBtn" class="btn btn-outline btn-xs">กรอกบัญชี Customer (customer / 123456)</button>
+            <button type="button" id="startAdminDemoBtn" class="btn btn-outline btn-xs">เข้าโหมด Admin Demo ทันที</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 1: สมัครสมาชิก (Register Form) -->
+      <div id="panelRegister" class="auth-panel" role="tabpanel" aria-labelledby="tabBtnRegister">
+        <form id="registerForm" novalidate>
+          <div class="form-group">
+            <label for="regFullName" class="form-label">ชื่อ-นามสกุล</label>
+            <input
+              type="text"
+              id="regFullName"
+              name="fullName"
+              class="form-input"
+              placeholder="เช่น สมหญิง รักดี"
+              autocomplete="name"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="regUsername" class="form-label">ชื่อผู้ใช้ (Username)</label>
+            <input
+              type="text"
+              id="regUsername"
+              name="regUsername"
+              class="form-input"
+              placeholder="ภาษาอังกฤษหรือตัวเลข เช่น somying99"
+              autocomplete="username"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="regEmail" class="form-label">อีเมล (Email)</label>
+            <input
+              type="email"
+              id="regEmail"
+              name="email"
+              class="form-input"
+              placeholder="example@email.com"
+              autocomplete="email"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="regPassword" class="form-label">รหัสผ่าน (อย่างน้อย 6 ตัวอักษร)</label>
             <input
               type="password"
-              id="password"
-              name="password"
-              class="form-input has-toggle"
-              placeholder="กรอกรหัสผ่าน"
-              autocomplete="current-password"
-              enterkeyhint="done"
+              id="regPassword"
+              name="regPassword"
+              class="form-input"
+              placeholder="ตั้งรหัสผ่านอย่างน้อย 6 ตัวอักษร"
+              autocomplete="new-password"
+              minlength="6"
               required
             >
-            <button type="button" id="togglePasswordBtn" class="password-toggle-btn" aria-pressed="false">
-              แสดงรหัส
-            </button>
           </div>
-        </div>
 
-        <div>
-          <label for="remember" class="checkbox-group">
-            <input type="checkbox" id="remember" name="remember" class="checkbox-input" value="1">
-            <span>จดจำการเข้าสู่ระบบ</span>
-          </label>
-        </div>
+          <div class="form-group">
+            <label for="regConfirmPassword" class="form-label">ยืนยันรหัสผ่าน (Confirm Password)</label>
+            <input
+              type="password"
+              id="regConfirmPassword"
+              name="regConfirmPassword"
+              class="form-input"
+              placeholder="กรอกรหัสผ่านอีกครั้งให้ตรงกัน"
+              autocomplete="new-password"
+              minlength="6"
+              required
+            >
+          </div>
 
-        <div id="loginMessage" class="login-message" role="status" aria-live="polite"></div>
+          <p style="font-size: 0.82rem; color: var(--slate-500); margin-block-end: 1rem;">
+            * บัญชีที่สมัครใหม่จะได้รับสิทธิ์เป็น <strong>ลูกค้า (Customer)</strong> โดยอัตโนมัติ
+          </p>
 
-        <button type="submit" id="loginBtn" class="btn-login">เข้าสู่ระบบ</button>
-      </form>
-
-      <div class="demo-box" aria-label="บัญชีทดลอง">
-        <div class="demo-info">
-          บัญชีทดลอง: <code>admin</code> / รหัสผ่าน: <code>1234</code>
-        </div>
-        <button type="button" id="fillDemoBtn" class="btn-fill-demo">กรอกข้อมูลทดลอง</button>
+          <button type="submit" id="registerSubmitBtn" class="btn btn-primary">สมัครสมาชิก</button>
+        </form>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
   <footer class="site-footer">
-    &copy; 2026 Bluecat Store &mdash; ระบบจัดการคลังสินค้า (Workshop #2)
+    <div class="container">
+      หมายเหตุด้านความปลอดภัย: ระบบ Authentication นี้เป็น Frontend Demo เก็บข้อมูลใน localStorage สำหรับการสาธิตเท่านั้น
+    </div>
   </footer>
 
   <script>
     (function () {
-      const loginForm = document.getElementById('loginForm');
-      const usernameInput = document.getElementById('username');
-      const passwordInput = document.getElementById('password');
-      const rememberCheckbox = document.getElementById('remember');
-      const loginMessage = document.getElementById('loginMessage');
-      const togglePasswordBtn = document.getElementById('togglePasswordBtn');
-      const fillDemoBtn = document.getElementById('fillDemoBtn');
-
-      const validAccounts = {
-        admin: ['1234', 'admin123', 'admin', 'password'],
-        bluecat: ['1234', 'bluecat123'],
-        user: ['1234']
+      const KEYS = {
+        USERS: 'users',
+        SESSION: 'currentSession'
       };
 
-      try {
-        const savedUser = localStorage.getItem('bluecat_remember_user');
-        if (savedUser) {
-          usernameInput.value = savedUser;
-          rememberCheckbox.checked = true;
+      const DEFAULT_USERS = [
+        {
+          id: 'u-admin',
+          fullName: 'ผู้ดูแลระบบ Bluecat',
+          username: 'admin',
+          email: 'admin@bluecat.store',
+          password: '1234',
+          role: 'Admin',
+          createdAt: '2026-01-01T00:00:00.000Z'
+        },
+        {
+          id: 'u-cust-demo',
+          fullName: 'สมชาย ใจดี',
+          username: 'customer',
+          email: 'customer@bluecat.store',
+          password: '123456',
+          role: 'Customer',
+          createdAt: '2026-01-01T00:00:00.000Z'
         }
-      } catch (e) {}
+      ];
 
-      function showMessage(type, html) {
-        loginMessage.className = 'login-message show ' + type;
-        loginMessage.innerHTML = html;
+      function getUsers() {
+        try {
+          const raw = localStorage.getItem(KEYS.USERS);
+          if (!raw) {
+            localStorage.setItem(KEYS.USERS, JSON.stringify(DEFAULT_USERS));
+            return DEFAULT_USERS;
+          }
+          const parsed = JSON.parse(raw);
+          return Array.isArray(parsed) ? parsed : DEFAULT_USERS;
+        } catch (e) {
+          return DEFAULT_USERS;
+        }
       }
 
-      togglePasswordBtn.addEventListener('click', function () {
-        const isHidden = passwordInput.type === 'password';
-        passwordInput.type = isHidden ? 'text' : 'password';
-        togglePasswordBtn.textContent = isHidden ? 'ซ่อนรหัส' : 'แสดงรหัส';
-        togglePasswordBtn.setAttribute('aria-pressed', String(isHidden));
+      function saveUsers(users) {
+        localStorage.setItem(KEYS.USERS, JSON.stringify(users));
+      }
+
+      function saveSession(sessionObj, remember) {
+        const str = JSON.stringify(sessionObj);
+        sessionStorage.setItem(KEYS.SESSION, str);
+        if (remember !== false) {
+          localStorage.setItem(KEYS.SESSION, str);
+        } else {
+          localStorage.setItem(KEYS.SESSION, str);
+        }
+      }
+
+      const tabBtnLogin = document.getElementById('tabBtnLogin');
+      const tabBtnRegister = document.getElementById('tabBtnRegister');
+      const panelLogin = document.getElementById('panelLogin');
+      const panelRegister = document.getElementById('panelRegister');
+      const authAlert = document.getElementById('authAlert');
+
+      function showAlert(message, type) {
+        authAlert.textContent = message;
+        authAlert.className = 'alert-box show ' + type;
+      }
+
+      function clearAlert() {
+        authAlert.className = 'alert-box';
+        authAlert.textContent = '';
+      }
+
+      function switchTab(mode, keepAlert = false) {
+        if (!keepAlert) clearAlert();
+        const isRegister = mode === 'register';
+        tabBtnLogin.classList.toggle('active', !isRegister);
+        tabBtnLogin.setAttribute('aria-selected', String(!isRegister));
+        tabBtnRegister.classList.toggle('active', isRegister);
+        tabBtnRegister.setAttribute('aria-selected', String(isRegister));
+
+        panelLogin.classList.toggle('active', !isRegister);
+        panelRegister.classList.toggle('active', isRegister);
+      }
+
+      tabBtnLogin.addEventListener('click', () => switchTab('login'));
+      tabBtnRegister.addEventListener('click', () => switchTab('register'));
+
+      // ตรวจสอบ URL parameter ?mode=register หรือ ?mode=login
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('mode') === 'register') {
+        switchTab('register');
+      } else {
+        switchTab('login');
+      }
+
+      // แสดง/ซ่อนรหัสผ่าน
+      const loginPwInput = document.getElementById('password');
+      const toggleLoginPw = document.getElementById('toggleLoginPw');
+      toggleLoginPw.addEventListener('click', () => {
+        const hidden = loginPwInput.type === 'password';
+        loginPwInput.type = hidden ? 'text' : 'password';
+        toggleLoginPw.textContent = hidden ? 'ซ่อนรหัส' : 'แสดงรหัส';
       });
 
-      fillDemoBtn.addEventListener('click', function () {
-        usernameInput.value = 'admin';
-        passwordInput.value = '1234';
-        rememberCheckbox.checked = true;
-        showMessage('success', 'กรอกข้อมูลทดลองแล้ว กดปุ่ม <strong>เข้าสู่ระบบ</strong> ได้เลย');
+      // ปุ่มทางลัดสำหรับทดสอบ
+      document.getElementById('fillCustomerBtn').addEventListener('click', () => {
+        document.getElementById('username').value = 'customer';
+        document.getElementById('password').value = '123456';
+        showAlert('กรอกข้อมูลบัญชีลูกค้าตัวอย่าง (customer / 123456) แล้ว กด "เข้าสู่ระบบ" ได้เลย', 'success');
       });
 
-      loginForm.addEventListener('submit', function (event) {
-        event.preventDefault();
-        const user = usernameInput.value.trim();
-        const pass = passwordInput.value.trim();
+      document.getElementById('startAdminDemoBtn').addEventListener('click', () => {
+        const demoSession = {
+          username: 'admin_demo',
+          fullName: 'ผู้ทดลองระบบ (Admin Demo)',
+          email: 'demo@bluecat.store',
+          role: 'Admin Demo',
+          isDemo: true,
+          loginAt: new Date().toISOString()
+        };
+        saveSession(demoSession, true);
+        window.location.href = 'admin.html';
+      });
 
-        if (!user || !pass) {
-          showMessage('error', 'กรุณากรอกชื่อผู้ใช้งานและรหัสผ่านให้ครบถ้วน');
+      // ระบบสมัครสมาชิก (Tab 1)
+      document.getElementById('registerForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const fullName = document.getElementById('regFullName').value.trim();
+        const username = document.getElementById('regUsername').value.trim();
+        const email = document.getElementById('regEmail').value.trim();
+        const password = document.getElementById('regPassword').value;
+        const confirmPassword = document.getElementById('regConfirmPassword').value;
+
+        if (!fullName || !username || !email || !password || !confirmPassword) {
+          showAlert('กรุณากรอกข้อมูลให้ครบทุกช่อง', 'error');
           return;
         }
 
-        const allowed = validAccounts[user.toLowerCase()];
-        if (Array.isArray(allowed) && allowed.includes(pass)) {
-          try {
-            if (rememberCheckbox.checked) {
-              localStorage.setItem('bluecat_remember_user', user);
-            } else {
-              localStorage.removeItem('bluecat_remember_user');
-            }
-          } catch (e) {}
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          showAlert('รูปแบบอีเมลไม่ถูกต้อง (ตัวอย่าง: name@example.com)', 'error');
+          return;
+        }
 
-          showMessage('success', 'เข้าสู่ระบบสำเร็จ กำลังพาไปหน้าจัดการสินค้า...');
-          setTimeout(function () {
+        if (password.length < 6) {
+          showAlert('รหัสผ่านต้องมีความยาวอย่างน้อย 6 ตัวอักษร', 'error');
+          return;
+        }
+
+        if (password !== confirmPassword) {
+          showAlert('รหัสผ่านและยืนยันรหัสผ่านไม่ตรงกัน', 'error');
+          return;
+        }
+
+        const users = getUsers();
+        const duplicateUser = users.some(
+          u => u.username.toLowerCase() === username.toLowerCase() || username.toLowerCase() === 'admin_demo'
+        );
+        if (duplicateUser) {
+          showAlert(`ชื่อผู้ใช้ "${username}" ถูกใช้งานแล้ว กรุณาตั้งชื่อผู้ใช้อื่น`, 'error');
+          return;
+        }
+
+        const newUser = {
+          id: 'u-' + Date.now(),
+          fullName,
+          username,
+          email,
+          password,
+          role: 'Customer', // กำหนด Role เป็น Customer โดยอัตโนมัติ ห้ามเลือกเป็น Admin
+          createdAt: new Date().toISOString()
+        };
+
+        users.push(newUser);
+        saveUsers(users);
+
+        document.getElementById('registerForm').reset();
+        switchTab('login', true);
+        document.getElementById('username').value = username;
+        document.getElementById('password').value = password;
+        showAlert(`สมัครสมาชิกสำเร็จ! บัญชี "${username}" (สิทธิ์ Customer) พร้อมใช้งานแล้ว กดปุ่ม "เข้าสู่ระบบ" ด้านล่างได้เลย`, 'success');
+      });
+
+      // ระบบเข้าสู่ระบบ (Tab 2)
+      document.getElementById('loginForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const identifier = document.getElementById('username').value.trim();
+        const password = document.getElementById('password').value;
+        const remember = document.getElementById('remember').checked;
+
+        if (!identifier || !password) {
+          showAlert('กรุณากรอกชื่อผู้ใช้ (หรืออีเมล) และรหัสผ่านให้ครบถ้วน', 'error');
+          return;
+        }
+
+        const users = getUsers();
+        const matched = users.find(
+          u =>
+            (u.username.toLowerCase() === identifier.toLowerCase() ||
+              (u.email && u.email.toLowerCase() === identifier.toLowerCase())) &&
+            u.password === password
+        );
+
+        if (!matched) {
+          showAlert('ชื่อผู้ใช้/อีเมล หรือรหัสผ่านไม่ถูกต้อง กรุณาตรวจสอบอีกครั้ง', 'error');
+          return;
+        }
+
+        const sessionObj = {
+          username: matched.username,
+          fullName: matched.fullName,
+          email: matched.email,
+          role: matched.role,
+          isDemo: false,
+          loginAt: new Date().toISOString()
+        };
+
+        saveSession(sessionObj, remember);
+
+        if (matched.role === 'Admin') {
+          showAlert('เข้าสู่ระบบผู้ดูแลสำเร็จ กำลังพาไปหน้า Admin Dashboard...', 'success');
+          setTimeout(() => {
             window.location.href = 'admin.html';
-          }, 900);
+          }, 400);
         } else {
-          showMessage('error', 'ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง (บัญชีทดลอง: admin / 1234)');
+          showAlert('เข้าสู่ระบบสำเร็จ! กำลังพาไปยังหน้าร้านค้า...', 'success');
+          setTimeout(() => {
+            window.location.href = 'index.html#storeSection';
+          }, 400);
         }
       });
     })();
