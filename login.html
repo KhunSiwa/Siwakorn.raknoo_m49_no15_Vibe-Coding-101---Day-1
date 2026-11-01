@@ -372,7 +372,7 @@
 
       <nav aria-label="เมนูหลัก">
         <ul class="nav-links">
-          <li><a href="index.html" class="nav-link">หน้าแรก / ร้านค้า</a></li>
+          <li><a href="index.html" class="nav-link">กลับหน้าแรก (Landing Page)</a></li>
           <li><a href="login.html" class="nav-link active" aria-current="page">สมัครสมาชิก / เข้าสู่ระบบ</a></li>
         </ul>
       </nav>
@@ -442,11 +442,12 @@
         </form>
 
         <div class="demo-helper">
-          <div><strong>ทางลัดสำหรับทดสอบระบบ KHUNSHOP:</strong></div>
+          <div><strong>ทางลัดสำหรับทดสอบบัญชีตามสิทธิ์ (Role):</strong></div>
           <div class="demo-btn-row">
-            <button type="button" id="fillCustomerBtn" class="btn btn-outline btn-xs">กรอกบัญชี Customer (customer / 123456)</button>
-            <button type="button" id="startAdminDemoBtn" class="btn btn-outline btn-xs">เข้าโหมด Admin Demo ทันที</button>
+            <button type="button" id="fillCustomerBtn" class="btn btn-outline btn-xs">Customer (customer / 123456)</button>
+            <button type="button" id="fillAdminBtn" class="btn btn-outline btn-xs">Admin (admin / 1234)</button>
           </div>
+          <button type="button" id="startAdminDemoBtn" class="btn btn-outline btn-xs">เข้าโหมดทดลองผู้ดูแล (Admin Demo) ทันที</button>
         </div>
       </div>
 
@@ -521,7 +522,7 @@
           </div>
 
           <p style="font-size: 0.82rem; color: var(--slate-500); margin-block-end: 1rem;">
-            * บัญชีที่สมัครใหม่จะได้รับสิทธิ์เป็น <strong>ลูกค้า (Customer)</strong> เท่านั้น (รหัสผ่านถูกแฮชก่อนบันทึกลง localStorage)
+            * บัญชีที่สมัครใหม่จะได้รับสิทธิ์เป็น <strong>ลูกค้า (Customer)</strong> อัตโนมัติ (ไม่อนุญาตให้สมัครเป็น Admin)
           </p>
 
           <button type="submit" id="registerSubmitBtn" class="btn btn-primary">สมัครสมาชิก</button>
@@ -663,7 +664,13 @@
       document.getElementById('fillCustomerBtn').addEventListener('click', () => {
         document.getElementById('username').value = 'customer';
         document.getElementById('password').value = '123456';
-        showAlert('กรอกข้อมูลบัญชีลูกค้าตัวอย่าง (customer / 123456) แล้ว กด "เข้าสู่ระบบ" ได้เลย', 'success');
+        showAlert('กรอกบัญชีลูกค้าตัวอย่าง (customer / 123456) แล้ว กด "เข้าสู่ระบบ" เพื่อเข้าสู่ Shopping Store', 'success');
+      });
+
+      document.getElementById('fillAdminBtn').addEventListener('click', () => {
+        document.getElementById('username').value = 'admin';
+        document.getElementById('password').value = '1234';
+        showAlert('กรอกบัญชีผู้ดูแลระบบ (admin / 1234) แล้ว กด "เข้าสู่ระบบ" เพื่อเข้าสู่ Admin Dashboard', 'success');
       });
 
       document.getElementById('startAdminDemoBtn').addEventListener('click', () => {
@@ -710,7 +717,7 @@
 
         const users = getUsers();
         const duplicateUser = users.some(
-          u => u.username.toLowerCase() === username.toLowerCase() || username.toLowerCase() === 'admin_demo'
+          u => u.username.toLowerCase() === username.toLowerCase() || username.toLowerCase() === 'admin_demo' || username.toLowerCase() === 'admin'
         );
         if (duplicateUser) {
           showAlert(`ชื่อผู้ใช้ "${username}" ถูกใช้งานแล้ว กรุณาตั้งชื่อผู้ใช้อื่น`, 'error');
@@ -723,7 +730,7 @@
           username,
           email,
           passwordHash: simpleHash(password),
-          role: 'Customer', // กำหนด Role เป็น Customer เท่านั้น
+          role: 'Customer', // กำหนด Role เป็น Customer อัตโนมัติเท่านั้น
           createdAt: new Date().toISOString()
         };
 
@@ -775,12 +782,12 @@
           showAlert('เข้าสู่ระบบผู้ดูแลสำเร็จ กำลังพาไปหน้า Admin Dashboard...', 'success');
           setTimeout(() => {
             window.location.href = 'admin.html';
-          }, 400);
+          }, 300);
         } else {
-          showAlert('เข้าสู่ระบบสำเร็จ! กำลังพาไปยังหน้าร้านค้า KHUNSHOP...', 'success');
+          showAlert('เข้าสู่ระบบลูกค้าสำเร็จ! กำลังเข้าสู่ Shopping Store ของ KHUNSHOP...', 'success');
           setTimeout(() => {
-            window.location.href = 'index.html#storeSection';
-          }, 400);
+            window.location.href = 'index.html';
+          }, 300);
         }
       });
     })();

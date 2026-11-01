@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KHUNSHOP — ร้านค้าออนไลน์และอุปกรณ์ไอทีครบวงจร</title>
+  <title>KHUNSHOP — Official E-commerce Platform</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -33,11 +33,11 @@
       --red-600: #dc2626;
       --red-50: #fef2f2;
       --red-200: #fecaca;
-      --radius-lg: 16px;
+      --radius-lg: 18px;
       --radius-md: 12px;
       --radius-sm: 8px;
       --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06);
-      --shadow-md: 0 10px 28px -6px rgba(15, 23, 42, 0.1);
+      --shadow-md: 0 12px 32px -8px rgba(15, 23, 42, 0.12);
     }
 
     *, *::before, *::after {
@@ -70,29 +70,6 @@
       margin-inline: auto;
     }
 
-    /* Demo Mode Banner */
-    .demo-banner {
-      background: var(--amber-50);
-      border-block-end: 1px solid var(--amber-200);
-      color: var(--amber-700);
-      padding: 0.6rem 1rem;
-      font-size: 0.9rem;
-      font-weight: 600;
-      display: none;
-    }
-
-    .demo-banner.show {
-      display: block;
-    }
-
-    .demo-banner-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
     /* Navbar */
     .navbar {
       background: var(--white);
@@ -103,7 +80,7 @@
     }
 
     .navbar-inner {
-      min-block-size: 70px;
+      min-block-size: 72px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -117,7 +94,7 @@
       align-items: center;
       gap: 0.65rem;
       font-weight: 800;
-      font-size: 1.25rem;
+      font-size: 1.28rem;
       letter-spacing: -0.02em;
       color: var(--navy-900);
     }
@@ -143,7 +120,7 @@
     }
 
     .nav-link {
-      padding: 0.5rem 0.9rem;
+      padding: 0.5rem 0.95rem;
       border-radius: var(--radius-sm);
       font-size: 0.94rem;
       font-weight: 600;
@@ -164,7 +141,7 @@
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 0.55rem;
+      gap: 0.6rem;
       flex-wrap: wrap;
     }
 
@@ -174,9 +151,9 @@
       align-items: center;
       justify-content: center;
       gap: 0.45rem;
-      padding: 0.6rem 1.1rem;
+      padding: 0.62rem 1.15rem;
       border-radius: var(--radius-sm);
-      font-size: 0.92rem;
+      font-size: 0.93rem;
       font-weight: 600;
       cursor: pointer;
       border: 1px solid transparent;
@@ -185,8 +162,8 @@
     }
 
     .btn-lg {
-      padding: 0.78rem 1.45rem;
-      font-size: 0.98rem;
+      padding: 0.85rem 1.65rem;
+      font-size: 1rem;
     }
 
     .btn-sm {
@@ -260,120 +237,9 @@
       color: var(--blue-700);
     }
 
-    /* Toast */
-    .toast-banner {
-      position: fixed;
-      inset-block-end: 1.25rem;
-      inset-inline-end: 1.25rem;
-      z-index: 90;
-      background: var(--navy-900);
-      color: var(--white);
-      padding: 0.85rem 1.2rem;
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow-md);
-      font-size: 0.92rem;
-      font-weight: 600;
-      display: none;
-      align-items: center;
-      gap: 0.65rem;
-      max-inline-size: 420px;
-    }
-
-    .toast-banner.show {
-      display: flex;
-    }
-
-    .toast-banner.success {
-      background: var(--green-700);
-    }
-
-    .toast-banner.error {
-      background: var(--red-700);
-    }
-
-    /* Hero Section */
-    .hero {
-      padding-block: 2.25rem 1.75rem;
-      background: linear-gradient(180deg, var(--blue-50) 0%, var(--slate-50) 100%);
-    }
-
-    .hero-card {
-      background: var(--white);
-      border: 1px solid var(--slate-200);
-      border-radius: var(--radius-lg);
-      padding: clamp(1.5rem, 3vw, 2.35rem);
-      box-shadow: var(--shadow-sm);
-      display: grid;
-      grid-template-columns: 1.25fr 0.75fr;
-      gap: 1.75rem;
-      align-items: center;
-    }
-
-    .hero-badge {
-      display: inline-block;
-      padding: 0.28rem 0.8rem;
-      border-radius: 999px;
-      background: var(--blue-50);
-      color: var(--blue-700);
-      font-size: 0.82rem;
-      font-weight: 700;
-      margin-block-end: 0.75rem;
-    }
-
-    .hero h1 {
-      font-size: clamp(1.65rem, 1.2rem + 1.8vw, 2.35rem);
-      line-height: 1.25;
-      color: var(--navy-900);
-      margin-block-end: 0.65rem;
-    }
-
-    .hero p {
-      font-size: 0.98rem;
-      color: var(--slate-600);
-      margin-block-end: 1.35rem;
-    }
-
-    .hero-cta-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.65rem;
-    }
-
-    .hero-stats-box {
-      background: var(--slate-50);
-      border: 1px solid var(--slate-200);
-      border-radius: var(--radius-md);
-      padding: 1.2rem;
-      display: grid;
-      gap: 0.75rem;
-    }
-
-    .hero-stat-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.68rem 0.95rem;
-      background: var(--white);
-      border: 1px solid var(--slate-200);
-      border-radius: var(--radius-sm);
-    }
-
-    .hero-stat-label {
-      font-size: 0.86rem;
-      color: var(--slate-600);
-      font-weight: 500;
-    }
-
-    .hero-stat-value {
-      font-size: 1.08rem;
-      font-weight: 700;
-      color: var(--navy-900);
-      font-variant-numeric: tabular-nums;
-    }
-
     /* Advertisement Banner Carousel */
     .carousel-section {
-      padding-block: 0.5rem 1.5rem;
+      padding-block: 1.5rem 1rem;
     }
 
     .carousel-container {
@@ -391,8 +257,8 @@
       position: relative;
       width: 100%;
       aspect-ratio: 21 / 8;
-      min-block-size: 260px;
-      max-block-size: 420px;
+      min-block-size: 280px;
+      max-block-size: 440px;
       overflow: hidden;
     }
 
@@ -421,50 +287,50 @@
     .carousel-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg, rgba(15, 23, 42, 0.86) 0%, rgba(15, 23, 42, 0.52) 55%, rgba(15, 23, 42, 0.15) 100%);
+      background: linear-gradient(90deg, rgba(15, 23, 42, 0.88) 0%, rgba(15, 23, 42, 0.55) 55%, rgba(15, 23, 42, 0.15) 100%);
       display: flex;
       align-items: center;
-      padding: clamp(1.5rem, 4vw, 3.25rem);
+      padding: clamp(1.5rem, 4vw, 3.5rem);
     }
 
     .carousel-content {
-      max-inline-size: 560px;
+      max-inline-size: 580px;
       color: var(--white);
     }
 
     .carousel-tag {
       display: inline-block;
-      padding: 0.25rem 0.75rem;
+      padding: 0.28rem 0.8rem;
       border-radius: 999px;
-      background: rgba(37, 99, 235, 0.9);
+      background: rgba(37, 99, 235, 0.92);
       color: var(--white);
       font-size: 0.78rem;
       font-weight: 700;
-      margin-block-end: 0.65rem;
-      letter-spacing: 0.03em;
+      margin-block-end: 0.7rem;
+      letter-spacing: 0.04em;
     }
 
     .carousel-title {
-      font-size: clamp(1.35rem, 1rem + 1.6vw, 2.1rem);
+      font-size: clamp(1.45rem, 1.05rem + 1.7vw, 2.25rem);
       font-weight: 800;
       line-height: 1.25;
-      margin-block-end: 0.55rem;
+      margin-block-end: 0.6rem;
     }
 
     .carousel-subtitle {
-      font-size: clamp(0.88rem, 0.82rem + 0.3vw, 1.02rem);
+      font-size: clamp(0.9rem, 0.84rem + 0.3vw, 1.05rem);
       color: #e2e8f0;
-      margin-block-end: 1.15rem;
+      margin-block-end: 1.25rem;
     }
 
     .carousel-nav-btn {
       position: absolute;
       inset-block-start: 50%;
       transform: translateY(-50%);
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.32);
       background: rgba(15, 23, 42, 0.65);
       color: var(--white);
       font-size: 1.35rem;
@@ -491,8 +357,8 @@
 
     .carousel-bottom-bar {
       position: absolute;
-      inset-block-end: 0.85rem;
-      inset-inline: 1.25rem;
+      inset-block-end: 0.9rem;
+      inset-inline: 1.35rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -525,16 +391,93 @@
     .carousel-counter {
       background: rgba(15, 23, 42, 0.72);
       color: var(--white);
-      padding: 0.2rem 0.65rem;
+      padding: 0.22rem 0.7rem;
       border-radius: 999px;
       font-size: 0.78rem;
       font-weight: 700;
       font-variant-numeric: tabular-nums;
     }
 
-    /* Store Section */
+    /* ================= PUBLIC LANDING VIEW (Before Login) ================= */
+    .public-intro-section {
+      padding-block: 1.25rem 3.5rem;
+    }
+
+    .public-hero-card {
+      background: var(--white);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-lg);
+      padding: clamp(2rem, 4vw, 3.25rem);
+      box-shadow: var(--shadow-md);
+      text-align: center;
+      max-inline-size: 880px;
+      margin-inline: auto;
+    }
+
+    .public-badge {
+      display: inline-block;
+      padding: 0.32rem 0.9rem;
+      border-radius: 999px;
+      background: var(--blue-50);
+      color: var(--blue-700);
+      font-size: 0.84rem;
+      font-weight: 700;
+      margin-block-end: 0.9rem;
+    }
+
+    .public-hero-card h1 {
+      font-size: clamp(1.8rem, 1.3rem + 2vw, 2.65rem);
+      line-height: 1.25;
+      color: var(--navy-900);
+      margin-block-end: 0.85rem;
+    }
+
+    .public-hero-card p {
+      font-size: 1.05rem;
+      color: var(--slate-600);
+      max-inline-size: 640px;
+      margin-inline: auto;
+      margin-block-end: 1.75rem;
+    }
+
+    .public-cta-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+    }
+
+    .public-highlights {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-block-start: 2.25rem;
+    }
+
+    .highlight-card {
+      background: var(--white);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      text-align: left;
+    }
+
+    .highlight-card h3 {
+      font-size: 1.05rem;
+      color: var(--navy-900);
+      margin-block-end: 0.35rem;
+    }
+
+    .highlight-card p {
+      font-size: 0.9rem;
+      color: var(--slate-600);
+    }
+
+    /* ================= CUSTOMER SHOPPING STORE VIEW (After Login) ================= */
     .store-section {
-      padding-block: 1.25rem 3rem;
+      padding-block: 1rem 3rem;
     }
 
     .section-header {
@@ -542,18 +485,50 @@
       align-items: flex-end;
       justify-content: space-between;
       gap: 1rem;
-      margin-block-end: 1.15rem;
+      margin-block-end: 1rem;
       flex-wrap: wrap;
     }
 
     .section-header h2 {
-      font-size: 1.45rem;
+      font-size: 1.5rem;
       color: var(--navy-900);
     }
 
     .section-header p {
       font-size: 0.92rem;
       color: var(--slate-600);
+    }
+
+    /* Category Pills */
+    .category-pills {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-block-end: 1rem;
+    }
+
+    .cat-pill-btn {
+      padding: 0.45rem 0.95rem;
+      border-radius: 999px;
+      border: 1px solid var(--slate-200);
+      background: var(--white);
+      color: var(--slate-600);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .cat-pill-btn:hover {
+      background: var(--slate-100);
+      color: var(--navy-900);
+    }
+
+    .cat-pill-btn.active {
+      background: var(--navy-900);
+      color: var(--white);
+      border-color: var(--navy-900);
     }
 
     .store-toolbar {
@@ -937,6 +912,37 @@
       border-radius: var(--radius-sm);
     }
 
+    /* Toast */
+    .toast-banner {
+      position: fixed;
+      inset-block-end: 1.25rem;
+      inset-inline-end: 1.25rem;
+      z-index: 90;
+      background: var(--navy-900);
+      color: var(--white);
+      padding: 0.85rem 1.2rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+      font-size: 0.92rem;
+      font-weight: 600;
+      display: none;
+      align-items: center;
+      gap: 0.65rem;
+      max-inline-size: 420px;
+    }
+
+    .toast-banner.show {
+      display: flex;
+    }
+
+    .toast-banner.success {
+      background: var(--green-700);
+    }
+
+    .toast-banner.error {
+      background: var(--red-700);
+    }
+
     /* Dialog Modal */
     dialog {
       margin: auto;
@@ -1012,7 +1018,7 @@
     }
 
     @media (max-width: 920px) {
-      .hero-card {
+      .public-highlights {
         grid-template-columns: 1fr;
       }
       .customer-panels {
@@ -1026,17 +1032,6 @@
 </head>
 <body>
 
-  <!-- แถบแจ้งเตือนสถานะ Admin Demo -->
-  <div id="demoBanner" class="demo-banner" role="status">
-    <div class="container demo-banner-inner">
-      <span>คุณกำลังอยู่ใน <strong>KHUNSHOP Admin Demo Mode (โหมดทดลองผู้ดูแลระบบ)</strong> — สามารถจัดการสินค้า รูปภาพ และ Banner โฆษณาได้ทันที</span>
-      <div style="display:flex; gap:0.5rem;">
-        <a href="admin.html" class="btn btn-sm btn-primary">ไปหน้า Admin Dashboard</a>
-        <button type="button" id="exitDemoBannerBtn" class="btn btn-sm btn-outline">ออกจาก Demo Mode</button>
-      </div>
-    </div>
-  </div>
-
   <!-- Navbar -->
   <header class="navbar">
     <div class="container navbar-inner">
@@ -1045,84 +1040,37 @@
         <span>KHUNSHOP</span>
       </a>
 
-      <nav aria-label="เมนูหลัก">
+      <!-- เมนูนำทางสำหรับลูกค้าที่เข้าสู่ระบบแล้วเท่านั้น -->
+      <nav id="customerNavMenu" aria-label="เมนูร้านค้าสำหรับสมาชิก" style="display: none;">
         <ul class="nav-links">
-          <li><a href="index.html" class="nav-link active" aria-current="page">หน้าแรก</a></li>
-          <li><a href="#storeSection" class="nav-link">สินค้าทั้งหมด</a></li>
-          <li id="navLoginItem"><a href="login.html?mode=login" class="nav-link">เข้าสู่ระบบ</a></li>
-          <li id="navRegisterItem"><a href="login.html?mode=register" class="nav-link">สมัครสมาชิก</a></li>
+          <li><a href="#customerStoreView" class="nav-link active">หน้าร้านค้า</a></li>
+          <li><a href="#categoryPillsBar" class="nav-link">หมวดหมู่สินค้า</a></li>
           <li><a href="#customerWorkspace" class="nav-link">ตะกร้าสินค้า (<span id="navCartCount">0</span>)</a></li>
+          <li><a href="#orderHistoryPanel" class="nav-link">ประวัติคำสั่งซื้อ</a></li>
         </ul>
       </nav>
 
-      <!-- ปุ่มสำหรับผู้เยี่ยมชม -->
-      <div class="nav-actions" id="guestNavActions">
-        <a href="login.html?mode=register" class="btn btn-outline btn-sm">สมัครสมาชิก</a>
-        <a href="login.html?mode=login" class="btn btn-primary btn-sm">เข้าสู่ระบบ</a>
-        <button type="button" id="navAdminDemoBtn" class="btn btn-soft btn-sm">ทดลองใช้ระบบ Admin</button>
+      <!-- ปุ่มสำหรับ Public Landing Page (ก่อน Login: มีเฉพาะปุ่มเข้าสู่ระบบและสร้างบัญชี) -->
+      <div class="nav-actions" id="publicNavActions">
+        <a href="login.html?mode=login" class="btn btn-outline btn-sm">เข้าสู่ระบบ</a>
+        <a href="login.html?mode=register" class="btn btn-primary btn-sm">สร้างบัญชี</a>
       </div>
 
-      <!-- ปุ่มเมื่อเข้าสู่ระบบแล้ว -->
-      <div class="nav-actions" id="userNavActions" style="display: none;">
+      <!-- ปุ่มสำหรับสมาชิกที่เข้าสู่ระบบแล้ว -->
+      <div class="nav-actions" id="customerNavActions" style="display: none;">
         <span class="user-badge">
-          <span id="navUserName">ผู้ใช้</span>
+          <span id="navUserName">สมาชิก</span>
           <span id="navUserRole" class="role-tag">Customer</span>
         </span>
-        <a href="#storeSection" class="btn btn-soft btn-sm">เลือกซื้อสินค้า</a>
-        <a href="admin.html" id="navGoAdminBtn" class="btn btn-primary btn-sm" style="display: none;">Admin Dashboard</a>
+        <a href="admin.html" id="navAdminBtn" class="btn btn-soft btn-sm" style="display: none;">ไปที่ Admin Dashboard</a>
         <button type="button" id="navLogoutBtn" class="btn btn-danger-outline btn-sm">ออกจากระบบ</button>
       </div>
     </div>
   </header>
 
   <main>
-    <!-- Hero Section -->
-    <section class="hero" aria-labelledby="heroHeading">
-      <div class="container">
-        <div class="hero-card">
-          <div>
-            <span class="hero-badge">KHUNSHOP — Premium E-commerce &amp; Smart Inventory</span>
-            <h1 id="heroHeading">KHUNSHOP ศูนย์รวมอุปกรณ์ไอทีและไลฟ์สไตล์ระดับมืออาชีพ</h1>
-            <p>
-              เลือกช้อปคีย์บอร์ดไร้สาย เมาส์สรีรศาสตร์ จอมอนิเตอร์คมชัดสูง และอุปกรณ์จัดโต๊ะทำงานคุณภาพเยี่ยม
-              พร้อมระบบตะกร้าสินค้าสำหรับสมาชิก และระบบจัดการรูปภาพสินค้า/แบนเนอร์สำหรับผู้ดูแลระบบ
-            </p>
-
-            <div class="hero-cta-group" id="heroGuestButtons">
-              <a href="#storeSection" class="btn btn-primary btn-lg">เลือกดูสินค้า</a>
-              <a href="login.html?mode=register" class="btn btn-outline btn-lg">สมัครสมาชิก</a>
-              <a href="login.html?mode=login" class="btn btn-outline btn-lg">เข้าสู่ระบบ</a>
-              <button type="button" id="heroAdminDemoBtn" class="btn btn-soft btn-lg">ทดลองใช้ระบบ Admin</button>
-            </div>
-
-            <div class="hero-cta-group" id="heroUserButtons" style="display: none;">
-              <a href="#storeSection" class="btn btn-primary btn-lg">เลือกดูสินค้าทั้งหมด</a>
-              <a href="#customerWorkspace" class="btn btn-outline btn-lg">ดูตะกร้าสินค้าของฉัน</a>
-              <a href="admin.html" id="heroGoAdminBtn" class="btn btn-soft btn-lg" style="display: none;">ไปที่ Admin Dashboard</a>
-              <button type="button" id="heroLogoutBtn" class="btn btn-danger-outline btn-lg">ออกจากระบบ</button>
-            </div>
-          </div>
-
-          <div class="hero-stats-box" aria-label="สรุปข้อมูลร้านค้า KHUNSHOP">
-            <div class="hero-stat-row">
-              <span class="hero-stat-label">สินค้าในร้าน KHUNSHOP</span>
-              <span class="hero-stat-value" id="statProductCount">6 รายการ</span>
-            </div>
-            <div class="hero-stat-row">
-              <span class="hero-stat-label">จำนวนคงเหลือพร้อมส่ง</span>
-              <span class="hero-stat-value" id="statTotalStock">102 ชิ้น</span>
-            </div>
-            <div class="hero-stat-row">
-              <span class="hero-stat-label">สถานะสมาชิก</span>
-              <span class="hero-stat-value" id="statCurrentUser" style="color: var(--blue-600); font-size: 0.95rem;">ผู้เยี่ยมชมทั่วไป</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Advertisement Banner Carousel -->
-    <section class="carousel-section" aria-label="โปรโมชันและข่าวสาร KHUNSHOP">
+    <!-- Advertisement Carousel (แสดงทั้งหน้า Public Landing Page และหน้า Shopping Store) -->
+    <section class="carousel-section" aria-label="ภาพโฆษณาและโปรโมชัน KHUNSHOP">
       <div class="container">
         <div id="promoCarousel" class="carousel-container" tabindex="0">
           <div class="carousel-viewport">
@@ -1138,16 +1086,60 @@
       </div>
     </section>
 
-    <!-- Product Section -->
-    <section id="storeSection" class="store-section" aria-labelledby="storeHeading">
+    <!-- ================= 1. PUBLIC LANDING PAGE (แสดงเฉพาะก่อน Login เท่านั้น) ================= -->
+    <section id="publicLandingView" class="public-intro-section" aria-labelledby="publicHeroTitle">
       <div class="container">
-        <div class="section-header">
-          <div>
-            <h2 id="storeHeading">สินค้าทั้งหมดใน KHUNSHOP</h2>
-            <p>สินค้าทุกชิ้นเชื่อมข้อมูลและรูปภาพล่าสุดจากระบบ Admin Dashboard โดยตรง</p>
+        <div class="public-hero-card">
+          <span class="public-badge">KHUNSHOP OFFICIAL ONLINE STORE</span>
+          <h1 id="publicHeroTitle">สัมผัสประสบการณ์ช้อปปิ้งอุปกรณ์ไอทีและไลฟ์สไตล์ระดับพรีเมียม</h1>
+          <p>
+            KHUNSHOP คัดสรรคีย์บอร์ดไร้สาย เมาส์สรีรศาสตร์ จอมอนิเตอร์ความละเอียดสูง และอุปกรณ์จัดโต๊ะทำงานคุณภาพเยี่ยมสำหรับสมาชิกโดยเฉพาะ
+            เข้าสู่ระบบหรือสร้างบัญชีสมาชิกวันนี้ เพื่อเปิดดูแคตตาล็อกสินค้า ราคาพิเศษสำหรับสมาชิก และสั่งซื้อผ่านระบบออนไลน์ได้ทันที
+          </p>
+          <div class="public-cta-row">
+            <a href="login.html?mode=login" class="btn btn-primary btn-lg">เข้าสู่ระบบเพื่อเลือกซื้อสินค้า</a>
+            <a href="login.html?mode=register" class="btn btn-outline btn-lg">สร้างบัญชีสมาชิกใหม่</a>
           </div>
         </div>
 
+        <div class="public-highlights" aria-label="จุดเด่นของร้านค้า KHUNSHOP">
+          <article class="highlight-card">
+            <h3>คัดสรรสินค้าคุณภาพระดับโปร</h3>
+            <p>อุปกรณ์คอมพิวเตอร์ จอมอนิเตอร์ เครื่องเสียง และอุปกรณ์จัดโต๊ะทำงานดีไซน์ทันสมัย รองรับการใช้งานจริงทุกไลฟ์สไตล์</p>
+          </article>
+          <article class="highlight-card">
+            <h3>สิทธิพิเศษเฉพาะสมาชิก KHUNSHOP</h3>
+            <p>ระบบร้านค้าสงวนสิทธิ์แสดงราคาพิเศษและการสั่งซื้อเฉพาะสมาชิกที่เข้าสู่ระบบ เพื่อความสะดวกและปลอดภัยในการจัดการคำสั่งซื้อ</p>
+          </article>
+          <article class="highlight-card">
+            <h3>สั่งซื้อง่าย ติดตามประวัติได้ทันที</h3>
+            <p>จัดการตะกร้าสินค้า คำนวณยอดชำระอัตโนมัติ และตรวจสอบประวัติคำสั่งซื้อย้อนหลังได้ทุกครั้งที่กลับเข้ามาใช้งาน</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 2. CUSTOMER SHOPPING STORE (แสดงเฉพาะหลัง Login สำเร็จแล้วเท่านั้น) ================= -->
+    <section id="customerStoreView" class="store-section" aria-labelledby="storeHeading" style="display: none;">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 id="storeHeading">หน้าร้านค้าสำหรับสมาชิก KHUNSHOP</h2>
+            <p>เลือกหมวดหมู่ ค้นหาสินค้าที่ต้องการ และกดเพิ่มลงตะกร้าเพื่อสั่งซื้อได้ทันที</p>
+          </div>
+        </div>
+
+        <!-- Product Categories Pills -->
+        <div id="categoryPillsBar" class="category-pills" role="group" aria-label="เลือกหมวดหมู่สินค้า">
+          <button type="button" class="cat-pill-btn active" data-cat="ALL">ทั้งหมด</button>
+          <button type="button" class="cat-pill-btn" data-cat="อุปกรณ์คอมพิวเตอร์">อุปกรณ์คอมพิวเตอร์</button>
+          <button type="button" class="cat-pill-btn" data-cat="จอมอนิเตอร์">จอมอนิเตอร์</button>
+          <button type="button" class="cat-pill-btn" data-cat="อุปกรณ์เสริม">อุปกรณ์เสริม</button>
+          <button type="button" class="cat-pill-btn" data-cat="เครื่องเสียง">เครื่องเสียง</button>
+          <button type="button" class="cat-pill-btn" data-cat="อุปกรณ์จัดโต๊ะทำงาน">อุปกรณ์จัดโต๊ะทำงาน</button>
+        </div>
+
+        <!-- Product Search & Category Select Toolbar -->
         <div class="store-toolbar">
           <div class="filter-controls">
             <input type="search" id="storeSearchInput" class="input-control" placeholder="ค้นหาชื่อสินค้า รหัสสินค้า หรือรายละเอียด..." aria-label="ค้นหาสินค้า">
@@ -1161,10 +1153,11 @@
             </select>
           </div>
           <a href="#customerWorkspace" class="btn btn-soft">
-            ตะกร้าสินค้า (<span id="toolbarCartCount">0</span> ชิ้น)
+            ตะกร้าสินค้าของฉัน (<span id="toolbarCartCount">0</span> ชิ้น)
           </a>
         </div>
 
+        <!-- Product Grid -->
         <div id="productGrid" class="product-grid" aria-live="polite"></div>
 
         <!-- Shopping Cart & Order History -->
@@ -1185,12 +1178,12 @@
                 <span id="cartTotalAmount" class="cart-total-amount">0 บาท</span>
               </div>
               <button type="button" id="checkoutBtn" class="btn btn-primary btn-lg" style="width: 100%;">
-                ยืนยันคำสั่งซื้อ (Demo Checkout)
+                ยืนยันคำสั่งซื้อ (Checkout)
               </button>
             </div>
           </div>
 
-          <div class="panel-card" aria-labelledby="orderHistoryTitle">
+          <div id="orderHistoryPanel" class="panel-card" aria-labelledby="orderHistoryTitle">
             <div class="panel-header">
               <h3 id="orderHistoryTitle">ประวัติคำสั่งซื้อของฉัน</h3>
               <span id="orderCountBadge" class="sku-pill">0 รายการ</span>
@@ -1240,8 +1233,8 @@
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <span>© 2026 KHUNSHOP — ระบบร้านค้าออนไลน์และจัดการคลังสินค้าจำลอง</span>
-      <span>ข้อจำกัดระบบสาธิต (Frontend Demo): ข้อมูลและรูปภาพจัดเก็บใน localStorage เฉพาะเบราว์เซอร์เครื่องนี้ ไม่ใช่ระบบชำระเงินหรือ Production Server จริง</span>
+      <span>© 2026 KHUNSHOP — Official E-commerce Platform</span>
+      <span>ระบบสาธิต (Frontend Demo): ข้อมูลจัดเก็บใน localStorage ของเบราว์เซอร์</span>
     </div>
   </footer>
 
@@ -1256,7 +1249,6 @@
         SESSION: 'currentSession'
       };
 
-      // สร้าง SVG Data URI สำหรับรูปภาพสินค้าเริ่มต้นและ Placeholder (ไม่มีทางภาพแตก)
       function makeProductSvg(title, subtitle, bgStart, bgEnd, accent) {
         const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
           <defs>
@@ -1266,14 +1258,10 @@
             </linearGradient>
           </defs>
           <rect width="800" height="500" fill="url(#g)"/>
-          <circle cx="680" cy="100" r="140" fill="${accent}" opacity="0.16"/>
-          <circle cx="120" cy="420" r="180" fill="${accent}" opacity="0.12"/>
           <rect x="70" y="70" width="660" height="360" rx="24" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.22" stroke-width="2"/>
-          <text x="110" y="150" fill="${accent}" font-family="Inter, sans-serif" font-size="22" font-weight="700" letter-spacing="2">KHUNSHOP OFFICIAL PRODUCT</text>
+          <text x="110" y="150" fill="${accent}" font-family="Inter, sans-serif" font-size="22" font-weight="700">KHUNSHOP OFFICIAL PRODUCT</text>
           <text x="110" y="235" fill="#ffffff" font-family="Inter, Noto Sans Thai, sans-serif" font-size="38" font-weight="800">${title}</text>
           <text x="110" y="290" fill="#cbd5e1" font-family="Inter, Noto Sans Thai, sans-serif" font-size="24" font-weight="500">${subtitle}</text>
-          <rect x="110" y="335" width="170" height="44" rx="10" fill="${accent}"/>
-          <text x="195" y="364" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="18" font-weight="700">PREMIUM QUALITY</text>
         </svg>`;
         return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
       }
@@ -1355,7 +1343,7 @@
           title: 'KHUNSHOP MEGA TECH SALE 2026',
           subtitle: 'ยกระดับโต๊ะทำงานด้วยคีย์บอร์ดไร้สาย จอมอนิเตอร์ 4K และอุปกรณ์ไอทีระดับโปร พร้อมส่งทุกชิ้น',
           ctaText: 'ช้อปสินค้าโปรโมชัน',
-          linkUrl: '#storeSection',
+          linkUrl: '#customerStoreView',
           active: true,
           image: 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=1400&q=80'
         },
@@ -1364,7 +1352,7 @@
           title: 'WORKSPACE & STUDIO COLLECTION',
           subtitle: 'หูฟังตัดเสียงรบกวนรุ่นท็อปและขาตั้งแล็ปท็อปอะลูมิเนียมแท้ ดีไซน์พรีเมียมเพื่อคนทำงานยุคใหม่',
           ctaText: 'ดูคอลเลกชันแนะนำ',
-          linkUrl: '#storeSection',
+          linkUrl: '#customerStoreView',
           active: true,
           image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1400&q=80'
         },
@@ -1379,7 +1367,6 @@
         }
       ];
 
-      // ฟังก์ชันแฮชรหัสผ่านฝั่ง Client เพื่อหลีกเลี่ยงการเก็บ Plain Text
       function simpleHash(str) {
         let h = 2166136261 >>> 0;
         for (let i = 0; i < str.length; i++) {
@@ -1410,7 +1397,6 @@
         }
       ];
 
-      // Migration & Non-destructive Initialization
       function initAndMigrateStorage() {
         try {
           if (!localStorage.getItem(KEYS.USERS)) {
@@ -1495,17 +1481,11 @@
 
       function getSession() {
         try {
-          const s = sessionStorage.getItem(KEYS.SESSION) || localStorage.getItem(KEYS.SESSION);
+          const s = localStorage.getItem(KEYS.SESSION) || sessionStorage.getItem(KEYS.SESSION);
           return s ? JSON.parse(s) : null;
         } catch (e) {
           return null;
         }
-      }
-
-      function setSession(sessionObj) {
-        const str = JSON.stringify(sessionObj);
-        localStorage.setItem(KEYS.SESSION, str);
-        sessionStorage.setItem(KEYS.SESSION, str);
       }
 
       function clearSession() {
@@ -1561,22 +1541,13 @@
         }, 3200);
       }
 
-      function startAdminDemo() {
-        setSession({
-          username: 'admin_demo',
-          fullName: 'ผู้ทดลองระบบ (Admin Demo)',
-          email: 'demo@khunshop.store',
-          role: 'Admin Demo',
-          isDemo: true,
-          loginAt: new Date().toISOString()
-        });
-        window.location.href = 'admin.html';
-      }
-
       function handleLogout() {
         clearSession();
+        if (window.location.hash) {
+          history.replaceState(null, '', window.location.pathname);
+        }
         renderAll();
-        showToast('ออกจากระบบ KHUNSHOP เรียบร้อยแล้ว', 'success');
+        showToast('ออกจากระบบเรียบร้อยแล้ว กลับสู่หน้า Public Landing Page', 'success');
       }
 
       function getStatusInfo(product) {
@@ -1602,6 +1573,8 @@
       }
 
       function renderCarousel() {
+        const session = getSession();
+        const isLoggedIn = Boolean(session && session.username);
         const banners = getActiveBanners();
         const track = document.getElementById('carouselTrack');
         const dots = document.getElementById('carouselDots');
@@ -1611,6 +1584,12 @@
 
         track.innerHTML = banners.map((b, idx) => {
           const imgSrc = b.image || DEFAULT_BANNERS[0].image;
+          // ถ้ายังไม่ Login ให้ปุ่ม CTA บนแบนเนอร์พาไปหน้า Login/Register เสมอ
+          const targetHref = isLoggedIn
+            ? (b.linkUrl && !b.linkUrl.startsWith('login.html') ? b.linkUrl : '#customerStoreView')
+            : (b.linkUrl && b.linkUrl.startsWith('login.html') ? b.linkUrl : 'login.html?mode=login');
+          const ctaLabel = isLoggedIn ? (b.ctaText || 'เลือกดูสินค้า') : 'เข้าสู่ระบบเพื่อช้อปเลย';
+
           return `
             <div class="carousel-slide" aria-hidden="${idx !== currentSlide}">
               <img src="${imgSrc}" alt="${b.title || 'KHUNSHOP Banner'}">
@@ -1619,7 +1598,7 @@
                   <span class="carousel-tag">KHUNSHOP HIGHLIGHT</span>
                   <h2 class="carousel-title">${b.title || 'KHUNSHOP Official Store'}</h2>
                   <p class="carousel-subtitle">${b.subtitle || ''}</p>
-                  <a href="${b.linkUrl || '#storeSection'}" class="btn btn-primary btn-lg">${b.ctaText || 'เลือกดูสินค้า'}</a>
+                  <a href="${targetHref}" class="btn btn-primary btn-lg">${ctaLabel}</a>
                 </div>
               </div>
             </div>
@@ -1671,7 +1650,6 @@
         container.addEventListener('focusin', () => { isCarouselPaused = true; });
         container.addEventListener('focusout', () => { isCarouselPaused = false; });
 
-        // รองรับการปัดซ้าย/ขวาบนมือถือและเมาส์
         container.addEventListener('touchstart', (e) => {
           touchStartX = e.changedTouches[0].screenX;
         }, { passive: true });
@@ -1686,56 +1664,64 @@
         }, { passive: true });
       }
 
-      // ================= SESSION & STORE RENDER =================
-      function renderSessionUI() {
+      // ================= VIEW SWITCHING & RENDER =================
+      function renderAll() {
         const session = getSession();
-        const guestNav = document.getElementById('guestNavActions');
-        const userNav = document.getElementById('userNavActions');
-        const navLoginItem = document.getElementById('navLoginItem');
-        const navRegisterItem = document.getElementById('navRegisterItem');
-        const heroGuest = document.getElementById('heroGuestButtons');
-        const heroUser = document.getElementById('heroUserButtons');
-        const demoBanner = document.getElementById('demoBanner');
-        const statCurrentUser = document.getElementById('statCurrentUser');
-        const navGoAdminBtn = document.getElementById('navGoAdminBtn');
-        const heroGoAdminBtn = document.getElementById('heroGoAdminBtn');
+        const isLoggedIn = Boolean(session && session.username);
 
-        if (session && session.username) {
-          guestNav.style.display = 'none';
-          userNav.style.display = 'flex';
-          navLoginItem.style.display = 'none';
-          navRegisterItem.style.display = 'none';
-          heroGuest.style.display = 'none';
-          heroUser.style.display = 'flex';
+        const publicLandingView = document.getElementById('publicLandingView');
+        const customerStoreView = document.getElementById('customerStoreView');
+        const publicNavActions = document.getElementById('publicNavActions');
+        const customerNavActions = document.getElementById('customerNavActions');
+        const customerNavMenu = document.getElementById('customerNavMenu');
+        const navAdminBtn = document.getElementById('navAdminBtn');
 
-          document.getElementById('navUserName').textContent = session.fullName || session.username;
-          document.getElementById('navUserRole').textContent = session.role || 'Customer';
-          statCurrentUser.textContent = `${session.fullName || session.username} (${session.role})`;
+        renderCarousel();
 
-          const isAdminRole = session.role === 'Admin' || session.role === 'Admin Demo';
-          navGoAdminBtn.style.display = isAdminRole ? 'inline-flex' : 'none';
-          heroGoAdminBtn.style.display = isAdminRole ? 'inline-flex' : 'none';
-          demoBanner.classList.toggle('show', session.role === 'Admin Demo');
-        } else {
-          guestNav.style.display = 'flex';
-          userNav.style.display = 'none';
-          navLoginItem.style.display = 'block';
-          navRegisterItem.style.display = 'block';
-          heroGuest.style.display = 'flex';
-          heroUser.style.display = 'none';
-          demoBanner.classList.remove('show');
-          statCurrentUser.textContent = 'ผู้เยี่ยมชมทั่วไป';
+        if (!isLoggedIn) {
+          // โหมด Public Landing Page: แสดงเฉพาะโฆษณา ข้อความแนะนำร้าน และปุ่มเข้าสู่ระบบ/สร้างบัญชี
+          // ห้ามแสดงรายการสินค้า ราคา ตะกร้าสินค้า หรือข้อมูลภายในระบบ
+          publicLandingView.style.display = 'block';
+          customerStoreView.style.display = 'none';
+          publicNavActions.style.display = 'flex';
+          customerNavActions.style.display = 'none';
+          customerNavMenu.style.display = 'none';
+
+          document.getElementById('productGrid').innerHTML = '';
+          document.getElementById('cartItemsContainer').innerHTML = '';
+          document.getElementById('orderHistoryContainer').innerHTML = '';
+          return;
         }
+
+        // โหมด Shopping Store (เมื่อ Login สำเร็จแล้ว)
+        publicLandingView.style.display = 'none';
+        customerStoreView.style.display = 'block';
+        publicNavActions.style.display = 'none';
+        customerNavActions.style.display = 'flex';
+        customerNavMenu.style.display = 'block';
+
+        document.getElementById('navUserName').textContent = session.fullName || session.username;
+        document.getElementById('navUserRole').textContent = session.role || 'Customer';
+
+        const isAdmin = session.role === 'Admin' || session.role === 'Admin Demo';
+        navAdminBtn.style.display = isAdmin ? 'inline-flex' : 'none';
+
+        renderProducts();
+        renderCartAndOrders();
       }
 
-      function renderStatsAndProducts() {
-        const products = getProducts();
-        const totalStock = products.reduce((sum, p) => sum + (Number(p.qty) || 0), 0);
-        document.getElementById('statProductCount').textContent = `${products.length.toLocaleString('th-TH')} รายการ`;
-        document.getElementById('statTotalStock').textContent = `${totalStock.toLocaleString('th-TH')} ชิ้น`;
+      function renderProducts() {
+        const session = getSession();
+        if (!session || !session.username) return;
 
+        const products = getProducts();
         const keyword = (document.getElementById('storeSearchInput').value || '').trim().toLowerCase();
         const cat = document.getElementById('storeCategoryFilter').value;
+
+        // Sync category pills
+        document.querySelectorAll('.cat-pill-btn').forEach(btn => {
+          btn.classList.toggle('active', btn.dataset.cat === cat);
+        });
 
         const filtered = products.filter(p => {
           const matchKeyword = !keyword ||
@@ -1800,10 +1786,7 @@
       function addToCart(sku, requestedQty) {
         const session = getSession();
         if (!session || !session.username) {
-          showToast('กรุณาเข้าสู่ระบบก่อนเพิ่มสินค้าลงตะกร้า', 'error');
-          setTimeout(() => {
-            window.location.href = 'login.html?mode=login';
-          }, 600);
+          window.location.href = 'login.html?mode=login';
           return;
         }
 
@@ -1918,6 +1901,7 @@
           items: orderItems,
           totalQty,
           totalAmount,
+          orderStatus: 'สั่งซื้อสำเร็จ',
           createdAt: new Date().toLocaleString('th-TH')
         };
         orders.unshift(newOrder);
@@ -1930,24 +1914,12 @@
 
       function renderCartAndOrders() {
         const session = getSession();
+        if (!session || !session.username) return;
+
         const cartContainer = document.getElementById('cartItemsContainer');
         const orderContainer = document.getElementById('orderHistoryContainer');
         const checkoutBtn = document.getElementById('checkoutBtn');
         const clearCartBtn = document.getElementById('clearCartBtn');
-
-        if (!session || !session.username) {
-          document.getElementById('navCartCount').textContent = '0';
-          document.getElementById('toolbarCartCount').textContent = '0';
-          document.getElementById('cartTotalQty').textContent = '0 ชิ้น';
-          document.getElementById('cartTotalAmount').textContent = '0 บาท';
-          document.getElementById('orderCountBadge').textContent = '0 รายการ';
-          clearCartBtn.disabled = true;
-          checkoutBtn.disabled = false;
-          checkoutBtn.textContent = 'เข้าสู่ระบบเพื่อสั่งซื้อสินค้า';
-          cartContainer.innerHTML = `<div class="empty-box">กรุณา <a href="login.html?mode=login" style="color:var(--blue-600);font-weight:700;text-decoration:underline;">เข้าสู่ระบบ</a> หรือ <a href="login.html?mode=register" style="color:var(--blue-600);font-weight:700;text-decoration:underline;">สมัครสมาชิก</a> เพื่อเพิ่มสินค้าลงตะกร้าและสั่งซื้อ</div>`;
-          orderContainer.innerHTML = `<div class="empty-box">เข้าสู่ระบบเพื่อดูประวัติคำสั่งซื้อของคุณ</div>`;
-          return;
-        }
 
         const products = getProducts();
         const cart = getUserCart();
@@ -1958,11 +1930,9 @@
           cartContainer.innerHTML = `<div class="empty-box">ยังไม่มีสินค้าในตะกร้า เลือกสินค้าด้านบนแล้วกด "+ เพิ่มลงตะกร้า" ได้เลย</div>`;
           clearCartBtn.disabled = true;
           checkoutBtn.disabled = true;
-          checkoutBtn.textContent = 'ยืนยันคำสั่งซื้อ (Demo Checkout)';
         } else {
           clearCartBtn.disabled = false;
           checkoutBtn.disabled = false;
-          checkoutBtn.textContent = 'ยืนยันคำสั่งซื้อ (Demo Checkout)';
 
           cartContainer.innerHTML = cart.map(item => {
             const prod = products.find(p => p.sku === item.sku) || { name: item.sku, price: 0, qty: 0, image: PLACEHOLDER_IMAGE };
@@ -2003,11 +1973,12 @@
         } else {
           orderContainer.innerHTML = userOrders.map(ord => {
             const itemSummary = ord.items.map(i => `${i.name} (${i.qty} ชิ้น)`).join(', ');
+            const statusText = ord.orderStatus || 'สั่งซื้อสำเร็จ';
             return `
               <div class="order-card">
                 <div class="order-card-head">
                   <span>รหัสคำสั่งซื้อ: ${ord.orderId}</span>
-                  <span style="color:var(--green-700);">สั่งซื้อสำเร็จ</span>
+                  <span style="color:var(--green-700);">${statusText}</span>
                 </div>
                 <div class="order-items-text">${itemSummary}</div>
                 <div class="order-card-foot">
@@ -2065,21 +2036,16 @@
         });
       }
 
-      function renderAll() {
-        renderSessionUI();
-        renderCarousel();
-        renderStatsAndProducts();
-        renderCartAndOrders();
-      }
-
-      document.getElementById('navAdminDemoBtn').addEventListener('click', startAdminDemo);
-      document.getElementById('heroAdminDemoBtn').addEventListener('click', startAdminDemo);
-      document.getElementById('exitDemoBannerBtn').addEventListener('click', handleLogout);
       document.getElementById('navLogoutBtn').addEventListener('click', handleLogout);
-      document.getElementById('heroLogoutBtn').addEventListener('click', handleLogout);
+      document.getElementById('storeSearchInput').addEventListener('input', renderProducts);
+      document.getElementById('storeCategoryFilter').addEventListener('change', renderProducts);
 
-      document.getElementById('storeSearchInput').addEventListener('input', renderStatsAndProducts);
-      document.getElementById('storeCategoryFilter').addEventListener('change', renderStatsAndProducts);
+      document.getElementById('categoryPillsBar').addEventListener('click', (e) => {
+        const pill = e.target.closest('.cat-pill-btn');
+        if (!pill) return;
+        document.getElementById('storeCategoryFilter').value = pill.dataset.cat;
+        renderProducts();
+      });
 
       document.getElementById('productGrid').addEventListener('click', (e) => {
         const downBtn = e.target.closest('.qty-step-down');
