@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bluecat Store — ร้านค้าอุปกรณ์ไอทีและระบบจัดการคลังสินค้า</title>
+  <title>KHUNSHOP — ร้านค้าออนไลน์และอุปกรณ์ไอทีครบวงจร</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --navy-900: #0f172a;
@@ -33,11 +33,11 @@
       --red-600: #dc2626;
       --red-50: #fef2f2;
       --red-200: #fecaca;
-      --radius-lg: 14px;
-      --radius-md: 10px;
+      --radius-lg: 16px;
+      --radius-md: 12px;
       --radius-sm: 8px;
       --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06);
-      --shadow-md: 0 8px 24px -4px rgba(15, 23, 42, 0.08);
+      --shadow-md: 0 10px 28px -6px rgba(15, 23, 42, 0.1);
     }
 
     *, *::before, *::after {
@@ -66,11 +66,11 @@
     }
 
     .container {
-      width: min(1160px, 100% - 2rem);
+      width: min(1180px, 100% - 2rem);
       margin-inline: auto;
     }
 
-    /* Demo Banner */
+    /* Demo Mode Banner */
     .demo-banner {
       background: var(--amber-50);
       border-block-end: 1px solid var(--amber-200);
@@ -103,7 +103,7 @@
     }
 
     .navbar-inner {
-      min-block-size: 68px;
+      min-block-size: 70px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -116,24 +116,22 @@
       display: inline-flex;
       align-items: center;
       gap: 0.65rem;
-      font-weight: 700;
-      font-size: 1.15rem;
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
       color: var(--navy-900);
     }
 
     .brand-mark {
-      width: 36px;
-      height: 36px;
-      border-radius: 9px;
-      background: var(--blue-600);
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--navy-900), var(--blue-600));
       color: var(--white);
       display: grid;
       place-items: center;
-    }
-
-    .brand-mark svg {
-      width: 20px;
-      height: 20px;
+      font-weight: 800;
+      font-size: 1.05rem;
     }
 
     .nav-links {
@@ -141,14 +139,16 @@
       align-items: center;
       gap: 0.35rem;
       list-style: none;
+      flex-wrap: wrap;
     }
 
     .nav-link {
-      padding: 0.5rem 0.95rem;
+      padding: 0.5rem 0.9rem;
       border-radius: var(--radius-sm);
-      font-size: 0.95rem;
+      font-size: 0.94rem;
       font-weight: 600;
       color: var(--slate-600);
+      transition: background-color 0.15s ease, color 0.15s ease;
     }
 
     .nav-link:hover {
@@ -164,7 +164,7 @@
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.55rem;
       flex-wrap: wrap;
     }
 
@@ -176,22 +176,22 @@
       gap: 0.45rem;
       padding: 0.6rem 1.1rem;
       border-radius: var(--radius-sm);
-      font-size: 0.93rem;
+      font-size: 0.92rem;
       font-weight: 600;
       cursor: pointer;
       border: 1px solid transparent;
-      transition: background-color 0.15s ease, border-color 0.15s ease;
+      transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
       white-space: nowrap;
     }
 
     .btn-lg {
-      padding: 0.78rem 1.4rem;
-      font-size: 1rem;
+      padding: 0.78rem 1.45rem;
+      font-size: 0.98rem;
     }
 
     .btn-sm {
       padding: 0.42rem 0.85rem;
-      font-size: 0.86rem;
+      font-size: 0.85rem;
     }
 
     .btn-primary {
@@ -199,7 +199,7 @@
       color: var(--white);
     }
 
-    .btn-primary:hover {
+    .btn-primary:hover:not(:disabled) {
       background: var(--blue-700);
     }
 
@@ -209,7 +209,7 @@
       border-color: var(--slate-200);
     }
 
-    .btn-outline:hover {
+    .btn-outline:hover:not(:disabled) {
       background: var(--slate-100);
     }
 
@@ -219,7 +219,7 @@
       border-color: var(--blue-100);
     }
 
-    .btn-soft:hover {
+    .btn-soft:hover:not(:disabled) {
       background: var(--blue-100);
     }
 
@@ -229,7 +229,7 @@
       border-color: var(--red-200);
     }
 
-    .btn-danger-outline:hover {
+    .btn-danger-outline:hover:not(:disabled) {
       background: var(--red-50);
     }
 
@@ -238,7 +238,6 @@
       cursor: not-allowed;
     }
 
-    /* User Pill */
     .user-badge {
       display: inline-flex;
       align-items: center;
@@ -261,7 +260,7 @@
       color: var(--blue-700);
     }
 
-    /* Notification Toast */
+    /* Toast */
     .toast-banner {
       position: fixed;
       inset-block-end: 1.25rem;
@@ -277,7 +276,7 @@
       display: none;
       align-items: center;
       gap: 0.65rem;
-      max-inline-size: 400px;
+      max-inline-size: 420px;
     }
 
     .toast-banner.show {
@@ -294,88 +293,248 @@
 
     /* Hero Section */
     .hero {
-      padding-block: 3rem 2.25rem;
+      padding-block: 2.25rem 1.75rem;
       background: linear-gradient(180deg, var(--blue-50) 0%, var(--slate-50) 100%);
-      border-block-end: 1px solid var(--slate-200);
     }
 
     .hero-card {
       background: var(--white);
       border: 1px solid var(--slate-200);
       border-radius: var(--radius-lg);
-      padding: clamp(1.75rem, 3.5vw, 2.75rem);
-      box-shadow: var(--shadow-md);
+      padding: clamp(1.5rem, 3vw, 2.35rem);
+      box-shadow: var(--shadow-sm);
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 2rem;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 1.75rem;
       align-items: center;
     }
 
     .hero-badge {
       display: inline-block;
-      padding: 0.3rem 0.8rem;
+      padding: 0.28rem 0.8rem;
       border-radius: 999px;
       background: var(--blue-50);
       color: var(--blue-700);
-      font-size: 0.84rem;
+      font-size: 0.82rem;
       font-weight: 700;
-      margin-block-end: 0.85rem;
-    }
-
-    .hero h1 {
-      font-size: clamp(1.75rem, 1.3rem + 1.8vw, 2.5rem);
-      line-height: 1.25;
-      color: var(--navy-900);
       margin-block-end: 0.75rem;
     }
 
+    .hero h1 {
+      font-size: clamp(1.65rem, 1.2rem + 1.8vw, 2.35rem);
+      line-height: 1.25;
+      color: var(--navy-900);
+      margin-block-end: 0.65rem;
+    }
+
     .hero p {
-      font-size: 1.02rem;
+      font-size: 0.98rem;
       color: var(--slate-600);
-      margin-block-end: 1.5rem;
+      margin-block-end: 1.35rem;
     }
 
     .hero-cta-group {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.75rem;
+      gap: 0.65rem;
     }
 
     .hero-stats-box {
       background: var(--slate-50);
       border: 1px solid var(--slate-200);
       border-radius: var(--radius-md);
-      padding: 1.35rem;
+      padding: 1.2rem;
       display: grid;
-      gap: 0.9rem;
+      gap: 0.75rem;
     }
 
     .hero-stat-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.75rem 1rem;
+      padding: 0.68rem 0.95rem;
       background: var(--white);
       border: 1px solid var(--slate-200);
       border-radius: var(--radius-sm);
     }
 
     .hero-stat-label {
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       color: var(--slate-600);
       font-weight: 500;
     }
 
     .hero-stat-value {
-      font-size: 1.15rem;
+      font-size: 1.08rem;
       font-weight: 700;
       color: var(--navy-900);
       font-variant-numeric: tabular-nums;
     }
 
-    /* Main Store Section */
+    /* Advertisement Banner Carousel */
+    .carousel-section {
+      padding-block: 0.5rem 1.5rem;
+    }
+
+    .carousel-container {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--navy-900);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--slate-200);
+      user-select: none;
+      touch-action: pan-y;
+    }
+
+    .carousel-viewport {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 21 / 8;
+      min-block-size: 260px;
+      max-block-size: 420px;
+      overflow: hidden;
+    }
+
+    .carousel-track {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .carousel-slide {
+      flex: 0 0 100%;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .carousel-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(15, 23, 42, 0.86) 0%, rgba(15, 23, 42, 0.52) 55%, rgba(15, 23, 42, 0.15) 100%);
+      display: flex;
+      align-items: center;
+      padding: clamp(1.5rem, 4vw, 3.25rem);
+    }
+
+    .carousel-content {
+      max-inline-size: 560px;
+      color: var(--white);
+    }
+
+    .carousel-tag {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.9);
+      color: var(--white);
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-block-end: 0.65rem;
+      letter-spacing: 0.03em;
+    }
+
+    .carousel-title {
+      font-size: clamp(1.35rem, 1rem + 1.6vw, 2.1rem);
+      font-weight: 800;
+      line-height: 1.25;
+      margin-block-end: 0.55rem;
+    }
+
+    .carousel-subtitle {
+      font-size: clamp(0.88rem, 0.82rem + 0.3vw, 1.02rem);
+      color: #e2e8f0;
+      margin-block-end: 1.15rem;
+    }
+
+    .carousel-nav-btn {
+      position: absolute;
+      inset-block-start: 50%;
+      transform: translateY(-50%);
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: rgba(15, 23, 42, 0.65);
+      color: var(--white);
+      font-size: 1.35rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      z-index: 10;
+      backdrop-filter: blur(4px);
+      transition: background-color 0.15s ease;
+    }
+
+    .carousel-nav-btn:hover {
+      background: var(--blue-600);
+    }
+
+    .carousel-prev {
+      inset-inline-start: 1rem;
+    }
+
+    .carousel-next {
+      inset-inline-end: 1rem;
+    }
+
+    .carousel-bottom-bar {
+      position: absolute;
+      inset-block-end: 0.85rem;
+      inset-inline: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .carousel-dots {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      pointer-events: auto;
+    }
+
+    .carousel-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      border: none;
+      background: rgba(255, 255, 255, 0.45);
+      cursor: pointer;
+      transition: width 0.2s ease, background-color 0.2s ease;
+    }
+
+    .carousel-dot.active {
+      width: 28px;
+      background: var(--white);
+    }
+
+    .carousel-counter {
+      background: rgba(15, 23, 42, 0.72);
+      color: var(--white);
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Store Section */
     .store-section {
-      padding-block: 2.25rem;
+      padding-block: 1.25rem 3rem;
     }
 
     .section-header {
@@ -383,7 +542,7 @@
       align-items: flex-end;
       justify-content: space-between;
       gap: 1rem;
-      margin-block-end: 1.25rem;
+      margin-block-end: 1.15rem;
       flex-wrap: wrap;
     }
 
@@ -393,22 +552,21 @@
     }
 
     .section-header p {
-      font-size: 0.94rem;
+      font-size: 0.92rem;
       color: var(--slate-600);
     }
 
-    /* Store Toolbar */
     .store-toolbar {
       background: var(--white);
       border: 1px solid var(--slate-200);
       border-radius: var(--radius-md);
-      padding: 1rem 1.25rem;
+      padding: 0.95rem 1.2rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 0.85rem;
       flex-wrap: wrap;
-      margin-block-end: 1.5rem;
+      margin-block-end: 1.35rem;
       box-shadow: var(--shadow-sm);
     }
 
@@ -423,12 +581,12 @@
 
     .input-control,
     .select-control {
-      padding: 0.58rem 0.9rem;
+      padding: 0.56rem 0.9rem;
       border: 1px solid var(--slate-200);
       border-radius: var(--radius-sm);
       background: var(--slate-50);
       color: var(--navy-900);
-      font-size: 0.94rem;
+      font-size: 0.93rem;
     }
 
     .input-control {
@@ -444,40 +602,67 @@
       box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
     }
 
-    /* Product Grid */
+    /* Product Grid & Cards */
     .product-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1.25rem;
+      gap: 1.35rem;
     }
 
     .product-card {
       background: var(--white);
       border: 1px solid var(--slate-200);
       border-radius: var(--radius-md);
-      padding: 1.35rem;
+      overflow: hidden;
       box-shadow: var(--shadow-sm);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 1rem;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
     }
 
-    .product-card-top {
+    .product-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .product-thumb-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      background: var(--slate-100);
+      border-block-end: 1px solid var(--slate-200);
+      overflow: hidden;
+    }
+
+    .product-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .product-thumb-badges {
+      position: absolute;
+      inset-block-start: 0.75rem;
+      inset-inline: 0.75rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 0.5rem;
+      pointer-events: none;
     }
 
     .sku-pill {
       font-family: 'Inter', monospace;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 700;
-      color: var(--blue-700);
-      background: var(--blue-50);
-      padding: 0.2rem 0.6rem;
+      color: var(--navy-900);
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid var(--slate-200);
+      padding: 0.18rem 0.55rem;
       border-radius: 6px;
+      backdrop-filter: blur(4px);
     }
 
     .status-badge {
@@ -507,22 +692,30 @@
       border: 1px solid var(--red-200);
     }
 
+    .product-body {
+      padding: 1.2rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
+      gap: 0.95rem;
+    }
+
     .product-category {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 600;
-      color: var(--slate-500);
-      margin-block-top: 0.4rem;
+      color: var(--blue-600);
     }
 
     .product-title {
-      font-size: 1.1rem;
+      font-size: 1.08rem;
       font-weight: 700;
       color: var(--navy-900);
-      margin-block: 0.25rem 0.4rem;
+      margin-block: 0.2rem 0.35rem;
     }
 
     .product-desc {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: var(--slate-600);
       display: -webkit-box;
       -webkit-line-clamp: 2;
@@ -540,13 +733,13 @@
 
     .product-price {
       font-size: 1.25rem;
-      font-weight: 700;
+      font-weight: 800;
       color: var(--blue-600);
       font-variant-numeric: tabular-nums;
     }
 
     .product-stock {
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       color: var(--slate-600);
       font-weight: 600;
     }
@@ -554,8 +747,9 @@
     .product-actions {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.45rem;
       flex-wrap: wrap;
+      margin-block-start: 0.75rem;
     }
 
     .qty-picker {
@@ -568,8 +762,8 @@
     }
 
     .qty-picker button {
-      width: 32px;
-      height: 36px;
+      width: 30px;
+      height: 34px;
       border: none;
       background: transparent;
       font-weight: 700;
@@ -582,30 +776,30 @@
     }
 
     .qty-picker input {
-      width: 44px;
-      height: 36px;
+      width: 40px;
+      height: 34px;
       border: none;
       text-align: center;
       font-weight: 700;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       background: var(--white);
       color: var(--navy-900);
       font-variant-numeric: tabular-nums;
     }
 
-    /* Customer Cart & Order History Panels */
+    /* Customer Cart & Order History */
     .customer-panels {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1.5rem;
-      margin-block-start: 2rem;
+      margin-block-start: 2.25rem;
     }
 
     .panel-card {
       background: var(--white);
       border: 1px solid var(--slate-200);
       border-radius: var(--radius-md);
-      padding: 1.5rem;
+      padding: 1.4rem;
       box-shadow: var(--shadow-sm);
     }
 
@@ -620,7 +814,7 @@
     }
 
     .panel-header h3 {
-      font-size: 1.15rem;
+      font-size: 1.12rem;
       color: var(--navy-900);
     }
 
@@ -635,64 +829,77 @@
       align-items: center;
       justify-content: space-between;
       gap: 0.75rem;
-      padding: 0.85rem;
+      padding: 0.8rem;
       border: 1px solid var(--slate-200);
       border-radius: var(--radius-sm);
       background: var(--slate-50);
       flex-wrap: wrap;
     }
 
-    .cart-item-info {
+    .cart-item-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
       flex: 1;
-      min-inline-size: 160px;
+      min-inline-size: 180px;
+    }
+
+    .cart-item-thumb {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 1px solid var(--slate-200);
+      background: var(--white);
+      flex-shrink: 0;
     }
 
     .cart-item-title {
       font-weight: 700;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       color: var(--navy-900);
     }
 
     .cart-item-meta {
-      font-size: 0.84rem;
+      font-size: 0.82rem;
       color: var(--slate-600);
     }
 
     .cart-item-controls {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.45rem;
     }
 
     .cart-summary {
-      margin-block-start: 1.25rem;
+      margin-block-start: 1.15rem;
       padding-block-start: 1rem;
       border-block-start: 2px solid var(--slate-200);
       display: grid;
-      gap: 0.75rem;
+      gap: 0.7rem;
     }
 
     .cart-summary-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 1rem;
+      font-size: 0.98rem;
       font-weight: 700;
     }
 
     .cart-total-amount {
-      font-size: 1.35rem;
+      font-size: 1.3rem;
       color: var(--blue-600);
       font-variant-numeric: tabular-nums;
     }
 
     .order-card {
-      padding: 1rem;
+      padding: 0.95rem;
       border: 1px solid var(--slate-200);
       border-radius: var(--radius-sm);
       background: var(--slate-50);
       display: grid;
-      gap: 0.5rem;
+      gap: 0.45rem;
     }
 
     .order-card-head {
@@ -705,7 +912,7 @@
     }
 
     .order-items-text {
-      font-size: 0.86rem;
+      font-size: 0.85rem;
       color: var(--slate-600);
     }
 
@@ -715,16 +922,16 @@
       align-items: center;
       padding-block-start: 0.45rem;
       border-block-start: 1px solid var(--slate-200);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 700;
       color: var(--blue-700);
     }
 
     .empty-box {
       text-align: center;
-      padding: 2rem 1rem;
+      padding: 1.85rem 1rem;
       color: var(--slate-500);
-      font-size: 0.94rem;
+      font-size: 0.92rem;
       background: var(--slate-50);
       border: 1px dashed var(--slate-200);
       border-radius: var(--radius-sm);
@@ -736,37 +943,49 @@
       border: 1px solid var(--slate-200);
       border-radius: var(--radius-lg);
       padding: 0;
-      width: min(520px, 100% - 2rem);
-      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.2);
+      width: min(540px, 100% - 2rem);
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.22);
       background: var(--white);
       color: var(--navy-900);
     }
 
     dialog::backdrop {
-      background-color: rgba(15, 23, 42, 0.5);
+      background-color: rgba(15, 23, 42, 0.52);
       backdrop-filter: blur(2px);
     }
 
     .modal-head {
-      padding: 1.2rem 1.5rem;
+      padding: 1.15rem 1.45rem;
       border-block-end: 1px solid var(--slate-200);
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
-    .modal-head h3 {
-      font-size: 1.15rem;
-    }
-
     .modal-body {
-      padding: 1.5rem;
+      padding: 1.4rem;
       display: grid;
       gap: 0.85rem;
     }
 
+    .detail-image-box {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid var(--slate-200);
+      background: var(--slate-100);
+    }
+
+    .detail-image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
     .modal-foot {
-      padding: 1rem 1.5rem;
+      padding: 1rem 1.45rem;
       background: var(--slate-50);
       border-block-start: 1px solid var(--slate-200);
       display: flex;
@@ -780,7 +999,7 @@
       background: var(--white);
       border-block-start: 1px solid var(--slate-200);
       padding-block: 1.5rem;
-      font-size: 0.86rem;
+      font-size: 0.85rem;
       color: var(--slate-500);
     }
 
@@ -792,12 +1011,15 @@
       flex-wrap: wrap;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 920px) {
       .hero-card {
         grid-template-columns: 1fr;
       }
       .customer-panels {
         grid-template-columns: 1fr;
+      }
+      .carousel-viewport {
+        aspect-ratio: 16 / 9;
       }
     }
   </style>
@@ -807,7 +1029,7 @@
   <!-- แถบแจ้งเตือนสถานะ Admin Demo -->
   <div id="demoBanner" class="demo-banner" role="status">
     <div class="container demo-banner-inner">
-      <span>คุณกำลังอยู่ใน <strong>Admin Demo Mode (โหมดทดลองผู้ดูแลระบบ)</strong> — สามารถทดสอบจัดการสินค้าหรือสลับไปหน้า Admin ได้ทันที</span>
+      <span>คุณกำลังอยู่ใน <strong>KHUNSHOP Admin Demo Mode (โหมดทดลองผู้ดูแลระบบ)</strong> — สามารถจัดการสินค้า รูปภาพ และ Banner โฆษณาได้ทันที</span>
       <div style="display:flex; gap:0.5rem;">
         <a href="admin.html" class="btn btn-sm btn-primary">ไปหน้า Admin Dashboard</a>
         <button type="button" id="exitDemoBannerBtn" class="btn btn-sm btn-outline">ออกจาก Demo Mode</button>
@@ -818,105 +1040,117 @@
   <!-- Navbar -->
   <header class="navbar">
     <div class="container navbar-inner">
-      <a href="index.html" class="brand" aria-label="Bluecat Store หน้าแรก">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-            <line x1="12" y1="22.08" x2="12" y2="12"/>
-          </svg>
-        </span>
-        <span>Bluecat Store</span>
+      <a href="index.html" class="brand" aria-label="KHUNSHOP หน้าแรก">
+        <span class="brand-mark" aria-hidden="true">K</span>
+        <span>KHUNSHOP</span>
       </a>
 
       <nav aria-label="เมนูหลัก">
         <ul class="nav-links">
-          <li><a href="index.html" class="nav-link active" aria-current="page">หน้าแรก / ร้านค้า</a></li>
-          <li><a href="#storeSection" class="nav-link">สินค้าแนะนำ</a></li>
-          <li><a href="#customerWorkspace" id="navCartLink" class="nav-link">ตะกร้าสินค้า (<span id="navCartCount">0</span>)</a></li>
+          <li><a href="index.html" class="nav-link active" aria-current="page">หน้าแรก</a></li>
+          <li><a href="#storeSection" class="nav-link">สินค้าทั้งหมด</a></li>
+          <li id="navLoginItem"><a href="login.html?mode=login" class="nav-link">เข้าสู่ระบบ</a></li>
+          <li id="navRegisterItem"><a href="login.html?mode=register" class="nav-link">สมัครสมาชิก</a></li>
+          <li><a href="#customerWorkspace" class="nav-link">ตะกร้าสินค้า (<span id="navCartCount">0</span>)</a></li>
         </ul>
       </nav>
 
-      <!-- ส่วนปุ่มสมาชิก (เปลี่ยนตามสถานะการเข้าสู่ระบบ) -->
+      <!-- ปุ่มสำหรับผู้เยี่ยมชม -->
       <div class="nav-actions" id="guestNavActions">
-        <a href="login.html?mode=register" id="navRegisterBtn" class="btn btn-outline btn-sm">สร้างบัญชี</a>
-        <a href="login.html?mode=login" id="navLoginBtn" class="btn btn-primary btn-sm">เข้าสู่ระบบ</a>
+        <a href="login.html?mode=register" class="btn btn-outline btn-sm">สมัครสมาชิก</a>
+        <a href="login.html?mode=login" class="btn btn-primary btn-sm">เข้าสู่ระบบ</a>
         <button type="button" id="navAdminDemoBtn" class="btn btn-soft btn-sm">ทดลองใช้ระบบ Admin</button>
       </div>
 
+      <!-- ปุ่มเมื่อเข้าสู่ระบบแล้ว -->
       <div class="nav-actions" id="userNavActions" style="display: none;">
         <span class="user-badge">
           <span id="navUserName">ผู้ใช้</span>
           <span id="navUserRole" class="role-tag">Customer</span>
         </span>
-        <a href="#storeSection" id="navBackToStoreBtn" class="btn btn-soft btn-sm">เข้าสู่หน้าร้านค้า</a>
-        <a href="admin.html" id="navGoAdminBtn" class="btn btn-primary btn-sm" style="display: none;">จัดการสินค้า (Admin)</a>
+        <a href="#storeSection" class="btn btn-soft btn-sm">เลือกซื้อสินค้า</a>
+        <a href="admin.html" id="navGoAdminBtn" class="btn btn-primary btn-sm" style="display: none;">Admin Dashboard</a>
         <button type="button" id="navLogoutBtn" class="btn btn-danger-outline btn-sm">ออกจากระบบ</button>
       </div>
     </div>
   </header>
 
   <main>
-    <!-- Hero Landing Section -->
+    <!-- Hero Section -->
     <section class="hero" aria-labelledby="heroHeading">
       <div class="container">
         <div class="hero-card">
           <div>
-            <span class="hero-badge">Bluecat Store — Official E-commerce &amp; Inventory</span>
-            <h1 id="heroHeading">ยินดีต้อนรับสู่ Bluecat Store ร้านค้าอุปกรณ์ไอทีครบวงจร</h1>
-            <p id="heroDescription">
-              ศูนย์รวมคีย์บอร์ด เมาส์ไร้สาย จอมอนิเตอร์ และอุปกรณ์จัดโต๊ะทำงานคุณภาพสูง
-              พร้อมระบบสมาชิกสำหรับเลือกซื้อสินค้าลงตะกร้า และระบบจัดการคลังสินค้าแบบเรียลไทม์
+            <span class="hero-badge">KHUNSHOP — Premium E-commerce &amp; Smart Inventory</span>
+            <h1 id="heroHeading">KHUNSHOP ศูนย์รวมอุปกรณ์ไอทีและไลฟ์สไตล์ระดับมืออาชีพ</h1>
+            <p>
+              เลือกช้อปคีย์บอร์ดไร้สาย เมาส์สรีรศาสตร์ จอมอนิเตอร์คมชัดสูง และอุปกรณ์จัดโต๊ะทำงานคุณภาพเยี่ยม
+              พร้อมระบบตะกร้าสินค้าสำหรับสมาชิก และระบบจัดการรูปภาพสินค้า/แบนเนอร์สำหรับผู้ดูแลระบบ
             </p>
 
-            <!-- ปุ่มหลักสำหรับผู้เยี่ยมชม (ยังไม่เข้าสู่ระบบ) -->
             <div class="hero-cta-group" id="heroGuestButtons">
-              <a href="login.html?mode=register" id="heroRegisterBtn" class="btn btn-primary btn-lg">สร้างบัญชี</a>
-              <a href="login.html?mode=login" id="heroLoginBtn" class="btn btn-outline btn-lg">เข้าสู่ระบบ</a>
+              <a href="#storeSection" class="btn btn-primary btn-lg">เลือกดูสินค้า</a>
+              <a href="login.html?mode=register" class="btn btn-outline btn-lg">สมัครสมาชิก</a>
+              <a href="login.html?mode=login" class="btn btn-outline btn-lg">เข้าสู่ระบบ</a>
               <button type="button" id="heroAdminDemoBtn" class="btn btn-soft btn-lg">ทดลองใช้ระบบ Admin</button>
             </div>
 
-            <!-- ปุ่มหลักเมื่อเข้าสู่ระบบแล้ว -->
             <div class="hero-cta-group" id="heroUserButtons" style="display: none;">
-              <a href="#storeSection" class="btn btn-primary btn-lg">เลือกซื้อสินค้าในร้านค้า</a>
-              <a href="#customerWorkspace" class="btn btn-outline btn-lg">ดูตะกร้าและคำสั่งซื้อของฉัน</a>
-              <a href="admin.html" id="heroGoAdminBtn" class="btn btn-soft btn-lg" style="display: none;">เปิดหน้า Admin Dashboard</a>
+              <a href="#storeSection" class="btn btn-primary btn-lg">เลือกดูสินค้าทั้งหมด</a>
+              <a href="#customerWorkspace" class="btn btn-outline btn-lg">ดูตะกร้าสินค้าของฉัน</a>
+              <a href="admin.html" id="heroGoAdminBtn" class="btn btn-soft btn-lg" style="display: none;">ไปที่ Admin Dashboard</a>
               <button type="button" id="heroLogoutBtn" class="btn btn-danger-outline btn-lg">ออกจากระบบ</button>
             </div>
           </div>
 
-          <div class="hero-stats-box" aria-label="ข้อมูลภาพรวมร้านค้า">
+          <div class="hero-stats-box" aria-label="สรุปข้อมูลร้านค้า KHUNSHOP">
             <div class="hero-stat-row">
-              <span class="hero-stat-label">รายการสินค้าพร้อมจำหน่าย</span>
+              <span class="hero-stat-label">สินค้าในร้าน KHUNSHOP</span>
               <span class="hero-stat-value" id="statProductCount">6 รายการ</span>
             </div>
             <div class="hero-stat-row">
-              <span class="hero-stat-label">สินค้าคงเหลือในคลังรวม</span>
+              <span class="hero-stat-label">จำนวนคงเหลือพร้อมส่ง</span>
               <span class="hero-stat-value" id="statTotalStock">102 ชิ้น</span>
             </div>
             <div class="hero-stat-row">
-              <span class="hero-stat-label">สถานะผู้ใช้งานปัจจุบัน</span>
-              <span class="hero-stat-value" id="statCurrentUser" style="color: var(--blue-600); font-size: 1rem;">ผู้เยี่ยมชมทั่วไป</span>
+              <span class="hero-stat-label">สถานะสมาชิก</span>
+              <span class="hero-stat-value" id="statCurrentUser" style="color: var(--blue-600); font-size: 0.95rem;">ผู้เยี่ยมชมทั่วไป</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ส่วนแนะนำสินค้าและหน้าร้านค้า (Storefront) -->
+    <!-- Advertisement Banner Carousel -->
+    <section class="carousel-section" aria-label="โปรโมชันและข่าวสาร KHUNSHOP">
+      <div class="container">
+        <div id="promoCarousel" class="carousel-container" tabindex="0">
+          <div class="carousel-viewport">
+            <div id="carouselTrack" class="carousel-track"></div>
+          </div>
+          <button type="button" id="carouselPrevBtn" class="carousel-nav-btn carousel-prev" aria-label="ภาพก่อนหน้า">‹</button>
+          <button type="button" id="carouselNextBtn" class="carousel-nav-btn carousel-next" aria-label="ภาพถัดไป">›</button>
+          <div class="carousel-bottom-bar">
+            <div id="carouselDots" class="carousel-dots" role="tablist" aria-label="เลือกแบนเนอร์"></div>
+            <span id="carouselCounter" class="carousel-counter">1 / 3</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Section -->
     <section id="storeSection" class="store-section" aria-labelledby="storeHeading">
       <div class="container">
         <div class="section-header">
           <div>
-            <h2 id="storeHeading">สินค้าแนะนำในร้าน Bluecat Store</h2>
-            <p>เลือกจำนวนที่ต้องการแล้วกด "เพิ่มลงตะกร้า" หรือกด "ดูรายละเอียด" เพื่ออ่านข้อมูลสินค้า</p>
+            <h2 id="storeHeading">สินค้าทั้งหมดใน KHUNSHOP</h2>
+            <p>สินค้าทุกชิ้นเชื่อมข้อมูลและรูปภาพล่าสุดจากระบบ Admin Dashboard โดยตรง</p>
           </div>
         </div>
 
-        <!-- แถบค้นหาและกรองสินค้า -->
         <div class="store-toolbar">
           <div class="filter-controls">
-            <input type="search" id="storeSearchInput" class="input-control" placeholder="ค้นหาชื่อสินค้า หรือรหัสสินค้า..." aria-label="ค้นหาสินค้า">
+            <input type="search" id="storeSearchInput" class="input-control" placeholder="ค้นหาชื่อสินค้า รหัสสินค้า หรือรายละเอียด..." aria-label="ค้นหาสินค้า">
             <select id="storeCategoryFilter" class="select-control" aria-label="กรองตามหมวดหมู่">
               <option value="ALL">ทุกหมวดหมู่</option>
               <option value="อุปกรณ์คอมพิวเตอร์">อุปกรณ์คอมพิวเตอร์</option>
@@ -927,29 +1161,27 @@
             </select>
           </div>
           <a href="#customerWorkspace" class="btn btn-soft">
-            ตะกร้าสินค้าของฉัน (<span id="toolbarCartCount">0</span> ชิ้น)
+            ตะกร้าสินค้า (<span id="toolbarCartCount">0</span> ชิ้น)
           </a>
         </div>
 
-        <!-- รายการสินค้า -->
         <div id="productGrid" class="product-grid" aria-live="polite"></div>
 
-        <!-- พื้นที่ตะกร้าสินค้าและประวัติคำสั่งซื้อของ Customer -->
+        <!-- Shopping Cart & Order History -->
         <div id="customerWorkspace" class="customer-panels">
-          <!-- ตะกร้าสินค้า -->
           <div class="panel-card" aria-labelledby="cartPanelTitle">
             <div class="panel-header">
               <h3 id="cartPanelTitle">ตะกร้าสินค้าของคุณ</h3>
               <button type="button" id="clearCartBtn" class="btn btn-sm btn-outline">ล้างตะกร้า</button>
             </div>
             <div id="cartItemsContainer" class="cart-list"></div>
-            <div id="cartSummaryBox" class="cart-summary">
+            <div class="cart-summary">
               <div class="cart-summary-row">
                 <span>จำนวนสินค้ารวม</span>
                 <span id="cartTotalQty">0 ชิ้น</span>
               </div>
               <div class="cart-summary-row">
-                <span>ยอดชำระรวมทั้งหมด</span>
+                <span>ยอดรวมสุทธิ</span>
                 <span id="cartTotalAmount" class="cart-total-amount">0 บาท</span>
               </div>
               <button type="button" id="checkoutBtn" class="btn btn-primary btn-lg" style="width: 100%;">
@@ -958,7 +1190,6 @@
             </div>
           </div>
 
-          <!-- ประวัติคำสั่งซื้อ -->
           <div class="panel-card" aria-labelledby="orderHistoryTitle">
             <div class="panel-header">
               <h3 id="orderHistoryTitle">ประวัติคำสั่งซื้อของฉัน</h3>
@@ -978,8 +1209,11 @@
       <button type="button" id="closeDetailModalBtn" class="btn btn-sm btn-outline">ปิด</button>
     </div>
     <div class="modal-body">
+      <div class="detail-image-box">
+        <img id="detailImage" src="" alt="ภาพสินค้า">
+      </div>
       <div style="display:flex; justify-content:space-between; align-items:center;">
-        <span id="detailSku" class="sku-pill">BC-001</span>
+        <span id="detailSku" class="sku-pill">KS-001</span>
         <span id="detailStatus" class="status-badge status-ready">พร้อมจำหน่าย</span>
       </div>
       <div id="detailCategory" class="product-category">หมวดหมู่</div>
@@ -1002,14 +1236,12 @@
     </div>
   </dialog>
 
-  <!-- Toast แจ้งเตือน -->
   <div id="toastBanner" class="toast-banner" role="status" aria-live="polite"></div>
 
-  <!-- Footer -->
   <footer class="site-footer">
     <div class="container footer-inner">
-      <span>© 2026 Bluecat Store — ระบบร้านค้าออนไลน์และจัดการคลังสินค้าจำลอง</span>
-      <span>หมายเหตุด้านความปลอดภัย: ระบบสาธิต (Frontend Demo) เก็บข้อมูลใน localStorage ไม่ใช้สำหรับ Production</span>
+      <span>© 2026 KHUNSHOP — ระบบร้านค้าออนไลน์และจัดการคลังสินค้าจำลอง</span>
+      <span>ข้อจำกัดระบบสาธิต (Frontend Demo): ข้อมูลและรูปภาพจัดเก็บใน localStorage เฉพาะเบราว์เซอร์เครื่องนี้ ไม่ใช่ระบบชำระเงินหรือ Production Server จริง</span>
     </div>
   </footer>
 
@@ -1018,69 +1250,170 @@
       const KEYS = {
         USERS: 'users',
         PRODUCTS: 'products',
+        BANNERS: 'banners',
         CARTS: 'carts',
         ORDERS: 'orders',
         SESSION: 'currentSession'
       };
 
+      // สร้าง SVG Data URI สำหรับรูปภาพสินค้าเริ่มต้นและ Placeholder (ไม่มีทางภาพแตก)
+      function makeProductSvg(title, subtitle, bgStart, bgEnd, accent) {
+        const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+          <defs>
+            <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="${bgStart}"/>
+              <stop offset="100%" stop-color="${bgEnd}"/>
+            </linearGradient>
+          </defs>
+          <rect width="800" height="500" fill="url(#g)"/>
+          <circle cx="680" cy="100" r="140" fill="${accent}" opacity="0.16"/>
+          <circle cx="120" cy="420" r="180" fill="${accent}" opacity="0.12"/>
+          <rect x="70" y="70" width="660" height="360" rx="24" fill="#ffffff" fill-opacity="0.08" stroke="#ffffff" stroke-opacity="0.22" stroke-width="2"/>
+          <text x="110" y="150" fill="${accent}" font-family="Inter, sans-serif" font-size="22" font-weight="700" letter-spacing="2">KHUNSHOP OFFICIAL PRODUCT</text>
+          <text x="110" y="235" fill="#ffffff" font-family="Inter, Noto Sans Thai, sans-serif" font-size="38" font-weight="800">${title}</text>
+          <text x="110" y="290" fill="#cbd5e1" font-family="Inter, Noto Sans Thai, sans-serif" font-size="24" font-weight="500">${subtitle}</text>
+          <rect x="110" y="335" width="170" height="44" rx="10" fill="${accent}"/>
+          <text x="195" y="364" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="18" font-weight="700">PREMIUM QUALITY</text>
+        </svg>`;
+        return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+      }
+
+      const PLACEHOLDER_IMAGE = makeProductSvg('KHUNSHOP PRODUCT', 'ยังไม่ได้กำหนดรูปภาพสินค้า (Placeholder)', '#1e293b', '#334155', '#3b82f6');
+
       const DEFAULT_PRODUCTS = [
         {
-          sku: 'BC-001',
-          name: 'Bluecat Mechanical Keyboard Pro',
+          id: 'PROD-001',
+          sku: 'KS-001',
+          name: 'KHUNSHOP Mechanical Keyboard Pro',
           category: 'อุปกรณ์คอมพิวเตอร์',
           price: 3200,
           qty: 15,
-          description: 'คีย์บอร์ดแมคคานิคอลไร้สาย สวิตช์นุ่มเงียบ ไฟ RGB ปรับแต่งได้ รองรับทั้ง Windows และ macOS'
+          status: 'พร้อมจำหน่าย',
+          description: 'คีย์บอร์ดแมคคานิคอลไร้สาย สวิตช์นุ่มเงียบ ไฟ RGB ปรับแต่งได้ รองรับทั้ง Windows และ macOS',
+          image: makeProductSvg('Mechanical Keyboard Pro', 'Wireless RGB Hot-Swappable Keyboard', '#0f172a', '#1e3a8a', '#3b82f6')
         },
         {
-          sku: 'BC-002',
-          name: 'Bluecat Ergonomic Wireless Mouse',
+          id: 'PROD-002',
+          sku: 'KS-002',
+          name: 'KHUNSHOP Ergonomic Wireless Mouse',
           category: 'อุปกรณ์คอมพิวเตอร์',
           price: 1450,
           qty: 24,
-          description: 'เมาส์ไร้สายทรงสรีรศาสตร์ ลดอาการปวดข้อมือ เซนเซอร์ความแม่นยำสูง ปรับ DPI ได้ 4 ระดับ'
+          status: 'พร้อมจำหน่าย',
+          description: 'เมาส์ไร้สายทรงสรีรศาสตร์ ลดอาการปวดข้อมือ เซนเซอร์ความแม่นยำสูง ปรับ DPI ได้ 4 ระดับ',
+          image: makeProductSvg('Ergonomic Wireless Mouse', 'Silent Click Precision Optical Sensor', '#0f172a', '#1e293b', '#2563eb')
         },
         {
-          sku: 'BC-003',
-          name: 'Bluecat 4K UltraSharp Monitor 27"',
+          id: 'PROD-003',
+          sku: 'KS-003',
+          name: 'KHUNSHOP 4K UltraSharp Monitor 27"',
           category: 'จอมอนิเตอร์',
           price: 9800,
           qty: 8,
-          description: 'จอมอนิเตอร์ความละเอียด 4K UHD ขนาด 27 นิ้ว สีสันแม่นยำ sRGB 99% พอร์ต USB-C ในตัว'
+          status: 'พร้อมจำหน่าย',
+          description: 'จอมอนิเตอร์ความละเอียด 4K UHD ขนาด 27 นิ้ว สีสันแม่นยำ sRGB 99% พอร์ต USB-C ในตัว',
+          image: makeProductSvg('4K UltraSharp Monitor 27"', 'UHD IPS Panel • 99% sRGB • USB-C PD', '#172554', '#1d4ed8', '#60a5fa')
         },
         {
-          sku: 'BC-004',
-          name: 'Bluecat USB-C Hub 8-in-1 Multiport',
+          id: 'PROD-004',
+          sku: 'KS-004',
+          name: 'KHUNSHOP USB-C Hub 8-in-1 Multiport',
           category: 'อุปกรณ์เสริม',
           price: 1290,
           qty: 30,
-          description: 'ฮับแปลงพอร์ต USB-C เป็น HDMI 4K, USB 3.0, SD Card และ PD Fast Charge 100W'
+          status: 'พร้อมจำหน่าย',
+          description: 'ฮับแปลงพอร์ต USB-C เป็น HDMI 4K, USB 3.0, SD Card และ PD Fast Charge 100W',
+          image: makeProductSvg('USB-C Hub 8-in-1 Multiport', 'HDMI 4K 60Hz • 100W Power Delivery', '#0f172a', '#334155', '#38bdf8')
         },
         {
-          sku: 'BC-005',
-          name: 'Bluecat Noise-Cancelling Headset Studio',
+          id: 'PROD-005',
+          sku: 'KS-005',
+          name: 'KHUNSHOP Noise-Cancelling Headset Studio',
           category: 'เครื่องเสียง',
           price: 4500,
           qty: 5,
-          description: 'หูฟังครอบหูตัดเสียงรบกวน Active Noise Cancelling ไมโครโฟนคมชัด แบตเตอรี่ใช้ได้นาน 35 ชม.'
+          status: 'ใกล้หมด',
+          description: 'หูฟังครอบหูตัดเสียงรบกวน Active Noise Cancelling ไมโครโฟนคมชัด แบตเตอรี่ใช้ได้นาน 35 ชม.',
+          image: makeProductSvg('Noise-Cancelling Headset', 'Studio Hi-Res Audio • 35H Battery', '#1e1b4b', '#312e81', '#818cf8')
         },
         {
-          sku: 'BC-006',
-          name: 'Bluecat Aluminum Laptop Stand Adjustable',
+          id: 'PROD-006',
+          sku: 'KS-006',
+          name: 'KHUNSHOP Aluminum Laptop Stand Adjustable',
           category: 'อุปกรณ์จัดโต๊ะทำงาน',
           price: 890,
           qty: 20,
-          description: 'ขาตั้งแล็ปท็อปอะลูมิเนียมแท้ ปรับระดับความสูงและองศาได้ ช่วยระบายความร้อนได้ดีเยี่ยม'
+          status: 'พร้อมจำหน่าย',
+          description: 'ขาตั้งแล็ปท็อปอะลูมิเนียมแท้ ปรับระดับความสูงและองศาได้ ช่วยระบายความร้อนได้ดีเยี่ยม',
+          image: makeProductSvg('Aluminum Laptop Stand', 'Ergonomic Foldable Desk Stand', '#0f172a', '#1e3a8a', '#3b82f6')
         }
       ];
+
+      function makeBannerSvg(tag, title, subtitle, c1, c2, accent) {
+        const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="540" viewBox="0 0 1400 540">
+          <defs>
+            <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="${c1}"/>
+              <stop offset="100%" stop-color="${c2}"/>
+            </linearGradient>
+          </defs>
+          <rect width="1400" height="540" fill="url(#bg)"/>
+          <circle cx="1150" cy="270" r="240" fill="${accent}" opacity="0.22"/>
+          <circle cx="980" cy="110" r="120" fill="#ffffff" opacity="0.08"/>
+          <rect x="860" y="110" width="440" height="320" rx="28" fill="#ffffff" fill-opacity="0.1" stroke="#ffffff" stroke-opacity="0.25" stroke-width="2"/>
+          <text x="1080" y="255" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="44" font-weight="800">KHUNSHOP</text>
+          <text x="1080" y="305" text-anchor="middle" fill="#bfdbfe" font-family="Inter, Noto Sans Thai, sans-serif" font-size="22" font-weight="600">${tag}</text>
+        </svg>`;
+        return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+      }
+
+      const DEFAULT_BANNERS = [
+        {
+          id: 'BN-001',
+          title: 'KHUNSHOP MEGA TECH SALE 2026',
+          subtitle: 'ยกระดับโต๊ะทำงานด้วยคีย์บอร์ดไร้สาย จอมอนิเตอร์ 4K และอุปกรณ์ไอทีระดับโปร พร้อมส่งทุกชิ้น',
+          ctaText: 'ช้อปสินค้าโปรโมชัน',
+          linkUrl: '#storeSection',
+          active: true,
+          image: makeBannerSvg('MEGA TECH SALE', 'KHUNSHOP MEGA TECH SALE', 'Smart IT Gear', '#0f172a', '#1d4ed8', '#3b82f6')
+        },
+        {
+          id: 'BN-002',
+          title: 'WORKSPACE & STUDIO COLLECTION',
+          subtitle: 'หูฟังตัดเสียงรบกวนรุ่นท็อปและขาตั้งแล็ปท็อปอะลูมิเนียมแท้ ดีไซน์พรีเมียมเพื่อคนทำงานยุคใหม่',
+          ctaText: 'ดูคอลเลกชันแนะนำ',
+          linkUrl: '#storeSection',
+          active: true,
+          image: makeBannerSvg('STUDIO & WORKSPACE', 'WORKSPACE COLLECTION', 'Ergonomic Design', '#1e1b4b', '#1e3a8a', '#6366f1')
+        },
+        {
+          id: 'BN-003',
+          title: 'สมัครสมาชิก KHUNSHOP วันนี้ รับสิทธิพิเศษทันที',
+          subtitle: 'สั่งซื้อง่ายผ่านตะกร้าสินค้าออนไลน์ คำนวณยอดรวมอัตโนมัติ และตรวจสอบประวัติคำสั่งซื้อได้ตลอด 24 ชม.',
+          ctaText: 'สมัครสมาชิกฟรี',
+          linkUrl: 'login.html?mode=register',
+          active: true,
+          image: makeBannerSvg('MEMBER PRIVILEGE', 'KHUNSHOP MEMBER', 'Join Today', '#0f172a', '#0369a1', '#38bdf8')
+        }
+      ];
+
+      // ฟังก์ชันแฮชรหัสผ่านฝั่ง Client เพื่อหลีกเลี่ยงการเก็บ Plain Text
+      function simpleHash(str) {
+        let h = 2166136261 >>> 0;
+        for (let i = 0; i < str.length; i++) {
+          h ^= str.charCodeAt(i);
+          h = Math.imul(h, 16777619);
+        }
+        return 'khun_h_' + (h >>> 0).toString(16);
+      }
 
       const DEFAULT_USERS = [
         {
           id: 'u-admin',
-          fullName: 'ผู้ดูแลระบบ Bluecat',
+          fullName: 'ผู้ดูแลระบบ KHUNSHOP',
           username: 'admin',
-          email: 'admin@bluecat.store',
-          password: '1234',
+          email: 'admin@khunshop.store',
+          passwordHash: simpleHash('1234'),
           role: 'Admin',
           createdAt: '2026-01-01T00:00:00.000Z'
         },
@@ -1088,20 +1421,47 @@
           id: 'u-cust-demo',
           fullName: 'สมชาย ใจดี',
           username: 'customer',
-          email: 'customer@bluecat.store',
-          password: '123456',
+          email: 'customer@khunshop.store',
+          passwordHash: simpleHash('123456'),
           role: 'Customer',
           createdAt: '2026-01-01T00:00:00.000Z'
         }
       ];
 
-      function initStorage() {
+      // Migration & Non-destructive Initialization
+      function initAndMigrateStorage() {
         try {
           if (!localStorage.getItem(KEYS.USERS)) {
             localStorage.setItem(KEYS.USERS, JSON.stringify(DEFAULT_USERS));
           }
-          if (!localStorage.getItem(KEYS.PRODUCTS)) {
+          const rawProducts = localStorage.getItem(KEYS.PRODUCTS);
+          if (!rawProducts) {
             localStorage.setItem(KEYS.PRODUCTS, JSON.stringify(DEFAULT_PRODUCTS));
+          } else {
+            const parsed = JSON.parse(rawProducts);
+            if (Array.isArray(parsed)) {
+              const migrated = parsed.map((p, idx) => {
+                const def = DEFAULT_PRODUCTS[idx] || DEFAULT_PRODUCTS[0];
+                const newName = (p.name || '').replace(/^Bluecat\s+/i, 'KHUNSHOP ');
+                const newSku = (p.sku || `KS-00${idx + 1}`).replace(/^BC-/i, 'KS-');
+                return {
+                  id: p.id || `PROD-00${idx + 1}`,
+                  sku: newSku,
+                  name: newName || def.name,
+                  category: p.category || def.category,
+                  price: Number(p.price) >= 0 ? Number(p.price) : def.price,
+                  qty: Number(p.qty) >= 0 ? Number(p.qty) : def.qty,
+                  status: p.status || '',
+                  description: (p.description || def.description).replace(/Bluecat Store/gi, 'KHUNSHOP'),
+                  image: typeof p.image === 'string' && p.image ? p.image : def.image
+                };
+              });
+              localStorage.setItem(KEYS.PRODUCTS, JSON.stringify(migrated));
+            }
+          }
+
+          if (!localStorage.getItem(KEYS.BANNERS)) {
+            localStorage.setItem(KEYS.BANNERS, JSON.stringify(DEFAULT_BANNERS));
           }
           if (!localStorage.getItem(KEYS.CARTS)) {
             localStorage.setItem(KEYS.CARTS, JSON.stringify({}));
@@ -1124,6 +1484,16 @@
 
       function saveProducts(list) {
         localStorage.setItem(KEYS.PRODUCTS, JSON.stringify(list));
+      }
+
+      function getBanners() {
+        try {
+          const raw = localStorage.getItem(KEYS.BANNERS);
+          const list = raw ? JSON.parse(raw) : DEFAULT_BANNERS;
+          return Array.isArray(list) ? list : DEFAULT_BANNERS;
+        } catch (e) {
+          return DEFAULT_BANNERS;
+        }
       }
 
       function getSession() {
@@ -1194,36 +1564,138 @@
         }, 3200);
       }
 
-      // เริ่มโหมดทดลอง Admin Demo
       function startAdminDemo() {
-        const demoSession = {
+        setSession({
           username: 'admin_demo',
           fullName: 'ผู้ทดลองระบบ (Admin Demo)',
-          email: 'demo@bluecat.store',
+          email: 'demo@khunshop.store',
           role: 'Admin Demo',
           isDemo: true,
           loginAt: new Date().toISOString()
-        };
-        setSession(demoSession);
+        });
         window.location.href = 'admin.html';
       }
 
       function handleLogout() {
         clearSession();
         renderAll();
-        showToast('ออกจากระบบเรียบร้อยแล้ว', 'success');
+        showToast('ออกจากระบบ KHUNSHOP เรียบร้อยแล้ว', 'success');
       }
 
-      function getStatusInfo(qty) {
-        if (qty <= 0) return { label: 'หมด', cls: 'status-out' };
-        if (qty <= 5) return { label: 'ใกล้หมด', cls: 'status-low' };
-        return { label: 'พร้อมจำหน่าย', cls: 'status-ready' };
+      function getStatusInfo(product) {
+        const qty = Number(product.qty) || 0;
+        if (qty <= 0 || product.status === 'หมด') {
+          return { label: 'หมด', cls: 'status-out', available: false };
+        }
+        if (qty <= 5 || product.status === 'ใกล้หมด') {
+          return { label: 'ใกล้หมด', cls: 'status-low', available: true };
+        }
+        return { label: 'พร้อมจำหน่าย', cls: 'status-ready', available: true };
       }
 
+      // ================= CAROUSEL LOGIC =================
+      let currentSlide = 0;
+      let carouselInterval = null;
+      let isCarouselPaused = false;
+      let touchStartX = 0;
+
+      function getActiveBanners() {
+        const all = getBanners().filter(b => b && b.active !== false);
+        return all.length > 0 ? all : DEFAULT_BANNERS;
+      }
+
+      function renderCarousel() {
+        const banners = getActiveBanners();
+        const track = document.getElementById('carouselTrack');
+        const dots = document.getElementById('carouselDots');
+        const counter = document.getElementById('carouselCounter');
+
+        if (currentSlide >= banners.length) currentSlide = 0;
+
+        track.innerHTML = banners.map((b, idx) => {
+          const imgSrc = b.image || DEFAULT_BANNERS[0].image;
+          return `
+            <div class="carousel-slide" aria-hidden="${idx !== currentSlide}">
+              <img src="${imgSrc}" alt="${b.title || 'KHUNSHOP Banner'}">
+              <div class="carousel-overlay">
+                <div class="carousel-content">
+                  <span class="carousel-tag">KHUNSHOP HIGHLIGHT</span>
+                  <h2 class="carousel-title">${b.title || 'KHUNSHOP Official Store'}</h2>
+                  <p class="carousel-subtitle">${b.subtitle || ''}</p>
+                  <a href="${b.linkUrl || '#storeSection'}" class="btn btn-primary btn-lg">${b.ctaText || 'เลือกดูสินค้า'}</a>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        dots.innerHTML = banners.map((_, idx) => `
+          <button type="button" class="carousel-dot ${idx === currentSlide ? 'active' : ''}" data-slide="${idx}" aria-label="ไปยังแบนเนอร์ที่ ${idx + 1}"></button>
+        `).join('');
+
+        counter.textContent = `${currentSlide + 1} / ${banners.length}`;
+        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+      }
+
+      function goToSlide(index) {
+        const banners = getActiveBanners();
+        currentSlide = (index + banners.length) % banners.length;
+        renderCarousel();
+      }
+
+      function startCarouselAutoPlay() {
+        if (carouselInterval) clearInterval(carouselInterval);
+        carouselInterval = setInterval(() => {
+          if (!isCarouselPaused) {
+            goToSlide(currentSlide + 1);
+          }
+        }, 4500);
+      }
+
+      function setupCarouselEvents() {
+        const container = document.getElementById('promoCarousel');
+        document.getElementById('carouselPrevBtn').addEventListener('click', () => {
+          goToSlide(currentSlide - 1);
+          startCarouselAutoPlay();
+        });
+        document.getElementById('carouselNextBtn').addEventListener('click', () => {
+          goToSlide(currentSlide + 1);
+          startCarouselAutoPlay();
+        });
+        document.getElementById('carouselDots').addEventListener('click', (e) => {
+          const dot = e.target.closest('.carousel-dot');
+          if (!dot) return;
+          goToSlide(Number(dot.dataset.slide));
+          startCarouselAutoPlay();
+        });
+
+        container.addEventListener('mouseenter', () => { isCarouselPaused = true; });
+        container.addEventListener('mouseleave', () => { isCarouselPaused = false; });
+        container.addEventListener('focusin', () => { isCarouselPaused = true; });
+        container.addEventListener('focusout', () => { isCarouselPaused = false; });
+
+        // รองรับการปัดซ้าย/ขวาบนมือถือและเมาส์
+        container.addEventListener('touchstart', (e) => {
+          touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        container.addEventListener('touchend', (e) => {
+          const diff = e.changedTouches[0].screenX - touchStartX;
+          if (Math.abs(diff) > 40) {
+            if (diff < 0) goToSlide(currentSlide + 1);
+            else goToSlide(currentSlide - 1);
+            startCarouselAutoPlay();
+          }
+        }, { passive: true });
+      }
+
+      // ================= SESSION & STORE RENDER =================
       function renderSessionUI() {
         const session = getSession();
         const guestNav = document.getElementById('guestNavActions');
         const userNav = document.getElementById('userNavActions');
+        const navLoginItem = document.getElementById('navLoginItem');
+        const navRegisterItem = document.getElementById('navRegisterItem');
         const heroGuest = document.getElementById('heroGuestButtons');
         const heroUser = document.getElementById('heroUserButtons');
         const demoBanner = document.getElementById('demoBanner');
@@ -1234,6 +1706,8 @@
         if (session && session.username) {
           guestNav.style.display = 'none';
           userNav.style.display = 'flex';
+          navLoginItem.style.display = 'none';
+          navRegisterItem.style.display = 'none';
           heroGuest.style.display = 'none';
           heroUser.style.display = 'flex';
 
@@ -1248,10 +1722,12 @@
         } else {
           guestNav.style.display = 'flex';
           userNav.style.display = 'none';
+          navLoginItem.style.display = 'block';
+          navRegisterItem.style.display = 'block';
           heroGuest.style.display = 'flex';
           heroUser.style.display = 'none';
           demoBanner.classList.remove('show');
-          statCurrentUser.textContent = 'ผู้เยี่ยมชมทั่วไป (ยังไม่ได้เข้าสู่ระบบ)';
+          statCurrentUser.textContent = 'ผู้เยี่ยมชมทั่วไป';
         }
       }
 
@@ -1266,8 +1742,8 @@
 
         const filtered = products.filter(p => {
           const matchKeyword = !keyword ||
-            p.name.toLowerCase().includes(keyword) ||
-            p.sku.toLowerCase().includes(keyword) ||
+            (p.name || '').toLowerCase().includes(keyword) ||
+            (p.sku || '').toLowerCase().includes(keyword) ||
             (p.description || '').toLowerCase().includes(keyword);
           const matchCat = cat === 'ALL' || p.category === cat;
           return matchKeyword && matchCat;
@@ -1280,36 +1756,43 @@
         }
 
         grid.innerHTML = filtered.map(p => {
-          const status = getStatusInfo(p.qty);
-          const disabledAttr = p.qty <= 0 ? 'disabled' : '';
+          const status = getStatusInfo(p);
+          const disabledAttr = !status.available ? 'disabled' : '';
+          const imgSrc = (p.image && p.image.trim()) ? p.image : PLACEHOLDER_IMAGE;
+
           return `
             <article class="product-card" data-sku="${p.sku}">
-              <div>
-                <div class="product-card-top">
+              <div class="product-thumb-wrap">
+                <img class="product-thumb" src="${imgSrc}" alt="${p.name}" loading="lazy" onerror="this.onerror=null;this.src='${PLACEHOLDER_IMAGE}';">
+                <div class="product-thumb-badges">
                   <span class="sku-pill">${p.sku}</span>
                   <span class="status-badge ${status.cls}">${status.label}</span>
                 </div>
-                <div class="product-category">${p.category}</div>
-                <h3 class="product-title">${p.name}</h3>
-                <p class="product-desc">${p.description || 'สินค้าคุณภาพมาตรฐานจาก Bluecat Store'}</p>
               </div>
-              <div>
-                <div class="product-price-row">
-                  <span class="product-price">${Number(p.price).toLocaleString('th-TH')} บาท</span>
-                  <span class="product-stock">คงเหลือ ${Number(p.qty).toLocaleString('th-TH')} ชิ้น</span>
+              <div class="product-body">
+                <div>
+                  <div class="product-category">${p.category}</div>
+                  <h3 class="product-title">${p.name}</h3>
+                  <p class="product-desc">${p.description || 'สินค้าคุณภาพมาตรฐานจาก KHUNSHOP'}</p>
                 </div>
-                <div class="product-actions" style="margin-block-start: 0.85rem;">
-                  <div class="qty-picker" aria-label="เลือกจำนวนสินค้า">
-                    <button type="button" class="qty-step-down" data-sku="${p.sku}" ${disabledAttr} aria-label="ลดจำนวน">-</button>
-                    <input type="number" class="qty-input" id="qty-input-${p.sku}" value="1" min="1" max="${Math.max(1, p.qty)}" ${disabledAttr} aria-label="จำนวน ${p.name}">
-                    <button type="button" class="qty-step-up" data-sku="${p.sku}" data-max="${p.qty}" ${disabledAttr} aria-label="เพิ่มจำนวน">+</button>
+                <div>
+                  <div class="product-price-row">
+                    <span class="product-price">${Number(p.price).toLocaleString('th-TH')} บาท</span>
+                    <span class="product-stock">คงเหลือ ${Number(p.qty).toLocaleString('th-TH')} ชิ้น</span>
                   </div>
-                  <button type="button" class="btn btn-primary btn-sm add-to-cart-btn" data-sku="${p.sku}" style="flex:1;" ${disabledAttr}>
-                    ${p.qty > 0 ? '+ เพิ่มลงตะกร้า' : 'สินค้าหมด'}
-                  </button>
-                  <button type="button" class="btn btn-outline btn-sm view-detail-btn" data-sku="${p.sku}">
-                    ดูรายละเอียด
-                  </button>
+                  <div class="product-actions">
+                    <div class="qty-picker" aria-label="เลือกจำนวนสินค้า">
+                      <button type="button" class="qty-step-down" data-sku="${p.sku}" ${disabledAttr} aria-label="ลดจำนวน">-</button>
+                      <input type="number" class="qty-input" id="qty-input-${p.sku}" value="1" min="1" max="${Math.max(1, p.qty)}" ${disabledAttr} aria-label="จำนวน ${p.name}">
+                      <button type="button" class="qty-step-up" data-sku="${p.sku}" data-max="${p.qty}" ${disabledAttr} aria-label="เพิ่มจำนวน">+</button>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-sm add-to-cart-btn" data-sku="${p.sku}" style="flex:1;" ${disabledAttr}>
+                      ${status.available ? '+ เพิ่มลงตะกร้า' : 'สินค้าหมด'}
+                    </button>
+                    <button type="button" class="btn btn-outline btn-sm view-detail-btn" data-sku="${p.sku}">
+                      ดูรายละเอียด
+                    </button>
+                  </div>
                 </div>
               </div>
             </article>
@@ -1320,7 +1803,7 @@
       function addToCart(sku, requestedQty) {
         const session = getSession();
         if (!session || !session.username) {
-          showToast('กรุณาเข้าสู่ระบบก่อนเลือกซื้อสินค้าลงตะกร้า', 'error');
+          showToast('กรุณาเข้าสู่ระบบก่อนเพิ่มสินค้าลงตะกร้า', 'error');
           setTimeout(() => {
             window.location.href = 'login.html?mode=login';
           }, 600);
@@ -1329,7 +1812,8 @@
 
         const products = getProducts();
         const product = products.find(p => p.sku === sku);
-        if (!product || product.qty <= 0) {
+        const status = product ? getStatusInfo(product) : { available: false };
+        if (!product || !status.available) {
           showToast('สินค้านี้หมดชั่วคราว', 'error');
           return;
         }
@@ -1380,7 +1864,7 @@
         const cart = getUserCart().filter(i => i.sku !== sku);
         saveUserCart(cart);
         renderCartAndOrders();
-        showToast('ลบรายการออกจากตะกร้าแล้ว', 'success');
+        showToast('ลบสินค้าออกจากตะกร้าแล้ว', 'success');
       }
 
       function handleCheckout() {
@@ -1419,19 +1903,19 @@
           });
         }
 
-        // ตัดสต็อกสินค้าจริงใน localStorage
         for (const item of cart) {
           const prod = products.find(p => p.sku === item.sku);
           if (prod) {
             prod.qty = Math.max(0, prod.qty - item.qty);
+            if (prod.qty === 0) prod.status = 'หมด';
+            else if (prod.qty <= 5) prod.status = 'ใกล้หมด';
           }
         }
         saveProducts(products);
 
-        // บันทึกคำสั่งซื้อ
         const orders = getOrders();
         const newOrder = {
-          orderId: 'ORD-' + Date.now().toString().slice(-6),
+          orderId: 'KS-' + Date.now().toString().slice(-6),
           username: session.username,
           fullName: session.fullName || session.username,
           items: orderItems,
@@ -1442,7 +1926,6 @@
         orders.unshift(newOrder);
         saveOrders(orders);
 
-        // ล้างตะกร้า
         saveUserCart([]);
         renderAll();
         showToast(`สั่งซื้อสำเร็จ! รหัสคำสั่งซื้อ ${newOrder.orderId} ยอดรวม ${totalAmount.toLocaleString('th-TH')} บาท`, 'success');
@@ -1462,8 +1945,9 @@
           document.getElementById('cartTotalAmount').textContent = '0 บาท';
           document.getElementById('orderCountBadge').textContent = '0 รายการ';
           clearCartBtn.disabled = true;
+          checkoutBtn.disabled = false;
           checkoutBtn.textContent = 'เข้าสู่ระบบเพื่อสั่งซื้อสินค้า';
-          cartContainer.innerHTML = `<div class="empty-box">กรุณา <a href="login.html?mode=login" style="color:var(--blue-600);font-weight:700;text-decoration:underline;">เข้าสู่ระบบ</a> หรือ <a href="login.html?mode=register" style="color:var(--blue-600);font-weight:700;text-decoration:underline;">สร้างบัญชี</a> เพื่อเพิ่มสินค้าลงตะกร้าและสั่งซื้อ</div>`;
+          cartContainer.innerHTML = `<div class="empty-box">กรุณา <a href="login.html?mode=login" style="color:var(--blue-600);font-weight:700;text-decoration:underline;">เข้าสู่ระบบ</a> หรือ <a href="login.html?mode=register" style="color:var(--blue-600);font-weight:700;text-decoration:underline;">สมัครสมาชิก</a> เพื่อเพิ่มสินค้าลงตะกร้าและสั่งซื้อ</div>`;
           orderContainer.innerHTML = `<div class="empty-box">เข้าสู่ระบบเพื่อดูประวัติคำสั่งซื้อของคุณ</div>`;
           return;
         }
@@ -1484,15 +1968,19 @@
           checkoutBtn.textContent = 'ยืนยันคำสั่งซื้อ (Demo Checkout)';
 
           cartContainer.innerHTML = cart.map(item => {
-            const prod = products.find(p => p.sku === item.sku) || { name: item.sku, price: 0, qty: 0 };
+            const prod = products.find(p => p.sku === item.sku) || { name: item.sku, price: 0, qty: 0, image: PLACEHOLDER_IMAGE };
             const sub = prod.price * item.qty;
             totalQty += item.qty;
             totalAmount += sub;
+            const thumb = (prod.image && prod.image.trim()) ? prod.image : PLACEHOLDER_IMAGE;
             return `
               <div class="cart-item">
-                <div class="cart-item-info">
-                  <div class="cart-item-title">${prod.name}</div>
-                  <div class="cart-item-meta">${prod.price.toLocaleString('th-TH')} บาท × ${item.qty} ชิ้น = <strong>${sub.toLocaleString('th-TH')} บาท</strong></div>
+                <div class="cart-item-left">
+                  <img class="cart-item-thumb" src="${thumb}" alt="${prod.name}" onerror="this.onerror=null;this.src='${PLACEHOLDER_IMAGE}';">
+                  <div>
+                    <div class="cart-item-title">${prod.name}</div>
+                    <div class="cart-item-meta">${prod.price.toLocaleString('th-TH')} บาท × ${item.qty} ชิ้น = <strong>${sub.toLocaleString('th-TH')} บาท</strong></div>
+                  </div>
                 </div>
                 <div class="cart-item-controls">
                   <button type="button" class="btn btn-sm btn-outline cart-dec-btn" data-sku="${item.sku}">-</button>
@@ -1510,7 +1998,6 @@
         document.getElementById('cartTotalQty').textContent = `${totalQty.toLocaleString('th-TH')} ชิ้น`;
         document.getElementById('cartTotalAmount').textContent = `${totalAmount.toLocaleString('th-TH')} บาท`;
 
-        // ประวัติคำสั่งซื้อเฉพาะของผู้ใช้คนนี้
         const userOrders = getOrders().filter(o => o.username === session.username);
         document.getElementById('orderCountBadge').textContent = `${userOrders.length} รายการ`;
 
@@ -1536,7 +2023,6 @@
         }
       }
 
-      // เปิดหน้าต่างดูรายละเอียดสินค้า
       let activeDetailSku = null;
       const detailDialog = document.getElementById('productDetailDialog');
 
@@ -1544,7 +2030,11 @@
         const product = getProducts().find(p => p.sku === sku);
         if (!product) return;
         activeDetailSku = product.sku;
-        const status = getStatusInfo(product.qty);
+        const status = getStatusInfo(product);
+
+        const detailImg = document.getElementById('detailImage');
+        detailImg.src = (product.image && product.image.trim()) ? product.image : PLACEHOLDER_IMAGE;
+        detailImg.alt = product.name;
 
         document.getElementById('detailSku').textContent = product.sku;
         const statusEl = document.getElementById('detailStatus');
@@ -1552,18 +2042,17 @@
         statusEl.className = 'status-badge ' + status.cls;
         document.getElementById('detailCategory').textContent = product.category;
         document.getElementById('detailName').textContent = product.name;
-        document.getElementById('detailDesc').textContent = product.description || 'สินค้าคุณภาพมาตรฐานจาก Bluecat Store';
+        document.getElementById('detailDesc').textContent = product.description || 'สินค้าคุณภาพมาตรฐานจาก KHUNSHOP';
         document.getElementById('detailPrice').textContent = `${Number(product.price).toLocaleString('th-TH')} บาท`;
         document.getElementById('detailStock').textContent = `${Number(product.qty).toLocaleString('th-TH')} ชิ้น`;
 
         const addBtn = document.getElementById('detailAddToCartBtn');
-        addBtn.disabled = product.qty <= 0;
-        addBtn.textContent = product.qty > 0 ? 'เพิ่มลงตะกร้า 1 ชิ้น' : 'สินค้าหมด';
+        addBtn.disabled = !status.available;
+        addBtn.textContent = status.available ? 'เพิ่มลงตะกร้า 1 ชิ้น' : 'สินค้าหมด';
 
         detailDialog.showModal();
       }
 
-      // Fallback สำหรับเบราว์เซอร์ที่ไม่รองรับ closedby
       if (!('closedBy' in HTMLDialogElement.prototype)) {
         detailDialog.addEventListener('click', (event) => {
           if (event.target !== detailDialog) return;
@@ -1581,11 +2070,11 @@
 
       function renderAll() {
         renderSessionUI();
+        renderCarousel();
         renderStatsAndProducts();
         renderCartAndOrders();
       }
 
-      // ผูก Event Listeners
       document.getElementById('navAdminDemoBtn').addEventListener('click', startAdminDemo);
       document.getElementById('heroAdminDemoBtn').addEventListener('click', startAdminDemo);
       document.getElementById('exitDemoBannerBtn').addEventListener('click', handleLogout);
@@ -1652,8 +2141,10 @@
 
       window.addEventListener('storage', renderAll);
 
-      initStorage();
+      initAndMigrateStorage();
+      setupCarouselEvents();
       renderAll();
+      startCarouselAutoPlay();
     })();
   </script>
 </body>

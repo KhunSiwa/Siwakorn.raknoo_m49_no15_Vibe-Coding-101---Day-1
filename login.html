@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>สมัครสมาชิก / เข้าสู่ระบบ — Bluecat Store</title>
+  <title>สมัครสมาชิก / เข้าสู่ระบบ — KHUNSHOP</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --navy-900: #0f172a;
@@ -60,7 +60,7 @@
     }
 
     .container {
-      width: min(1120px, 100% - 2rem);
+      width: min(1140px, 100% - 2rem);
       margin-inline: auto;
     }
 
@@ -71,7 +71,7 @@
     }
 
     .navbar-inner {
-      min-block-size: 64px;
+      min-block-size: 68px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -84,24 +84,22 @@
       display: inline-flex;
       align-items: center;
       gap: 0.65rem;
-      font-weight: 700;
-      font-size: 1.15rem;
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
       color: var(--navy-900);
     }
 
     .brand-mark {
-      width: 36px;
-      height: 36px;
-      border-radius: 9px;
-      background: var(--blue-600);
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--navy-900), var(--blue-600));
       color: var(--white);
       display: grid;
       place-items: center;
-    }
-
-    .brand-mark svg {
-      width: 20px;
-      height: 20px;
+      font-weight: 800;
+      font-size: 1.05rem;
     }
 
     .nav-links {
@@ -330,7 +328,6 @@
       background: var(--slate-100);
     }
 
-    /* Demo Helper Box */
     .demo-helper {
       margin-block-start: 1.35rem;
       padding-block-start: 1.15rem;
@@ -368,15 +365,9 @@
   <!-- Navbar -->
   <header class="navbar">
     <div class="container navbar-inner">
-      <a href="index.html" class="brand">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-            <line x1="12" y1="22.08" x2="12" y2="12"/>
-          </svg>
-        </span>
-        <span>Bluecat Store</span>
+      <a href="index.html" class="brand" aria-label="KHUNSHOP หน้าแรก">
+        <span class="brand-mark" aria-hidden="true">K</span>
+        <span>KHUNSHOP</span>
       </a>
 
       <nav aria-label="เมนูหลัก">
@@ -391,11 +382,11 @@
   <main class="auth-main">
     <section class="auth-card" aria-labelledby="authTitle">
       <div class="auth-header">
-        <h1 id="authTitle">ระบบสมาชิก Bluecat Store</h1>
-        <p id="authSubtitle">สมัครสมาชิกเพื่อสั่งซื้อสินค้า หรือเข้าสู่ระบบด้วยบัญชีของคุณ</p>
+        <h1 id="authTitle">ระบบสมาชิก KHUNSHOP</h1>
+        <p id="authSubtitle">สมัครสมาชิกเพื่อเลือกซื้อสินค้า หรือเข้าสู่ระบบด้วยบัญชีของคุณ</p>
       </div>
 
-      <!-- 2 Tabs: สมัครสมาชิก & เข้าสู่ระบบ -->
+      <!-- 2 Tabs -->
       <div class="auth-tabs" role="tablist" aria-label="เลือกโหมดการใช้งาน">
         <button type="button" id="tabBtnLogin" class="tab-btn active" role="tab" aria-selected="true" aria-controls="panelLogin">
           เข้าสู่ระบบ
@@ -405,10 +396,9 @@
         </button>
       </div>
 
-      <!-- กล่องข้อความแจ้งผลลัพธ์ -->
       <div id="authAlert" class="alert-box" role="alert" aria-live="polite"></div>
 
-      <!-- Tab 2: เข้าสู่ระบบ (Login Form) -->
+      <!-- Tab: เข้าสู่ระบบ -->
       <div id="panelLogin" class="auth-panel active" role="tabpanel" aria-labelledby="tabBtnLogin">
         <form id="loginForm" novalidate>
           <div class="form-group">
@@ -452,7 +442,7 @@
         </form>
 
         <div class="demo-helper">
-          <div><strong>ทางลัดสำหรับทดสอบระบบ:</strong></div>
+          <div><strong>ทางลัดสำหรับทดสอบระบบ KHUNSHOP:</strong></div>
           <div class="demo-btn-row">
             <button type="button" id="fillCustomerBtn" class="btn btn-outline btn-xs">กรอกบัญชี Customer (customer / 123456)</button>
             <button type="button" id="startAdminDemoBtn" class="btn btn-outline btn-xs">เข้าโหมด Admin Demo ทันที</button>
@@ -460,7 +450,7 @@
         </div>
       </div>
 
-      <!-- Tab 1: สมัครสมาชิก (Register Form) -->
+      <!-- Tab: สมัครสมาชิก -->
       <div id="panelRegister" class="auth-panel" role="tabpanel" aria-labelledby="tabBtnRegister">
         <form id="registerForm" novalidate>
           <div class="form-group">
@@ -531,7 +521,7 @@
           </div>
 
           <p style="font-size: 0.82rem; color: var(--slate-500); margin-block-end: 1rem;">
-            * บัญชีที่สมัครใหม่จะได้รับสิทธิ์เป็น <strong>ลูกค้า (Customer)</strong> โดยอัตโนมัติ
+            * บัญชีที่สมัครใหม่จะได้รับสิทธิ์เป็น <strong>ลูกค้า (Customer)</strong> เท่านั้น (รหัสผ่านถูกแฮชก่อนบันทึกลง localStorage)
           </p>
 
           <button type="submit" id="registerSubmitBtn" class="btn btn-primary">สมัครสมาชิก</button>
@@ -542,7 +532,7 @@
 
   <footer class="site-footer">
     <div class="container">
-      หมายเหตุด้านความปลอดภัย: ระบบ Authentication นี้เป็น Frontend Demo เก็บข้อมูลใน localStorage สำหรับการสาธิตเท่านั้น
+      © 2026 KHUNSHOP — ระบบ Authentication สาธิตฝั่ง Client (Frontend Demo) ไม่ใช้สำหรับระบบ Production จริง
     </div>
   </footer>
 
@@ -553,13 +543,22 @@
         SESSION: 'currentSession'
       };
 
+      function simpleHash(str) {
+        let h = 2166136261 >>> 0;
+        for (let i = 0; i < str.length; i++) {
+          h ^= str.charCodeAt(i);
+          h = Math.imul(h, 16777619);
+        }
+        return 'khun_h_' + (h >>> 0).toString(16);
+      }
+
       const DEFAULT_USERS = [
         {
           id: 'u-admin',
-          fullName: 'ผู้ดูแลระบบ Bluecat',
+          fullName: 'ผู้ดูแลระบบ KHUNSHOP',
           username: 'admin',
-          email: 'admin@bluecat.store',
-          password: '1234',
+          email: 'admin@khunshop.store',
+          passwordHash: simpleHash('1234'),
           role: 'Admin',
           createdAt: '2026-01-01T00:00:00.000Z'
         },
@@ -567,8 +566,8 @@
           id: 'u-cust-demo',
           fullName: 'สมชาย ใจดี',
           username: 'customer',
-          email: 'customer@bluecat.store',
-          password: '123456',
+          email: 'customer@khunshop.store',
+          passwordHash: simpleHash('123456'),
           role: 'Customer',
           createdAt: '2026-01-01T00:00:00.000Z'
         }
@@ -582,7 +581,24 @@
             return DEFAULT_USERS;
           }
           const parsed = JSON.parse(raw);
-          return Array.isArray(parsed) ? parsed : DEFAULT_USERS;
+          if (!Array.isArray(parsed)) return DEFAULT_USERS;
+          // Migrate plain password to passwordHash if needed without losing users
+          const migrated = parsed.map(u => {
+            if (!u.passwordHash && u.password) {
+              return {
+                id: u.id,
+                fullName: (u.fullName || u.username).replace(/Bluecat/gi, 'KHUNSHOP'),
+                username: u.username,
+                email: u.email,
+                passwordHash: simpleHash(String(u.password)),
+                role: u.role || 'Customer',
+                createdAt: u.createdAt || new Date().toISOString()
+              };
+            }
+            return u;
+          });
+          localStorage.setItem(KEYS.USERS, JSON.stringify(migrated));
+          return migrated;
         } catch (e) {
           return DEFAULT_USERS;
         }
@@ -592,14 +608,10 @@
         localStorage.setItem(KEYS.USERS, JSON.stringify(users));
       }
 
-      function saveSession(sessionObj, remember) {
+      function saveSession(sessionObj) {
         const str = JSON.stringify(sessionObj);
         sessionStorage.setItem(KEYS.SESSION, str);
-        if (remember !== false) {
-          localStorage.setItem(KEYS.SESSION, str);
-        } else {
-          localStorage.setItem(KEYS.SESSION, str);
-        }
+        localStorage.setItem(KEYS.SESSION, str);
       }
 
       const tabBtnLogin = document.getElementById('tabBtnLogin');
@@ -633,7 +645,6 @@
       tabBtnLogin.addEventListener('click', () => switchTab('login'));
       tabBtnRegister.addEventListener('click', () => switchTab('register'));
 
-      // ตรวจสอบ URL parameter ?mode=register หรือ ?mode=login
       const params = new URLSearchParams(window.location.search);
       if (params.get('mode') === 'register') {
         switchTab('register');
@@ -641,7 +652,6 @@
         switchTab('login');
       }
 
-      // แสดง/ซ่อนรหัสผ่าน
       const loginPwInput = document.getElementById('password');
       const toggleLoginPw = document.getElementById('toggleLoginPw');
       toggleLoginPw.addEventListener('click', () => {
@@ -650,7 +660,6 @@
         toggleLoginPw.textContent = hidden ? 'ซ่อนรหัส' : 'แสดงรหัส';
       });
 
-      // ปุ่มทางลัดสำหรับทดสอบ
       document.getElementById('fillCustomerBtn').addEventListener('click', () => {
         document.getElementById('username').value = 'customer';
         document.getElementById('password').value = '123456';
@@ -658,19 +667,18 @@
       });
 
       document.getElementById('startAdminDemoBtn').addEventListener('click', () => {
-        const demoSession = {
+        saveSession({
           username: 'admin_demo',
           fullName: 'ผู้ทดลองระบบ (Admin Demo)',
-          email: 'demo@bluecat.store',
+          email: 'demo@khunshop.store',
           role: 'Admin Demo',
           isDemo: true,
           loginAt: new Date().toISOString()
-        };
-        saveSession(demoSession, true);
+        });
         window.location.href = 'admin.html';
       });
 
-      // ระบบสมัครสมาชิก (Tab 1)
+      // สมัครสมาชิก
       document.getElementById('registerForm').addEventListener('submit', (e) => {
         e.preventDefault();
         const fullName = document.getElementById('regFullName').value.trim();
@@ -714,8 +722,8 @@
           fullName,
           username,
           email,
-          password,
-          role: 'Customer', // กำหนด Role เป็น Customer โดยอัตโนมัติ ห้ามเลือกเป็น Admin
+          passwordHash: simpleHash(password),
+          role: 'Customer', // กำหนด Role เป็น Customer เท่านั้น
           createdAt: new Date().toISOString()
         };
 
@@ -726,15 +734,14 @@
         switchTab('login', true);
         document.getElementById('username').value = username;
         document.getElementById('password').value = password;
-        showAlert(`สมัครสมาชิกสำเร็จ! บัญชี "${username}" (สิทธิ์ Customer) พร้อมใช้งานแล้ว กดปุ่ม "เข้าสู่ระบบ" ด้านล่างได้เลย`, 'success');
+        showAlert(`สมัครสมาชิก KHUNSHOP สำเร็จ! บัญชี "${username}" (สิทธิ์ Customer) พร้อมเข้าสู่ระบบแล้ว`, 'success');
       });
 
-      // ระบบเข้าสู่ระบบ (Tab 2)
+      // เข้าสู่ระบบ
       document.getElementById('loginForm').addEventListener('submit', (e) => {
         e.preventDefault();
         const identifier = document.getElementById('username').value.trim();
         const password = document.getElementById('password').value;
-        const remember = document.getElementById('remember').checked;
 
         if (!identifier || !password) {
           showAlert('กรุณากรอกชื่อผู้ใช้ (หรืออีเมล) และรหัสผ่านให้ครบถ้วน', 'error');
@@ -742,11 +749,12 @@
         }
 
         const users = getUsers();
+        const hashedInput = simpleHash(password);
         const matched = users.find(
           u =>
             (u.username.toLowerCase() === identifier.toLowerCase() ||
               (u.email && u.email.toLowerCase() === identifier.toLowerCase())) &&
-            u.password === password
+            (u.passwordHash === hashedInput || u.password === password)
         );
 
         if (!matched) {
@@ -754,16 +762,14 @@
           return;
         }
 
-        const sessionObj = {
+        saveSession({
           username: matched.username,
           fullName: matched.fullName,
           email: matched.email,
           role: matched.role,
           isDemo: false,
           loginAt: new Date().toISOString()
-        };
-
-        saveSession(sessionObj, remember);
+        });
 
         if (matched.role === 'Admin') {
           showAlert('เข้าสู่ระบบผู้ดูแลสำเร็จ กำลังพาไปหน้า Admin Dashboard...', 'success');
@@ -771,7 +777,7 @@
             window.location.href = 'admin.html';
           }, 400);
         } else {
-          showAlert('เข้าสู่ระบบสำเร็จ! กำลังพาไปยังหน้าร้านค้า...', 'success');
+          showAlert('เข้าสู่ระบบสำเร็จ! กำลังพาไปยังหน้าร้านค้า KHUNSHOP...', 'success');
           setTimeout(() => {
             window.location.href = 'index.html#storeSection';
           }, 400);
