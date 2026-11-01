@@ -1157,7 +1157,7 @@
           qty: 15,
           status: 'พร้อมจำหน่าย',
           description: 'คีย์บอร์ดแมคคานิคอลไร้สาย สวิตช์นุ่มเงียบ ไฟ RGB ปรับแต่งได้ รองรับทั้ง Windows และ macOS',
-          image: makeProductSvg('Mechanical Keyboard Pro', 'Wireless RGB Hot-Swappable Keyboard', '#0f172a', '#1e3a8a', '#3b82f6')
+          image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=800&q=80'
         },
         {
           id: 'PROD-002',
@@ -1168,7 +1168,7 @@
           qty: 24,
           status: 'พร้อมจำหน่าย',
           description: 'เมาส์ไร้สายทรงสรีรศาสตร์ ลดอาการปวดข้อมือ เซนเซอร์ความแม่นยำสูง ปรับ DPI ได้ 4 ระดับ',
-          image: makeProductSvg('Ergonomic Wireless Mouse', 'Silent Click Precision Optical Sensor', '#0f172a', '#1e293b', '#2563eb')
+          image: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?auto=format&fit=crop&w=800&q=80'
         },
         {
           id: 'PROD-003',
@@ -1179,7 +1179,7 @@
           qty: 8,
           status: 'พร้อมจำหน่าย',
           description: 'จอมอนิเตอร์ความละเอียด 4K UHD ขนาด 27 นิ้ว สีสันแม่นยำ sRGB 99% พอร์ต USB-C ในตัว',
-          image: makeProductSvg('4K UltraSharp Monitor 27"', 'UHD IPS Panel • 99% sRGB • USB-C PD', '#172554', '#1d4ed8', '#60a5fa')
+          image: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?auto=format&fit=crop&w=800&q=80'
         },
         {
           id: 'PROD-004',
@@ -1190,7 +1190,7 @@
           qty: 30,
           status: 'พร้อมจำหน่าย',
           description: 'ฮับแปลงพอร์ต USB-C เป็น HDMI 4K, USB 3.0, SD Card และ PD Fast Charge 100W',
-          image: makeProductSvg('USB-C Hub 8-in-1 Multiport', 'HDMI 4K 60Hz • 100W Power Delivery', '#0f172a', '#334155', '#38bdf8')
+          image: 'https://images.unsplash.com/photo-1625842268584-8f3296236761?auto=format&fit=crop&w=800&q=80'
         },
         {
           id: 'PROD-005',
@@ -1201,7 +1201,7 @@
           qty: 5,
           status: 'ใกล้หมด',
           description: 'หูฟังครอบหูตัดเสียงรบกวน Active Noise Cancelling ไมโครโฟนคมชัด แบตเตอรี่ใช้ได้นาน 35 ชม.',
-          image: makeProductSvg('Noise-Cancelling Headset', 'Studio Hi-Res Audio • 35H Battery', '#1e1b4b', '#312e81', '#818cf8')
+          image: 'https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=800&q=80'
         },
         {
           id: 'PROD-006',
@@ -1212,26 +1212,9 @@
           qty: 20,
           status: 'พร้อมจำหน่าย',
           description: 'ขาตั้งแล็ปท็อปอะลูมิเนียมแท้ ปรับระดับความสูงและองศาได้ ช่วยระบายความร้อนได้ดีเยี่ยม',
-          image: makeProductSvg('Aluminum Laptop Stand', 'Ergonomic Foldable Desk Stand', '#0f172a', '#1e3a8a', '#3b82f6')
+          image: 'https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?auto=format&fit=crop&w=800&q=80'
         }
       ];
-
-      function makeBannerSvg(tag, c1, c2, accent) {
-        const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="540" viewBox="0 0 1400 540">
-          <defs>
-            <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="${c1}"/>
-              <stop offset="100%" stop-color="${c2}"/>
-            </linearGradient>
-          </defs>
-          <rect width="1400" height="540" fill="url(#bg)"/>
-          <circle cx="1150" cy="270" r="240" fill="${accent}" opacity="0.22"/>
-          <rect x="860" y="110" width="440" height="320" rx="28" fill="#ffffff" fill-opacity="0.1" stroke="#ffffff" stroke-opacity="0.25" stroke-width="2"/>
-          <text x="1080" y="255" text-anchor="middle" fill="#ffffff" font-family="Inter, sans-serif" font-size="44" font-weight="800">KHUNSHOP</text>
-          <text x="1080" y="305" text-anchor="middle" fill="#bfdbfe" font-family="Inter, Noto Sans Thai, sans-serif" font-size="22" font-weight="600">${tag}</text>
-        </svg>`;
-        return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
-      }
 
       const DEFAULT_BANNERS = [
         {
@@ -1241,7 +1224,7 @@
           ctaText: 'ช้อปสินค้าโปรโมชัน',
           linkUrl: '#storeSection',
           active: true,
-          image: makeBannerSvg('MEGA TECH SALE', '#0f172a', '#1d4ed8', '#3b82f6')
+          image: 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?auto=format&fit=crop&w=1400&q=80'
         },
         {
           id: 'BN-002',
@@ -1250,7 +1233,7 @@
           ctaText: 'ดูคอลเลกชันแนะนำ',
           linkUrl: '#storeSection',
           active: true,
-          image: makeBannerSvg('STUDIO & WORKSPACE', '#1e1b4b', '#1e3a8a', '#6366f1')
+          image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=1400&q=80'
         },
         {
           id: 'BN-003',
@@ -1259,7 +1242,7 @@
           ctaText: 'สมัครสมาชิกฟรี',
           linkUrl: 'login.html?mode=register',
           active: true,
-          image: makeBannerSvg('MEMBER PRIVILEGE', '#0f172a', '#0369a1', '#38bdf8')
+          image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=80'
         }
       ];
 
@@ -1295,6 +1278,7 @@
           if (!Array.isArray(parsed)) return JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
           const migrated = parsed.map((p, idx) => {
             const def = DEFAULT_PRODUCTS[idx] || DEFAULT_PRODUCTS[0];
+            const hasCustomOrWebImg = typeof p.image === 'string' && p.image && !p.image.startsWith('data:image/svg+xml');
             return {
               id: p.id || `PROD-00${idx + 1}`,
               sku: (p.sku || `KS-00${idx + 1}`).replace(/^BC-/i, 'KS-'),
@@ -1304,7 +1288,7 @@
               qty: Number(p.qty) >= 0 ? Number(p.qty) : def.qty,
               status: p.status || '',
               description: (p.description || def.description).replace(/Bluecat Store/gi, 'KHUNSHOP'),
-              image: typeof p.image === 'string' && p.image ? p.image : def.image
+              image: hasCustomOrWebImg ? p.image : def.image
             };
           });
           localStorage.setItem(KEYS.PRODUCTS, JSON.stringify(migrated));
@@ -1323,7 +1307,17 @@
             return copy;
           }
           const parsed = JSON.parse(raw);
-          return Array.isArray(parsed) ? parsed : JSON.parse(JSON.stringify(DEFAULT_BANNERS));
+          if (!Array.isArray(parsed)) return JSON.parse(JSON.stringify(DEFAULT_BANNERS));
+          const migratedBanners = parsed.map((b, idx) => {
+            const defB = DEFAULT_BANNERS[idx] || DEFAULT_BANNERS[0];
+            const hasRealBannerImg = typeof b.image === 'string' && b.image && !b.image.startsWith('data:image/svg+xml');
+            return {
+              ...b,
+              image: hasRealBannerImg ? b.image : defB.image
+            };
+          });
+          localStorage.setItem(KEYS.BANNERS, JSON.stringify(migratedBanners));
+          return migratedBanners;
         } catch (e) {
           return JSON.parse(JSON.stringify(DEFAULT_BANNERS));
         }
