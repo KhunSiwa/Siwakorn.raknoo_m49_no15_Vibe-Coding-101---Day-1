@@ -3,58 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="แดชบอร์ดผู้ดูแลระบบ Bluecat Store - แก้ไขคลังสินค้า ราคา จำนวน หมวดหมู่ และเพิ่มลบสินค้าได้แบบเรียลไทม์">
-  <title>Admin Dashboard | Bluecat Store</title>
+  <meta name="description" content="จัดการสินค้า Bluecat Store - ระบบบริหารคลังสินค้าที่เข้าใจง่ายที่สุด">
+  <title>จัดการสินค้า | Bluecat Store</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --navy-950: #0a1128;
       --navy-900: #0f172a;
       --navy-800: #1e293b;
       --navy-700: #1e3a8a;
       --blue-600: #1d4ed8;
       --blue-500: #2563eb;
-      --blue-400: #3b82f6;
-      --sky-500: #0284c7;
-      --sky-100: #e0f2fe;
-      --sky-50: #f0f9ff;
-      --blue-50: #eff6ff;
       --blue-100: #dbeafe;
+      --blue-50: #eff6ff;
 
       --bg-page: #f8fafc;
       --bg-surface: #ffffff;
       --bg-subtle: #f1f5f9;
-      --zebra-even: #f5f9ff;
-      --row-hover: #eaf2ff;
+      --zebra-even: #f8fafc;
+      --row-hover: #eff6ff;
       --text-primary: #0f172a;
       --text-secondary: #475569;
       --text-muted: #64748b;
-      --border-light: #e2e8f0;
+      --border-color: #e2e8f0;
       --border-strong: #cbd5e1;
 
-      --status-ok-bg: #ecfdf5;
-      --status-ok-text: #065f46;
-      --status-ok-border: #a7f3d0;
-      --status-low-bg: #fffbeb;
-      --status-low-text: #92400e;
-      --status-low-border: #fde68a;
-      --status-out-bg: #fef2f2;
-      --status-out-text: #991b1b;
-      --status-out-border: #fecaca;
+      /* Semantic Status Colors */
+      --green-bg: #ecfdf5;
+      --green-text: #065f46;
+      --green-border: #a7f3d0;
+
+      --amber-bg: #fffbeb;
+      --amber-text: #92400e;
+      --amber-border: #fde68a;
+
+      --red-bg: #fef2f2;
+      --red-text: #991b1b;
+      --red-border: #fecaca;
+      --red-solid: #dc2626;
+      --red-solid-hover: #b91c1c;
 
       --radius-sm: 8px;
       --radius-md: 12px;
       --radius-lg: 16px;
-      --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
-      --shadow-sm: 0 2px 8px -2px rgba(15, 23, 42, 0.06), 0 1px 3px -1px rgba(15, 23, 42, 0.04);
-      --shadow-md: 0 12px 28px -6px rgba(15, 23, 42, 0.08), 0 4px 10px -3px rgba(15, 23, 42, 0.04);
-      --shadow-lg: 0 20px 45px -12px rgba(15, 23, 42, 0.18);
-      --focus-ring: 0 0 0 3px rgba(37, 99, 235, 0.28);
+      --shadow-sm: 0 2px 6px rgba(15, 23, 42, 0.05);
+      --shadow-lg: 0 16px 36px rgba(15, 23, 42, 0.14);
+      --focus-ring: 0 0 0 3px rgba(37, 99, 235, 0.25);
 
-      --font-sans: 'Noto Sans Thai', 'Sarabun', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      --container-max: 1280px;
+      --font-sans: 'Noto Sans Thai', 'Sarabun', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --container-max: 1180px;
     }
 
     *, *::before, *::after {
@@ -81,11 +79,11 @@
       left: 1rem;
       background: var(--navy-900);
       color: #ffffff;
-      padding: 0.625rem 1.25rem;
+      padding: 0.6rem 1rem;
       border-radius: var(--radius-sm);
       text-decoration: none;
       font-weight: 600;
-      z-index: 9999;
+      z-index: 999;
     }
 
     .skip-link:focus {
@@ -106,12 +104,11 @@
       border: 0;
     }
 
-    a, button, input, select, textarea {
+    a, button, input, select {
       font-family: inherit;
-      transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, .table-wrapper:focus-visible, [contenteditable="true"]:focus-visible {
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, .table-wrapper:focus-visible {
       outline: none;
       box-shadow: var(--focus-ring);
     }
@@ -129,76 +126,60 @@
       min-width: 0;
     }
 
-    /* ================= HEADER & NAVBAR ================= */
+    /* ================= 1. HEADER ================= */
     .site-header {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-color);
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-light);
     }
 
     .navbar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      min-height: 72px;
+      min-height: 68px;
       gap: 1rem;
     }
 
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.7rem;
       text-decoration: none;
       color: var(--navy-900);
       font-weight: 700;
-      font-size: 1.22rem;
-      letter-spacing: -0.02em;
+      font-size: 1.2rem;
     }
 
     .brand-mark {
-      width: 40px;
-      height: 40px;
+      width: 38px;
+      height: 38px;
       border-radius: 10px;
-      background: linear-gradient(135deg, var(--navy-700) 0%, var(--blue-500) 100%);
+      background: var(--blue-600);
+      color: #ffffff;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      color: #ffffff;
-      box-shadow: 0 4px 12px rgba(29, 78, 216, 0.25);
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.15;
-    }
-
-    .brand-sub {
-      font-size: 0.72rem;
-      font-weight: 500;
-      color: var(--text-muted);
+      flex-shrink: 0;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 0.375rem;
+      gap: 0.5rem;
       list-style: none;
     }
 
     .nav-link {
       display: inline-flex;
       align-items: center;
-      gap: 0.45rem;
-      padding: 0.5rem 0.95rem;
+      padding: 0.5rem 1rem;
       border-radius: var(--radius-sm);
       color: var(--text-secondary);
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 600;
       font-size: 0.95rem;
     }
 
@@ -210,365 +191,142 @@
     .nav-link.active {
       color: var(--blue-600);
       background-color: var(--blue-50);
-      font-weight: 600;
     }
 
-    .header-user {
+    .header-admin-info {
       display: flex;
       align-items: center;
       gap: 0.75rem;
     }
 
-    .user-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.35rem 0.75rem;
-      background: var(--bg-subtle);
-      border: 1px solid var(--border-light);
-      border-radius: 999px;
-      font-size: 0.84rem;
+    .admin-badge {
+      font-size: 0.88rem;
       font-weight: 600;
       color: var(--navy-900);
-    }
-
-    .user-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #10b981;
-      flex-shrink: 0;
-    }
-
-    .editable-inline {
-      border-bottom: 1px dashed transparent;
-      border-radius: 4px;
-      padding-inline: 2px;
-      cursor: text;
-    }
-
-    .editable-inline:hover {
-      border-bottom-color: var(--blue-400);
-      background: rgba(37, 99, 235, 0.05);
-    }
-
-    .editable-inline:focus {
-      border-bottom-color: var(--blue-600);
-      background: #ffffff;
+      background: var(--bg-subtle);
+      padding: 0.38rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-color);
     }
 
     .btn-logout {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.45rem 0.9rem;
+      padding: 0.42rem 0.85rem;
       border-radius: var(--radius-sm);
-      font-size: 0.86rem;
+      font-size: 0.88rem;
       font-weight: 600;
       color: var(--text-secondary);
       background: var(--bg-surface);
-      border: 1px solid var(--border-light);
+      border: 1px solid var(--border-color);
       text-decoration: none;
     }
 
     .btn-logout:hover {
-      color: var(--navy-900);
-      border-color: var(--border-strong);
       background: var(--bg-subtle);
+      color: var(--navy-900);
     }
 
-    /* ================= BUTTONS ================= */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.45rem;
-      padding: 0.6rem 1.1rem;
-      border-radius: var(--radius-sm);
-      font-weight: 600;
-      font-size: 0.9rem;
-      cursor: pointer;
-      border: 1px solid transparent;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--navy-700) 0%, var(--blue-500) 100%);
-      color: #ffffff;
-      box-shadow: 0 4px 12px rgba(29, 78, 216, 0.22);
-    }
-
-    .btn-primary:hover {
-      background: linear-gradient(135deg, var(--navy-900) 0%, var(--blue-600) 100%);
-      transform: translateY(-1px);
-    }
-
-    .btn-outline {
-      background: var(--bg-surface);
-      color: var(--text-secondary);
-      border-color: var(--border-strong);
-    }
-
-    .btn-outline:hover {
-      color: var(--blue-600);
-      border-color: var(--blue-400);
-      background: var(--blue-50);
-    }
-
-    .btn-danger-ghost {
-      background: transparent;
-      color: var(--text-muted);
-      border: 1px solid transparent;
-      padding: 0.4rem 0.55rem;
-      border-radius: 6px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .btn-danger-ghost:hover {
-      background: var(--status-out-bg);
-      color: var(--status-out-text);
-      border-color: var(--status-out-border);
-    }
-
-    .btn-edit-ghost {
-      background: transparent;
-      color: var(--blue-600);
-      border: 1px solid transparent;
-      padding: 0.4rem 0.55rem;
-      border-radius: 6px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .btn-edit-ghost:hover {
-      background: var(--blue-50);
-      border-color: var(--blue-100);
-    }
-
-    /* ================= DASHBOARD MAIN ================= */
+    /* ================= MAIN LAYOUT ================= */
     .dashboard-main {
       flex: 1;
-      padding-block: clamp(1.5rem, 3vw, 2.5rem);
+      padding-block: 1.75rem 2.5rem;
     }
 
-    .page-header {
+    .page-title-bar {
       display: flex;
       flex-wrap: wrap;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 1.25rem;
-      margin-bottom: 1.75rem;
-    }
-
-    .page-eyebrow {
-      font-size: 0.8rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--blue-600);
-      margin-bottom: 0.25rem;
-      display: flex;
       align-items: center;
-      gap: 0.5rem;
-    }
-
-    .edit-hint-pill {
-      font-size: 0.72rem;
-      font-weight: 600;
-      text-transform: none;
-      letter-spacing: 0;
-      background: var(--blue-50);
-      color: var(--navy-700);
-      border: 1px solid var(--blue-100);
-      padding: 0.12rem 0.55rem;
-      border-radius: 999px;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
     }
 
     .page-title {
-      font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.05rem);
+      font-size: 1.55rem;
       font-weight: 700;
       color: var(--navy-900);
-      letter-spacing: -0.02em;
     }
 
     .page-subtitle {
-      font-size: 0.94rem;
+      font-size: 0.92rem;
       color: var(--text-secondary);
-      margin-top: 0.2rem;
     }
 
-    .page-actions {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.65rem;
-    }
-
-    /* ================= SUMMARY CARDS ================= */
+    /* ================= 2. SUMMARY CARDS ================= */
     .summary-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.25rem;
-      margin-bottom: 1.75rem;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
     }
 
     .summary-card {
       background: var(--bg-surface);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      padding: 1.4rem 1.5rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.4rem;
       box-shadow: var(--shadow-sm);
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 1rem;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
 
-    .summary-card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-      border-color: var(--blue-400);
-    }
-
-    .summary-card.highlight-card {
-      background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-700) 100%);
+    .summary-card.total-value-card {
+      background: var(--navy-900);
       color: #ffffff;
-      border-color: var(--navy-700);
-    }
-
-    .summary-info {
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
+      border-color: var(--navy-900);
     }
 
     .summary-label {
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       font-weight: 600;
       color: var(--text-secondary);
+      margin-bottom: 0.3rem;
     }
 
-    .summary-card.highlight-card .summary-label {
+    .summary-card.total-value-card .summary-label {
       color: var(--blue-100);
     }
 
     .summary-value {
-      font-size: clamp(1.6rem, 1.3rem + 1vw, 2.1rem);
+      font-size: 1.75rem;
       font-weight: 700;
       color: var(--navy-900);
-      line-height: 1.2;
       font-variant-numeric: tabular-nums;
-      letter-spacing: -0.02em;
+      line-height: 1.2;
     }
 
-    .summary-card.highlight-card .summary-value {
+    .summary-card.total-value-card .summary-value {
       color: #ffffff;
     }
 
-    .summary-meta {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-top: 0.15rem;
-    }
-
-    .summary-card.highlight-card .summary-meta {
-      color: var(--sky-100);
-    }
-
-    .summary-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: var(--radius-md);
-      background: var(--blue-50);
-      color: var(--blue-600);
-      border: 1px solid var(--blue-100);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .summary-card.highlight-card .summary-icon {
-      background: rgba(255, 255, 255, 0.14);
-      color: #ffffff;
-      border-color: rgba(255, 255, 255, 0.22);
-    }
-
-    /* ================= INVENTORY TABLE PANEL ================= */
-    .panel-card {
+    /* ================= 3. SEARCH, FILTER & ACTION BAR ================= */
+    .control-bar {
       background: var(--bg-surface);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-sm);
-      overflow: hidden;
-    }
-
-    .panel-toolbar {
-      padding: 1.15rem 1.5rem;
-      border-bottom: 1px solid var(--border-light);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 1rem;
-      background: var(--bg-surface);
+      gap: 0.85rem;
+      box-shadow: var(--shadow-sm);
     }
 
-    .panel-heading-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.15rem;
-    }
-
-    .panel-title {
-      font-size: 1.12rem;
-      font-weight: 700;
-      color: var(--navy-900);
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .panel-desc {
-      font-size: 0.84rem;
-      color: var(--text-muted);
-    }
-
-    .toolbar-controls {
+    .filter-group {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 0.65rem;
-    }
-
-    .search-box {
-      position: relative;
-      display: flex;
-      align-items: center;
-    }
-
-    .search-icon {
-      position: absolute;
-      left: 0.8rem;
-      color: var(--text-muted);
-      pointer-events: none;
+      gap: 0.75rem;
+      flex: 1;
     }
 
     .search-input {
-      padding: 0.52rem 0.85rem 0.52rem 2.3rem;
+      padding: 0.58rem 0.9rem;
       border: 1px solid var(--border-strong);
       border-radius: var(--radius-sm);
-      font-size: 0.88rem;
+      font-size: 0.92rem;
       background: var(--bg-page);
       color: var(--navy-900);
-      min-width: 210px;
+      min-width: 240px;
     }
 
     .search-input:focus {
@@ -577,43 +335,125 @@
     }
 
     .category-select {
-      padding: 0.52rem 0.85rem;
+      padding: 0.58rem 0.9rem;
       border: 1px solid var(--border-strong);
       border-radius: var(--radius-sm);
-      font-size: 0.88rem;
+      font-size: 0.92rem;
       background: var(--bg-page);
       color: var(--navy-900);
       cursor: pointer;
     }
 
-    /* Responsive Scrollable Table Container */
+    .action-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.58rem 1.05rem;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 0.92rem;
+      cursor: pointer;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background-color: var(--blue-600);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background-color: var(--navy-700);
+    }
+
+    .btn-secondary {
+      background-color: var(--bg-surface);
+      color: var(--text-secondary);
+      border-color: var(--border-strong);
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      background-color: var(--bg-subtle);
+      color: var(--navy-900);
+    }
+
+    .btn-danger {
+      background-color: var(--red-solid);
+      color: #ffffff;
+    }
+
+    .btn-danger:hover:not(:disabled) {
+      background-color: var(--red-solid-hover);
+    }
+
+    /*Feedback Alert Bar */
+    .feedback-banner {
+      display: none;
+      margin-bottom: 1rem;
+      padding: 0.75rem 1.1rem;
+      border-radius: var(--radius-sm);
+      background-color: var(--green-bg);
+      color: var(--green-text);
+      border: 1px solid var(--green-border);
+      font-size: 0.92rem;
+      font-weight: 600;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .feedback-banner.show {
+      display: flex;
+    }
+
+    /* ================= 4. PRODUCT TABLE ================= */
+    .table-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
     .table-wrapper {
       overflow-x: auto;
       max-inline-size: 100%;
-      container-type: inline-size;
       -webkit-overflow-scrolling: touch;
     }
 
     .inventory-table {
       width: 100%;
-      min-width: 920px;
+      min-width: 840px;
       border-collapse: separate;
       border-spacing: 0;
       text-align: left;
-      font-size: 0.92rem;
+      font-size: 0.94rem;
     }
 
     .inventory-table caption {
-      padding: 0.65rem 1.5rem;
+      padding: 0.7rem 1.25rem;
       text-align: left;
-      font-size: 0.8rem;
-      color: var(--text-muted);
+      font-size: 0.84rem;
+      color: var(--text-secondary);
       background: var(--bg-page);
-      border-bottom: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-color);
       caption-side: top;
     }
 
-    /* Table Header */
     .inventory-table thead {
       position: sticky;
       inset-block-start: 0;
@@ -624,17 +464,13 @@
       background-color: var(--navy-900);
       color: #ffffff;
       font-weight: 600;
-      font-size: 0.84rem;
-      letter-spacing: 0.02em;
+      font-size: 0.88rem;
       padding: 0.9rem 1rem;
-      border-bottom: 2px solid var(--navy-700);
       white-space: nowrap;
     }
 
-    /* Zebra Striping & Row Hover */
     .inventory-table tbody tr {
       background-color: var(--bg-surface);
-      transition: background-color 0.15s ease;
     }
 
     .inventory-table tbody tr:nth-child(even) {
@@ -647,182 +483,162 @@
 
     .inventory-table tbody th,
     .inventory-table tbody td {
-      padding: 0.8rem 0.75rem;
-      border-bottom: 1px solid var(--border-light);
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid var(--border-color);
       vertical-align: middle;
     }
 
-    /* Inline Editable Table Inputs */
-    .cell-sku-input {
-      width: 78px;
+    .sku-code {
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
       font-weight: 700;
-      font-size: 0.85rem;
       color: var(--navy-700);
-      background: transparent;
-      border: 1px solid transparent;
-      border-radius: 6px;
-      padding: 0.3rem 0.4rem;
+      font-size: 0.9rem;
     }
 
-    .cell-sku-input:hover,
-    .cell-text-input:hover,
-    .cell-sub-input:hover,
-    .cell-cat-select:hover,
-    .cell-status-select:hover,
-    .cell-num-input:hover {
-      border-color: var(--border-strong);
-      background: #ffffff;
-    }
-
-    .cell-sku-input:focus,
-    .cell-text-input:focus,
-    .cell-sub-input:focus,
-    .cell-cat-select:focus,
-    .cell-status-select:focus,
-    .cell-num-input:focus {
-      border-color: var(--blue-500);
-      background: #ffffff;
-      box-shadow: var(--focus-ring);
-    }
-
-    .cell-text-input {
-      width: 100%;
-      min-width: 280px;
+    .product-title {
       font-weight: 600;
-      font-size: 0.92rem;
       color: var(--navy-900);
-      background: transparent;
-      border: 1px solid transparent;
-      border-radius: 6px;
-      padding: 0.25rem 0.45rem;
-      display: block;
     }
 
-    .cell-sub-input {
-      width: 100%;
-      min-width: 280px;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      background: transparent;
-      border: 1px solid transparent;
-      border-radius: 6px;
-      padding: 0.18rem 0.45rem;
-      display: block;
-      margin-top: 2px;
-    }
-
-    .cell-cat-select {
-      font-size: 0.8rem;
+    .category-tag {
+      display: inline-block;
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
       font-weight: 600;
-      color: var(--blue-600);
       background-color: var(--blue-50);
+      color: var(--blue-600);
       border: 1px solid var(--blue-100);
-      border-radius: 999px;
-      padding: 0.25rem 0.65rem;
-      cursor: pointer;
+      white-space: nowrap;
     }
 
-    .cell-status-select {
-      font-size: 0.8rem;
+    /* Status Badges */
+    .status-badge {
+      display: inline-block;
+      padding: 0.22rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
       font-weight: 600;
-      border-radius: 999px;
-      padding: 0.25rem 0.65rem;
-      cursor: pointer;
+      white-space: nowrap;
     }
 
-    .cell-status-select.in-stock {
-      background-color: var(--status-ok-bg);
-      color: var(--status-ok-text);
-      border: 1px solid var(--status-ok-border);
+    .status-badge.status-ready {
+      background-color: var(--green-bg);
+      color: var(--green-text);
+      border: 1px solid var(--green-border);
     }
 
-    .cell-status-select.low-stock {
-      background-color: var(--status-low-bg);
-      color: var(--status-low-text);
-      border: 1px solid var(--status-low-border);
+    .status-badge.status-low {
+      background-color: var(--amber-bg);
+      color: var(--amber-text);
+      border: 1px solid var(--amber-border);
     }
 
-    .cell-status-select.out-stock {
-      background-color: var(--status-out-bg);
-      color: var(--status-out-text);
-      border: 1px solid var(--status-out-border);
+    .status-badge.status-empty {
+      background-color: var(--red-bg);
+      color: var(--red-text);
+      border: 1px solid var(--red-border);
     }
 
     /* Right-aligned Numeric Columns */
-    .inventory-table th.num-col,
-    .inventory-table td.num-col {
+    .num-col {
       text-align: right;
       font-variant-numeric: tabular-nums;
       white-space: nowrap;
     }
 
-    .cell-num-input {
-      width: 96px;
-      text-align: right;
-      font-variant-numeric: tabular-nums;
-      font-weight: 600;
-      font-size: 0.92rem;
+    .total-cell {
+      font-weight: 700;
       color: var(--navy-900);
-      background: #ffffff;
-      border: 1px solid var(--border-light);
-      border-radius: 6px;
-      padding: 0.32rem 0.5rem;
     }
 
-    .qty-control {
+    /* Quantity Stepper (+ / -) */
+    .qty-stepper {
       display: inline-flex;
       align-items: center;
       justify-content: flex-end;
-      gap: 0.25rem;
+      gap: 0.45rem;
     }
 
-    .qty-step-btn {
-      width: 26px;
-      height: 26px;
+    .qty-btn {
+      width: 28px;
+      height: 28px;
       border-radius: 6px;
       border: 1px solid var(--border-strong);
       background: var(--bg-surface);
       color: var(--navy-900);
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 1rem;
+      line-height: 1;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      line-height: 1;
     }
 
-    .qty-step-btn:hover {
+    .qty-btn:hover:not(:disabled) {
       background: var(--blue-50);
-      border-color: var(--blue-400);
+      border-color: var(--blue-500);
       color: var(--blue-600);
     }
 
-    .cell-qty-input {
-      width: 62px;
-      text-align: right;
-      font-variant-numeric: tabular-nums;
-      font-weight: 600;
-      font-size: 0.92rem;
-      color: var(--navy-900);
-      background: #ffffff;
-      border: 1px solid var(--border-light);
-      border-radius: 6px;
-      padding: 0.3rem 0.4rem;
+    .qty-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
     }
 
-    .inventory-table td.total-col {
+    .qty-number {
+      min-width: 34px;
+      text-align: center;
       font-weight: 700;
-      color: var(--navy-900);
       font-size: 0.96rem;
+      color: var(--navy-900);
+      font-variant-numeric: tabular-nums;
     }
 
-    .row-actions {
+    /* 5. Action Buttons inside Row */
+    .action-col {
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .row-btn-group {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 0.2rem;
+      gap: 0.4rem;
+    }
+
+    .btn-row-edit {
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      background: var(--blue-50);
+      color: var(--blue-600);
+      border: 1px solid var(--blue-100);
+      cursor: pointer;
+    }
+
+    .btn-row-edit:hover {
+      background: var(--blue-600);
+      color: #ffffff;
+      border-color: var(--blue-600);
+    }
+
+    .btn-row-delete {
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      background: var(--bg-surface);
+      color: var(--red-text);
+      border: 1px solid var(--red-border);
+      cursor: pointer;
+    }
+
+    .btn-row-delete:hover {
+      background: var(--red-bg);
+      border-color: var(--red-solid);
     }
 
     /* Table Footer Summary Row */
@@ -832,8 +648,8 @@
 
     .inventory-table tfoot th,
     .inventory-table tfoot td {
-      padding: 1rem 1rem;
-      border-top: 2px solid var(--blue-400);
+      padding: 1rem;
+      border-top: 2px solid var(--blue-500);
       font-weight: 700;
       color: var(--navy-900);
       font-size: 0.96rem;
@@ -841,28 +657,21 @@
 
     .tfoot-grand-total {
       color: var(--blue-600);
-      font-size: 1.06rem;
+      font-size: 1.05rem;
     }
 
-    .panel-footer-note {
-      padding: 0.85rem 1.5rem;
-      background: var(--bg-page);
-      border-top: 1px solid var(--border-light);
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem;
-      font-size: 0.83rem;
-      color: var(--text-muted);
+    .empty-state-row td {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      color: var(--text-secondary);
     }
 
-    /* ================= MODAL DIALOG (Modern Web Guidance) ================= */
-    dialog.admin-modal {
+    /* ================= MODAL DIALOGS ================= */
+    dialog.modal-box {
       margin: auto;
-      width: min(520px, calc(100vw - 2rem));
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
+      width: min(460px, calc(100vw - 2rem));
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
       background: var(--bg-surface);
       color: var(--text-primary);
       box-shadow: var(--shadow-lg);
@@ -870,13 +679,12 @@
       overflow: hidden;
     }
 
-    dialog.admin-modal::backdrop {
-      background-color: rgba(15, 23, 42, 0.55);
-      backdrop-filter: blur(3px);
+    dialog.modal-box::backdrop {
+      background-color: rgba(15, 23, 42, 0.5);
     }
 
     .modal-header {
-      padding: 1.15rem 1.5rem;
+      padding: 1.1rem 1.4rem;
       background: var(--navy-900);
       color: #ffffff;
       display: flex;
@@ -889,108 +697,78 @@
       font-weight: 700;
     }
 
-    .modal-close-btn {
-      background: rgba(255, 255, 255, 0.12);
-      color: #ffffff;
-      border: none;
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .modal-close-btn:hover {
-      background: rgba(255, 255, 255, 0.24);
-    }
-
     .modal-body {
-      padding: 1.4rem 1.5rem;
+      padding: 1.35rem 1.4rem;
       display: flex;
       flex-direction: column;
       gap: 1rem;
     }
 
-    .form-row-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.9rem;
-    }
-
-    .modal-field {
+    .form-field {
       display: flex;
       flex-direction: column;
       gap: 0.35rem;
     }
 
-    .modal-field label {
-      font-size: 0.85rem;
+    .form-field label {
+      font-size: 0.9rem;
       font-weight: 600;
       color: var(--navy-900);
     }
 
-    .modal-field input,
-    .modal-field select {
-      padding: 0.62rem 0.8rem;
-      border: 1px solid var(--border-strong);
+    .form-field input,
+    .form-field select {
+      padding: 0.62rem 0.85rem;
+      border: 1.5px solid var(--border-strong);
       border-radius: var(--radius-sm);
-      font-size: 0.92rem;
+      font-size: 0.95rem;
       color: var(--navy-900);
       background: var(--bg-page);
     }
 
-    .modal-field input:focus,
-    .modal-field select:focus {
+    .form-field input:focus,
+    .form-field select:focus {
       background: #ffffff;
       border-color: var(--blue-500);
     }
 
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.85rem;
+    }
+
+    .modal-error {
+      display: none;
+      padding: 0.65rem 0.85rem;
+      border-radius: var(--radius-sm);
+      background: var(--red-bg);
+      color: var(--red-text);
+      border: 1px solid var(--red-border);
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .modal-error.show {
+      display: block;
+    }
+
     .modal-footer {
-      padding: 1rem 1.5rem;
+      padding: 0.95rem 1.4rem;
       background: var(--bg-page);
-      border-top: 1px solid var(--border-light);
+      border-top: 1px solid var(--border-color);
       display: flex;
       justify-content: flex-end;
-      gap: 0.65rem;
-    }
-
-    /* Toast Notification */
-    .save-toast {
-      position: fixed;
-      bottom: 1.25rem;
-      right: 1.25rem;
-      background: var(--navy-900);
-      color: #ffffff;
-      padding: 0.7rem 1.1rem;
-      border-radius: var(--radius-md);
-      box-shadow: var(--shadow-lg);
-      font-size: 0.86rem;
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      z-index: 999;
-      opacity: 0;
-      transform: translateY(10px);
-      pointer-events: none;
-      transition: opacity 0.2s ease, transform 0.2s ease;
-    }
-
-    .save-toast.show {
-      opacity: 1;
-      transform: translateY(0);
+      gap: 0.6rem;
     }
 
     /* ================= FOOTER ================= */
     .site-footer {
       margin-top: auto;
-      background: var(--navy-950);
-      color: #94a3b8;
-      padding: 1.5rem 0;
-      font-size: 0.85rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      background: var(--navy-900);
+      color: #cbd5e1;
+      padding-block: 1.5rem;
+      font-size: 0.88rem;
     }
 
     .footer-inner {
@@ -1001,29 +779,30 @@
       gap: 1rem;
     }
 
-    .footer-nav {
+    .footer-links {
+      list-style: none;
       display: flex;
       gap: 1.25rem;
-      list-style: none;
     }
 
-    .footer-nav a {
+    .footer-links a {
       color: #cbd5e1;
       text-decoration: none;
     }
 
-    .footer-nav a:hover {
+    .footer-links a:hover {
       color: #ffffff;
+      text-decoration: underline;
     }
 
     /* ================= RESPONSIVE ================= */
-    @media (max-width: 992px) {
+    @media (max-width: 900px) {
       .summary-grid {
         grid-template-columns: 1fr;
       }
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 680px) {
       .container {
         padding-inline: 1rem;
       }
@@ -1031,15 +810,9 @@
       .navbar {
         flex-wrap: wrap;
         padding-block: 0.75rem;
-        gap: 0.65rem;
       }
 
-      .header-user {
-        margin-left: auto;
-        gap: 0.5rem;
-      }
-
-      .user-pill {
+      .admin-badge {
         display: none;
       }
 
@@ -1051,48 +824,47 @@
       .nav-links {
         width: 100%;
         justify-content: space-between;
-        overflow-x: auto;
-        padding-top: 0.55rem;
-        border-top: 1px solid var(--border-light);
-        gap: 0.25rem;
+        padding-top: 0.5rem;
+        border-top: 1px solid var(--border-color);
       }
 
       .nav-link {
         padding: 0.45rem 0.65rem;
-        font-size: 0.86rem;
-        white-space: nowrap;
+        font-size: 0.9rem;
       }
 
-      .panel-toolbar {
+      .control-bar {
         flex-direction: column;
         align-items: stretch;
-        padding: 1rem;
       }
 
-      .toolbar-controls {
+      .filter-group,
+      .action-group {
         flex-direction: column;
         align-items: stretch;
+        width: 100%;
       }
 
       .search-input,
-      .category-select {
+      .category-select,
+      .action-group .btn {
         width: 100%;
         min-width: 0;
       }
 
-      .form-row-2 {
+      .form-grid-2 {
         grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
-  <a href="#main-content" class="skip-link">ข้ามไปยังตารางจัดการสินค้า</a>
+  <a href="#main-content" class="skip-link">ข้ามไปยังตารางสินค้า</a>
 
-  <!-- Header & Navigation -->
+  <!-- 1. Header: ชื่อระบบและชื่อผู้ดูแล -->
   <header class="site-header">
     <div class="container navbar">
-      <a href="index.html" class="brand" aria-label="Bluecat Store หน้าแรก">
+      <a href="index.html" class="brand">
         <span class="brand-mark" aria-hidden="true">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"></path>
@@ -1101,288 +873,170 @@
             <path d="M12 12L4 7.5"></path>
           </svg>
         </span>
-        <span class="brand-text">
-          <span id="storeBrandTitle">Bluecat Store</span>
-          <span class="brand-sub">Admin Control Panel (Editable)</span>
-        </span>
+        <span>Bluecat Store</span>
       </a>
 
       <nav aria-label="เมนูหลัก">
         <ul class="nav-links">
-          <li>
-            <a href="index.html" class="nav-link">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                <polyline points="9 22 9 12 15 12 15 22"></polyline>
-              </svg>
-              หน้าแรก
-            </a>
-          </li>
-          <li>
-            <a href="login.html" class="nav-link">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
-                <polyline points="10 17 15 12 10 7"></polyline>
-                <line x1="15" y1="12" x2="3" y2="12"></line>
-              </svg>
-              เข้าสู่ระบบ
-            </a>
-          </li>
-          <li>
-            <a href="admin.html" class="nav-link active" aria-current="page">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="3" y="3" width="7" height="7"></rect>
-                <rect x="14" y="3" width="7" height="7"></rect>
-                <rect x="14" y="14" width="7" height="7"></rect>
-                <rect x="3" y="14" width="7" height="7"></rect>
-              </svg>
-              แดชบอร์ดผู้ดูแล
-            </a>
-          </li>
+          <li><a href="index.html" class="nav-link">หน้าแรก</a></li>
+          <li><a href="login.html" class="nav-link">เข้าสู่ระบบ</a></li>
+          <li><a href="admin.html" class="nav-link active" aria-current="page">จัดการสินค้า</a></li>
         </ul>
       </nav>
 
-      <div class="header-user">
-        <span class="user-pill" title="คลิกเพื่อแก้ไขชื่อผู้ดูแลระบบ">
-          <span class="user-dot" aria-hidden="true"></span>
-          <span>Admin: <span id="editableAdminName" class="editable-inline" contenteditable="true" spellcheck="false" role="textbox" aria-label="แก้ไขชื่อผู้ดูแลระบบ">Bluecat</span></span>
-        </span>
-        <a href="login.html" class="btn-logout">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-            <polyline points="16 17 21 12 16 7"></polyline>
-            <line x1="21" y1="12" x2="9" y2="12"></line>
-          </svg>
-          <span>ออกจากระบบ</span>
-        </a>
+      <div class="header-admin-info">
+        <span class="admin-badge">ผู้ดูแลระบบ: Admin</span>
+        <a href="login.html" class="btn-logout">ออกจากระบบ</a>
       </div>
     </div>
   </header>
 
-  <!-- Main Dashboard Content -->
+  <!-- Main Dashboard -->
   <main id="main-content" class="dashboard-main">
     <div class="container">
-      <!-- Page Title & Actions -->
-      <div class="page-header">
+      <div class="page-title-bar">
         <div>
-          <div class="page-eyebrow">
-            <span>Inventory &amp; Valuation Overview</span>
-            <span class="edit-hint-pill">คลิกแก้ไขข้อมูลทุกช่องได้ทันที</span>
-          </div>
-          <h1 id="editablePageTitle" class="page-title editable-inline" contenteditable="true" spellcheck="false" title="คลิกเพื่อแก้ไขหัวข้อแดชบอร์ด">ระบบจัดการคลังสินค้า Bluecat Store</h1>
-          <p id="editablePageSubtitle" class="page-subtitle editable-inline" contenteditable="true" spellcheck="false" title="คลิกเพื่อแก้ไขคำอธิบาย">สรุปข้อมูลรายการสินค้า จำนวนคงเหลือ และมูลค่ารวมของสินค้าทั้งหมดในคลัง (แก้ไขราคา จำนวน ชื่อสินค้า หรือเพิ่มสินค้าใหม่ได้ทันที)</p>
-        </div>
-
-        <div class="page-actions">
-          <button type="button" id="resetDefaultBtn" class="btn btn-outline" title="คืนค่าข้อมูลสินค้าเริ่มต้นของ Workshop #2">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <polyline points="1 4 1 10 7 10"></polyline>
-              <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
-            </svg>
-            <span>รีเซ็ตค่าเริ่มต้น</span>
-          </button>
-
-          <button type="button" id="openAddModalBtn" class="btn btn-primary">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <line x1="12" y1="5" x2="12" y2="19"></line>
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-            </svg>
-            <span>เพิ่มสินค้าใหม่</span>
-          </button>
+          <h1 class="page-title">จัดการรายการสินค้า</h1>
+          <p class="page-subtitle">กดปุ่ม + หรือ - เพื่อปรับจำนวนคงเหลือ หรือกดปุ่ม "แก้ไข" เพื่อเปลี่ยนข้อมูลสินค้า</p>
         </div>
       </div>
 
-      <!-- Summary Cards Section -->
-      <section class="summary-grid" aria-label="สรุปภาพรวมคลังสินค้า">
-        <!-- Card 1: Total Products -->
+      <!-- 2. Summary Cards: จำนวนสินค้า จำนวนคงเหลือ และมูลค่ารวม -->
+      <section class="summary-grid" aria-label="สรุปภาพรวมสินค้า">
         <article class="summary-card">
-          <div class="summary-info">
-            <span class="summary-label">จำนวนสินค้าทั้งหมด (SKUs)</span>
-            <strong id="cardTotalProducts" class="summary-value">6 รายการ</strong>
-            <span id="cardCategoryMeta" class="summary-meta">ครอบคลุม 5 หมวดหมู่สินค้าหลัก</span>
-          </div>
-          <div class="summary-icon" aria-hidden="true">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-              <line x1="12" y1="22.08" x2="12" y2="12"></line>
-            </svg>
-          </div>
+          <div class="summary-label">จำนวนสินค้าทั้งหมด</div>
+          <div id="cardTotalProducts" class="summary-value">6 รายการ</div>
         </article>
 
-        <!-- Card 2: Total Quantity -->
         <article class="summary-card">
-          <div class="summary-info">
-            <span class="summary-label">จำนวนสินค้าคงเหลือรวม</span>
-            <strong id="cardTotalUnits" class="summary-value">102 ชิ้น</strong>
-            <span class="summary-meta">อัปเดตอัตโนมัติเมื่อปรับจำนวนชิ้น</span>
-          </div>
-          <div class="summary-icon" aria-hidden="true">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-              <polyline points="2 17 12 22 22 17"></polyline>
-              <polyline points="2 12 12 17 22 12"></polyline>
-            </svg>
-          </div>
+          <div class="summary-label">จำนวนคงเหลือรวม</div>
+          <div id="cardTotalUnits" class="summary-value">102 ชิ้น</div>
         </article>
 
-        <!-- Card 3: Total Value -->
-        <article class="summary-card highlight-card">
-          <div class="summary-info">
-            <span class="summary-label">มูลค่ารวมทั้งสิ้น (บาท)</span>
-            <strong id="cardTotalValue" class="summary-value">240,200 บาท</strong>
-            <span class="summary-meta">คำนวณสดจาก ราคาต่อหน่วย &times; จำนวนชิ้น</span>
-          </div>
-          <div class="summary-icon" aria-hidden="true">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="12" y1="1" x2="12" y2="23"></line>
-              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-            </svg>
-          </div>
+        <article class="summary-card total-value-card">
+          <div class="summary-label">มูลค่ารวมทั้งหมด</div>
+          <div id="cardTotalValue" class="summary-value">240,200 บาท</div>
         </article>
       </section>
 
-      <!-- Product Inventory Table Panel -->
-      <section class="panel-card" aria-labelledby="table-panel-title">
-        <div class="panel-toolbar">
-          <div class="panel-heading-group">
-            <h2 id="table-panel-title" class="panel-title">
-              <span>ตารางรายการสินค้าคงคลัง (Product Inventory)</span>
-            </h2>
-            <p class="panel-desc">คลิกที่รหัส ชื่อสินค้า รายละเอียด หมวดหมู่ สถานะ ราคา หรือจำนวนชิ้นในตารางเพื่อแก้ไขได้โดยตรง</p>
-          </div>
+      <!-- 3. Search & Filter + Primary Action Buttons -->
+      <section class="control-bar" aria-label="ค้นหา กรอง และเพิ่มสินค้า">
+        <div class="filter-group">
+          <label for="searchInput" class="sr-only">ค้นหาสินค้า</label>
+          <input
+            type="search"
+            id="searchInput"
+            class="search-input"
+            placeholder="ค้นหาชื่อหรือรหัสสินค้า..."
+          >
 
-          <div class="toolbar-controls">
-            <div class="search-box">
-              <span class="search-icon" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-              </span>
-              <label for="searchInput" class="sr-only">ค้นหาสินค้า</label>
-              <input
-                type="search"
-                id="searchInput"
-                class="search-input"
-                placeholder="ค้นหาชื่อหรือรหัสสินค้า..."
-                aria-label="ค้นหาชื่อหรือรหัสสินค้า"
-              >
-            </div>
-
-            <div>
-              <label for="categoryFilter" class="sr-only">กรองตามหมวดหมู่</label>
-              <select id="categoryFilter" class="category-select" aria-label="กรองตามหมวดหมู่สินค้า">
-                <option value="all">ทุกหมวดหมู่</option>
-              </select>
-            </div>
-          </div>
+          <label for="categoryFilter" class="sr-only">กรองตามหมวดหมู่</label>
+          <select id="categoryFilter" class="category-select">
+            <option value="all">ทุกหมวดหมู่</option>
+            <option value="อุปกรณ์คอมพิวเตอร์">อุปกรณ์คอมพิวเตอร์</option>
+            <option value="จอมอนิเตอร์">จอมอนิเตอร์</option>
+            <option value="อุปกรณ์เสริม">อุปกรณ์เสริม</option>
+            <option value="เครื่องเสียง">เครื่องเสียง</option>
+            <option value="อุปกรณ์จัดโต๊ะทำงาน">อุปกรณ์จัดโต๊ะทำงาน</option>
+          </select>
         </div>
 
-        <!-- Accessible Horizontal Scroll Wrapper -->
+        <div class="action-group">
+          <button type="button" id="resetDefaultBtn" class="btn btn-secondary">คืนค่าเริ่มต้น</button>
+          <button type="button" id="addProductBtn" class="btn btn-primary">+ เพิ่มสินค้า</button>
+        </div>
+      </section>
+
+      <!-- Confirmation Message Banner -->
+      <div id="feedbackBanner" class="feedback-banner" role="status" aria-live="polite">
+        <span id="feedbackText">บันทึกข้อมูลเรียบร้อยแล้ว</span>
+      </div>
+
+      <!-- 4. Product Table: ตารางแสดงรายการสินค้า -->
+      <section class="table-card" aria-labelledby="inventory-table-caption">
         <div tabindex="0" role="region" aria-labelledby="inventory-table-caption" class="table-wrapper">
           <table class="inventory-table" id="inventoryTable">
             <caption id="inventory-table-caption">
-              ตารางจัดการสินค้าคงคลังร้าน Bluecat Store — สามารถแก้ไขข้อมูลในทุกคอลัมน์ได้โดยตรง ระบบจะคำนวณมูลค่ารวมและบันทึกอัตโนมัติ
+              รายการสินค้าคงคลังทั้งหมด (มูลค่ารวม = ราคาต่อหน่วย &times; จำนวนคงเหลือ)
             </caption>
             <thead>
               <tr>
                 <th scope="col">รหัสสินค้า</th>
-                <th scope="col">ชื่อสินค้าและรายละเอียด</th>
+                <th scope="col">ชื่อสินค้า</th>
                 <th scope="col">หมวดหมู่</th>
-                <th scope="col">สถานะสต็อก</th>
+                <th scope="col">สถานะ</th>
                 <th scope="col" class="num-col">ราคาต่อหน่วย (บาท)</th>
                 <th scope="col" class="num-col">จำนวนคงเหลือ (ชิ้น)</th>
                 <th scope="col" class="num-col">มูลค่ารวม (บาท)</th>
-                <th scope="col" style="text-align: center;">จัดการ</th>
+                <th scope="col" class="action-col">จัดการ</th>
               </tr>
             </thead>
             <tbody id="inventoryTableBody">
-              <!-- Initial 6 default rows rendered statically for instant load & SEO/grader compatibility, and enhanced by JS -->
-              <tr data-id="1" data-category="อุปกรณ์คอมพิวเตอร์" data-price="3200" data-qty="15">
-                <th scope="row"><input type="text" class="cell-sku-input" value="BC-001" aria-label="รหัสสินค้า"></th>
-                <td>
-                  <input type="text" class="cell-text-input" value="Bluecat Mechanical Keyboard Pro" aria-label="ชื่อสินค้า">
-                  <input type="text" class="cell-sub-input" value="คีย์บอร์ดไร้สายแมคคานิคอลไฟ RGB สวิตช์เงียบ" aria-label="รายละเอียดสินค้า">
-                </td>
-                <td><span class="category-badge">อุปกรณ์คอมพิวเตอร์</span></td>
-                <td><span class="status-badge in-stock">พร้อมจำหน่าย</span></td>
+              <!-- Default 6 Rows for Workshop #2 -->
+              <tr data-id="1" data-price="3200" data-qty="15">
+                <th scope="row" class="sku-code">BC-001</th>
+                <td class="product-title">Bluecat Mechanical Keyboard Pro</td>
+                <td><span class="category-tag">อุปกรณ์คอมพิวเตอร์</span></td>
+                <td><span class="status-badge status-ready">พร้อมจำหน่าย</span></td>
                 <td class="num-col">3,200</td>
                 <td class="num-col">15</td>
-                <td class="num-col total-col">48,000</td>
-                <td style="text-align: center;">แก้ไข / ลบ</td>
+                <td class="num-col total-cell">48,000</td>
+                <td class="action-col">แก้ไข / ลบ</td>
               </tr>
-              <tr data-id="2" data-category="อุปกรณ์คอมพิวเตอร์" data-price="1450" data-qty="24">
-                <th scope="row"><input type="text" class="cell-sku-input" value="BC-002" aria-label="รหัสสินค้า"></th>
-                <td>
-                  <input type="text" class="cell-text-input" value="Bluecat Ergonomic Wireless Mouse" aria-label="ชื่อสินค้า">
-                  <input type="text" class="cell-sub-input" value="เมาส์ไร้สายเพื่อสุขภาพ ความละเอียด 4000 DPI" aria-label="รายละเอียดสินค้า">
-                </td>
-                <td><span class="category-badge">อุปกรณ์คอมพิวเตอร์</span></td>
-                <td><span class="status-badge in-stock">พร้อมจำหน่าย</span></td>
+              <tr data-id="2" data-price="1450" data-qty="24">
+                <th scope="row" class="sku-code">BC-002</th>
+                <td class="product-title">Bluecat Ergonomic Wireless Mouse</td>
+                <td><span class="category-tag">อุปกรณ์คอมพิวเตอร์</span></td>
+                <td><span class="status-badge status-ready">พร้อมจำหน่าย</span></td>
                 <td class="num-col">1,450</td>
                 <td class="num-col">24</td>
-                <td class="num-col total-col">34,800</td>
-                <td style="text-align: center;">แก้ไข / ลบ</td>
+                <td class="num-col total-cell">34,800</td>
+                <td class="action-col">แก้ไข / ลบ</td>
               </tr>
-              <tr data-id="3" data-category="จอมอนิเตอร์" data-price="9800" data-qty="8">
-                <th scope="row"><input type="text" class="cell-sku-input" value="BC-003" aria-label="รหัสสินค้า"></th>
-                <td>
-                  <input type="text" class="cell-text-input" value="Bluecat 4K UltraSharp Monitor 27&quot;" aria-label="ชื่อสินค้า">
-                  <input type="text" class="cell-sub-input" value="จอมอนิเตอร์ IPS 4K UHD รองรับพอร์ต USB-C 65W" aria-label="รายละเอียดสินค้า">
-                </td>
-                <td><span class="category-badge">จอมอนิเตอร์</span></td>
-                <td><span class="status-badge in-stock">พร้อมจำหน่าย</span></td>
+              <tr data-id="3" data-price="9800" data-qty="8">
+                <th scope="row" class="sku-code">BC-003</th>
+                <td class="product-title">Bluecat 4K UltraSharp Monitor 27"</td>
+                <td><span class="category-tag">จอมอนิเตอร์</span></td>
+                <td><span class="status-badge status-ready">พร้อมจำหน่าย</span></td>
                 <td class="num-col">9,800</td>
                 <td class="num-col">8</td>
-                <td class="num-col total-col">78,400</td>
-                <td style="text-align: center;">แก้ไข / ลบ</td>
+                <td class="num-col total-cell">78,400</td>
+                <td class="action-col">แก้ไข / ลบ</td>
               </tr>
-              <tr data-id="4" data-category="อุปกรณ์เสริม" data-price="1290" data-qty="30">
-                <th scope="row"><input type="text" class="cell-sku-input" value="BC-004" aria-label="รหัสสินค้า"></th>
-                <td>
-                  <input type="text" class="cell-text-input" value="Bluecat USB-C Hub 8-in-1 Multiport" aria-label="ชื่อสินค้า">
-                  <input type="text" class="cell-sub-input" value="ฮับแปลงพอร์ตอะลูมิเนียม HDMI 4K, LAN, SD Card" aria-label="รายละเอียดสินค้า">
-                </td>
-                <td><span class="category-badge">อุปกรณ์เสริม</span></td>
-                <td><span class="status-badge in-stock">พร้อมจำหน่าย</span></td>
+              <tr data-id="4" data-price="1290" data-qty="30">
+                <th scope="row" class="sku-code">BC-004</th>
+                <td class="product-title">Bluecat USB-C Hub 8-in-1 Multiport</td>
+                <td><span class="category-tag">อุปกรณ์เสริม</span></td>
+                <td><span class="status-badge status-ready">พร้อมจำหน่าย</span></td>
                 <td class="num-col">1,290</td>
                 <td class="num-col">30</td>
-                <td class="num-col total-col">38,700</td>
-                <td style="text-align: center;">แก้ไข / ลบ</td>
+                <td class="num-col total-cell">38,700</td>
+                <td class="action-col">แก้ไข / ลบ</td>
               </tr>
-              <tr data-id="5" data-category="เครื่องเสียง" data-price="4500" data-qty="5">
-                <th scope="row"><input type="text" class="cell-sku-input" value="BC-005" aria-label="รหัสสินค้า"></th>
-                <td>
-                  <input type="text" class="cell-text-input" value="Bluecat Noise-Cancelling Headset Studio" aria-label="ชื่อสินค้า">
-                  <input type="text" class="cell-sub-input" value="หูฟังไร้สายตัดเสียงรบกวน Active ANC แบต 40 ชม." aria-label="รายละเอียดสินค้า">
-                </td>
-                <td><span class="category-badge">เครื่องเสียง</span></td>
-                <td><span class="status-badge low-stock">สินค้าใกล้หมด</span></td>
+              <tr data-id="5" data-price="4500" data-qty="5">
+                <th scope="row" class="sku-code">BC-005</th>
+                <td class="product-title">Bluecat Noise-Cancelling Headset Studio</td>
+                <td><span class="category-tag">เครื่องเสียง</span></td>
+                <td><span class="status-badge status-low">ใกล้หมด</span></td>
                 <td class="num-col">4,500</td>
                 <td class="num-col">5</td>
-                <td class="num-col total-col">22,500</td>
-                <td style="text-align: center;">แก้ไข / ลบ</td>
+                <td class="num-col total-cell">22,500</td>
+                <td class="action-col">แก้ไข / ลบ</td>
               </tr>
-              <tr data-id="6" data-category="อุปกรณ์จัดโต๊ะทำงาน" data-price="890" data-qty="20">
-                <th scope="row"><input type="text" class="cell-sku-input" value="BC-006" aria-label="รหัสสินค้า"></th>
-                <td>
-                  <input type="text" class="cell-text-input" value="Bluecat Aluminum Laptop Stand Adjustable" aria-label="ชื่อสินค้า">
-                  <input type="text" class="cell-sub-input" value="แท่นวางโน้ตบุ๊กอะลูมิเนียมปรับระดับได้ รองรับ 11-17 นิ้ว" aria-label="รายละเอียดสินค้า">
-                </td>
-                <td><span class="category-badge">อุปกรณ์จัดโต๊ะทำงาน</span></td>
-                <td><span class="status-badge in-stock">พร้อมจำหน่าย</span></td>
+              <tr data-id="6" data-price="890" data-qty="20">
+                <th scope="row" class="sku-code">BC-006</th>
+                <td class="product-title">Bluecat Aluminum Laptop Stand Adjustable</td>
+                <td><span class="category-tag">อุปกรณ์จัดโต๊ะทำงาน</span></td>
+                <td><span class="status-badge status-ready">พร้อมจำหน่าย</span></td>
                 <td class="num-col">890</td>
                 <td class="num-col">20</td>
-                <td class="num-col total-col">17,800</td>
-                <td style="text-align: center;">แก้ไข / ลบ</td>
+                <td class="num-col total-cell">17,800</td>
+                <td class="action-col">แก้ไข / ลบ</td>
               </tr>
             </tbody>
-
-            <!-- Summary Row at Bottom -->
             <tfoot>
               <tr>
-                <th scope="row" colspan="5" id="tfootSummaryLabel">สรุปยอดรวมสินค้าทั้งหมด (6 รายการ)</th>
+                <th scope="row" colspan="5" id="tfootSummaryLabel">สรุปยอดรวมทั้งหมด (6 รายการ)</th>
                 <td class="num-col" id="tfootTotalQty">102 ชิ้น</td>
                 <td class="num-col tfoot-grand-total" id="tfootTotalValue">240,200 บาท</td>
                 <td></td>
@@ -1390,121 +1044,103 @@
             </tfoot>
           </table>
         </div>
-
-        <div class="panel-footer-note">
-          <span>สูตรคำนวณอัตโนมัติ: <strong>มูลค่ารวมรายสินค้า = ราคาต่อหน่วย &times; จำนวนคงเหลือ</strong> (บันทึกข้อมูลอัตโนมัติในเบราว์เซอร์)</span>
-          <span>คลิกปุ่ม <strong>+ เพิ่มสินค้าใหม่</strong> หรือคลิกแก้ไขในตารางได้ทันที</span>
-        </div>
       </section>
     </div>
   </main>
 
-  <!-- Add / Edit Product Modal Dialog (Modern Web Guidance light-dismiss-a-dialog) -->
-  <dialog id="productModal" class="admin-modal" closedby="any" aria-labelledby="modalTitle">
-    <form id="productModalForm" method="dialog">
+  <!-- Single Modal Form for Add & Edit Product -->
+  <dialog id="productDialog" class="modal-box" closedby="any" aria-labelledby="productDialogTitle">
+    <form id="productForm" method="dialog" novalidate>
       <div class="modal-header">
-        <h3 id="modalTitle" class="modal-title">เพิ่ม / แก้ไขข้อมูลสินค้า</h3>
-        <button type="button" id="closeModalBtn" class="modal-close-btn" aria-label="ปิดหน้าต่าง">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
+        <h2 id="productDialogTitle" class="modal-title">แก้ไขข้อมูลสินค้า</h2>
       </div>
 
       <div class="modal-body">
-        <input type="hidden" id="modalProductId">
+        <input type="hidden" id="fieldId">
 
-        <div class="form-row-2">
-          <div class="modal-field">
-            <label for="modalSku">รหัสสินค้า (SKU)</label>
-            <input type="text" id="modalSku" placeholder="เช่น BC-007" required>
+        <div class="form-grid-2">
+          <div class="form-field">
+            <label for="fieldSku">รหัสสินค้า</label>
+            <input type="text" id="fieldSku" placeholder="เช่น BC-007" required>
           </div>
-          <div class="modal-field">
-            <label for="modalCategory">หมวดหมู่สินค้า</label>
-            <input type="text" id="modalCategory" list="categorySuggestions" placeholder="เช่น อุปกรณ์คอมพิวเตอร์" required>
-            <datalist id="categorySuggestions">
-              <option value="อุปกรณ์คอมพิวเตอร์"></option>
-              <option value="จอมอนิเตอร์"></option>
-              <option value="อุปกรณ์เสริม"></option>
-              <option value="เครื่องเสียง"></option>
-              <option value="อุปกรณ์จัดโต๊ะทำงาน"></option>
-            </datalist>
-          </div>
-        </div>
 
-        <div class="modal-field">
-          <label for="modalName">ชื่อสินค้า</label>
-          <input type="text" id="modalName" placeholder="กรอกชื่อสินค้า..." required>
-        </div>
-
-        <div class="modal-field">
-          <label for="modalSub">รายละเอียดสินค้า</label>
-          <input type="text" id="modalSub" placeholder="กรอกคำอธิบายหรือสเปกสินค้า...">
-        </div>
-
-        <div class="form-row-2">
-          <div class="modal-field">
-            <label for="modalPrice">ราคาต่อหน่วย (บาท)</label>
-            <input type="number" id="modalPrice" min="0" step="1" placeholder="0" required>
-          </div>
-          <div class="modal-field">
-            <label for="modalQty">จำนวนคงเหลือ (ชิ้น)</label>
-            <input type="number" id="modalQty" min="0" step="1" placeholder="0" required>
+          <div class="form-field">
+            <label for="fieldCategory">หมวดหมู่</label>
+            <select id="fieldCategory" required>
+              <option value="อุปกรณ์คอมพิวเตอร์">อุปกรณ์คอมพิวเตอร์</option>
+              <option value="จอมอนิเตอร์">จอมอนิเตอร์</option>
+              <option value="อุปกรณ์เสริม">อุปกรณ์เสริม</option>
+              <option value="เครื่องเสียง">เครื่องเสียง</option>
+              <option value="อุปกรณ์จัดโต๊ะทำงาน">อุปกรณ์จัดโต๊ะทำงาน</option>
+            </select>
           </div>
         </div>
 
-        <div class="modal-field">
-          <label for="modalStatus">สถานะสต็อก</label>
-          <select id="modalStatus">
-            <option value="พร้อมจำหน่าย">พร้อมจำหน่าย</option>
-            <option value="สินค้าใกล้หมด">สินค้าใกล้หมด</option>
-            <option value="สินค้าหมด">สินค้าหมด</option>
-          </select>
+        <div class="form-field">
+          <label for="fieldName">ชื่อสินค้า</label>
+          <input type="text" id="fieldName" placeholder="กรอกชื่อสินค้า" required>
         </div>
+
+        <div class="form-grid-2">
+          <div class="form-field">
+            <label for="fieldPrice">ราคาต่อหน่วย (บาท)</label>
+            <input type="number" id="fieldPrice" min="0" step="1" placeholder="0" required>
+          </div>
+
+          <div class="form-field">
+            <label for="fieldQty">จำนวนคงเหลือ (ชิ้น)</label>
+            <input type="number" id="fieldQty" min="0" step="1" placeholder="0" required>
+          </div>
+        </div>
+
+        <div id="modalError" class="modal-error" role="alert"></div>
       </div>
 
       <div class="modal-footer">
-        <button type="button" id="cancelModalBtn" class="btn btn-outline">ยกเลิก</button>
-        <button type="submit" class="btn btn-primary">บันทึกข้อมูลสินค้า</button>
+        <button type="button" id="cancelProductBtn" class="btn btn-secondary">ยกเลิก</button>
+        <button type="submit" id="saveProductBtn" class="btn btn-primary">บันทึก</button>
       </div>
     </form>
   </dialog>
 
-  <!-- Auto-save Toast Notification -->
-  <div id="saveToast" class="save-toast" role="status" aria-live="polite">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-      <polyline points="20 6 9 17 4 12"></polyline>
-    </svg>
-    <span id="saveToastText">บันทึกการแก้ไขและคำนวณยอดใหม่เรียบร้อยแล้ว</span>
-  </div>
+  <!-- Confirmation Modal for Delete & Reset Default (Separate Modal, never nested) -->
+  <dialog id="confirmDialog" class="modal-box" closedby="any" aria-labelledby="confirmDialogTitle">
+    <div class="modal-header">
+      <h2 id="confirmDialogTitle" class="modal-title">ยืนยันการทำรายการ</h2>
+    </div>
+    <div class="modal-body">
+      <p id="confirmDialogMessage" style="font-size: 0.96rem; color: var(--text-primary);">
+        คุณต้องการลบรายการสินค้านี้ใช่หรือไม่?
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" id="cancelConfirmBtn" class="btn btn-secondary">ยกเลิก</button>
+      <button type="button" id="confirmActionBtn" class="btn btn-danger">ยืนยัน</button>
+    </div>
+  </dialog>
 
   <!-- Footer -->
   <footer class="site-footer">
     <div class="container footer-inner">
-      <span>&copy; 2026 Bluecat Store &mdash; Interactive Admin Dashboard (Workshop #2)</span>
-      <ul class="footer-nav">
+      <span>&copy; 2026 Bluecat Store &mdash; ระบบจัดการคลังสินค้า (Workshop #2)</span>
+      <ul class="footer-links">
         <li><a href="index.html">หน้าแรก</a></li>
-        <li><a href="login.html">หน้าเข้าสู่ระบบ</a></li>
-        <li><a href="admin.html">แดชบอร์ดผู้ดูแล</a></li>
+        <li><a href="login.html">เข้าสู่ระบบ</a></li>
+        <li><a href="admin.html">จัดการสินค้า</a></li>
       </ul>
     </div>
   </footer>
 
-  <!-- Vanilla JavaScript for Full Inline Editing, Modal CRUD & Live Calculation -->
   <script>
     (function () {
       const STORAGE_KEY = 'bluecat_inventory_v2';
-      const META_STORAGE_KEY = 'bluecat_admin_meta_v2';
 
       const DEFAULT_PRODUCTS = [
         {
           id: '1',
           sku: 'BC-001',
           name: 'Bluecat Mechanical Keyboard Pro',
-          sub: 'คีย์บอร์ดไร้สายแมคคานิคอลไฟ RGB สวิตช์เงียบ',
           category: 'อุปกรณ์คอมพิวเตอร์',
-          status: 'พร้อมจำหน่าย',
           price: 3200,
           qty: 15
         },
@@ -1512,9 +1148,7 @@
           id: '2',
           sku: 'BC-002',
           name: 'Bluecat Ergonomic Wireless Mouse',
-          sub: 'เมาส์ไร้สายเพื่อสุขภาพ ความละเอียด 4000 DPI',
           category: 'อุปกรณ์คอมพิวเตอร์',
-          status: 'พร้อมจำหน่าย',
           price: 1450,
           qty: 24
         },
@@ -1522,9 +1156,7 @@
           id: '3',
           sku: 'BC-003',
           name: 'Bluecat 4K UltraSharp Monitor 27"',
-          sub: 'จอมอนิเตอร์ IPS 4K UHD รองรับพอร์ต USB-C 65W',
           category: 'จอมอนิเตอร์',
-          status: 'พร้อมจำหน่าย',
           price: 9800,
           qty: 8
         },
@@ -1532,9 +1164,7 @@
           id: '4',
           sku: 'BC-004',
           name: 'Bluecat USB-C Hub 8-in-1 Multiport',
-          sub: 'ฮับแปลงพอร์ตอะลูมิเนียม HDMI 4K, LAN, SD Card',
           category: 'อุปกรณ์เสริม',
-          status: 'พร้อมจำหน่าย',
           price: 1290,
           qty: 30
         },
@@ -1542,9 +1172,7 @@
           id: '5',
           sku: 'BC-005',
           name: 'Bluecat Noise-Cancelling Headset Studio',
-          sub: 'หูฟังไร้สายตัดเสียงรบกวน Active ANC แบต 40 ชม.',
           category: 'เครื่องเสียง',
-          status: 'สินค้าใกล้หมด',
           price: 4500,
           qty: 5
         },
@@ -1552,29 +1180,20 @@
           id: '6',
           sku: 'BC-006',
           name: 'Bluecat Aluminum Laptop Stand Adjustable',
-          sub: 'แท่นวางโน้ตบุ๊กอะลูมิเนียมปรับระดับได้ รองรับ 11-17 นิ้ว',
           category: 'อุปกรณ์จัดโต๊ะทำงาน',
-          status: 'พร้อมจำหน่าย',
           price: 890,
           qty: 20
         }
       ];
 
-      const DEFAULT_CATEGORIES = [
-        'อุปกรณ์คอมพิวเตอร์',
-        'จอมอนิเตอร์',
-        'อุปกรณ์เสริม',
-        'เครื่องเสียง',
-        'อุปกรณ์จัดโต๊ะทำงาน'
-      ];
-
-      // DOM Elements
+      // Elements
       const tbody = document.getElementById('inventoryTableBody');
       const searchInput = document.getElementById('searchInput');
       const categoryFilter = document.getElementById('categoryFilter');
+      const addProductBtn = document.getElementById('addProductBtn');
+      const resetDefaultBtn = document.getElementById('resetDefaultBtn');
 
       const cardTotalProducts = document.getElementById('cardTotalProducts');
-      const cardCategoryMeta = document.getElementById('cardCategoryMeta');
       const cardTotalUnits = document.getElementById('cardTotalUnits');
       const cardTotalValue = document.getElementById('cardTotalValue');
 
@@ -1582,57 +1201,80 @@
       const tfootTotalQty = document.getElementById('tfootTotalQty');
       const tfootTotalValue = document.getElementById('tfootTotalValue');
 
-      const openAddModalBtn = document.getElementById('openAddModalBtn');
-      const resetDefaultBtn = document.getElementById('resetDefaultBtn');
+      const feedbackBanner = document.getElementById('feedbackBanner');
+      const feedbackText = document.getElementById('feedbackText');
 
-      const productModal = document.getElementById('productModal');
-      const productModalForm = document.getElementById('productModalForm');
-      const modalTitle = document.getElementById('modalTitle');
-      const modalProductId = document.getElementById('modalProductId');
-      const modalSku = document.getElementById('modalSku');
-      const modalCategory = document.getElementById('modalCategory');
-      const modalName = document.getElementById('modalName');
-      const modalSub = document.getElementById('modalSub');
-      const modalPrice = document.getElementById('modalPrice');
-      const modalQty = document.getElementById('modalQty');
-      const modalStatus = document.getElementById('modalStatus');
-      const closeModalBtn = document.getElementById('closeModalBtn');
-      const cancelModalBtn = document.getElementById('cancelModalBtn');
+      // Add/Edit Dialog Elements
+      const productDialog = document.getElementById('productDialog');
+      const productForm = document.getElementById('productForm');
+      const productDialogTitle = document.getElementById('productDialogTitle');
+      const fieldId = document.getElementById('fieldId');
+      const fieldSku = document.getElementById('fieldSku');
+      const fieldCategory = document.getElementById('fieldCategory');
+      const fieldName = document.getElementById('fieldName');
+      const fieldPrice = document.getElementById('fieldPrice');
+      const fieldQty = document.getElementById('fieldQty');
+      const modalError = document.getElementById('modalError');
+      const cancelProductBtn = document.getElementById('cancelProductBtn');
+      const saveProductBtn = document.getElementById('saveProductBtn');
 
-      const editableAdminName = document.getElementById('editableAdminName');
-      const editablePageTitle = document.getElementById('editablePageTitle');
-      const editablePageSubtitle = document.getElementById('editablePageSubtitle');
+      // Confirm Dialog Elements
+      const confirmDialog = document.getElementById('confirmDialog');
+      const confirmDialogTitle = document.getElementById('confirmDialogTitle');
+      const confirmDialogMessage = document.getElementById('confirmDialogMessage');
+      const cancelConfirmBtn = document.getElementById('cancelConfirmBtn');
+      const confirmActionBtn = document.getElementById('confirmActionBtn');
 
-      const saveToast = document.getElementById('saveToast');
-      const saveToastText = document.getElementById('saveToastText');
-      let toastTimer = null;
+      let products = loadProducts();
+      let originalSnapshot = '';
+      let pendingConfirmCallback = null;
+      let feedbackTimer = null;
+      let isSaving = false;
 
-      // Fallback for browsers without <dialog closedby> support (Modern Web Guidance)
-      if (productModal && !('closedBy' in HTMLDialogElement.prototype)) {
-        productModal.addEventListener('click', function (event) {
-          if (event.target !== productModal) return;
-          const rect = productModal.getBoundingClientRect();
-          const isDialogContent =
-            rect.top <= event.clientY &&
-            event.clientY <= rect.top + rect.height &&
-            rect.left <= event.clientX &&
-            event.clientX <= rect.left + rect.width;
-          if (isDialogContent) return;
-          productModal.close();
-        });
+      // Light-dismiss fallback for browsers without native <dialog closedby> support
+      [productDialog, confirmDialog].forEach(function (dlg) {
+        if (dlg && !('closedBy' in HTMLDialogElement.prototype)) {
+          dlg.addEventListener('click', function (event) {
+            if (event.target !== dlg) return;
+            const rect = dlg.getBoundingClientRect();
+            const inside =
+              rect.top <= event.clientY &&
+              event.clientY <= rect.top + rect.height &&
+              rect.left <= event.clientX &&
+              event.clientX <= rect.left + rect.width;
+            if (!inside) dlg.close();
+          });
+        }
+      });
+
+      function loadProducts() {
+        try {
+          const saved = localStorage.getItem(STORAGE_KEY);
+          if (saved) {
+            const parsed = JSON.parse(saved);
+            if (Array.isArray(parsed)) return parsed;
+          }
+        } catch (e) {}
+        return JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
       }
 
-      function showToast(message) {
-        saveToastText.textContent = message || 'บันทึกการแก้ไขเรียบร้อยแล้ว';
-        saveToast.classList.add('show');
-        clearTimeout(toastTimer);
-        toastTimer = setTimeout(function () {
-          saveToast.classList.remove('show');
-        }, 2000);
+      function saveProductsToStorage() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
+        } catch (e) {}
       }
 
-      function formatNumber(num) {
-        return Number(num || 0).toLocaleString('en-US');
+      function showFeedback(message) {
+        feedbackText.textContent = message;
+        feedbackBanner.classList.add('show');
+        clearTimeout(feedbackTimer);
+        feedbackTimer = setTimeout(function () {
+          feedbackBanner.classList.remove('show');
+        }, 3000);
+      }
+
+      function formatNumber(n) {
+        return Number(n || 0).toLocaleString('en-US');
       }
 
       function escapeHtml(str) {
@@ -1643,289 +1285,272 @@
           .replace(/"/g, '&quot;');
       }
 
-      function getStatusClass(status) {
-        if (status === 'สินค้าหมด') return 'out-stock';
-        if (status === 'สินค้าใกล้หมด') return 'low-stock';
-        return 'in-stock';
-      }
-
-      function autoStatusFromQty(qty) {
-        if (qty <= 0) return 'สินค้าหมด';
-        if (qty <= 5) return 'สินค้าใกล้หมด';
-        return 'พร้อมจำหน่าย';
-      }
-
-      function loadProducts() {
-        try {
-          const raw = localStorage.getItem(STORAGE_KEY);
-          if (raw) {
-            const parsed = JSON.parse(raw);
-            if (Array.isArray(parsed) && parsed.length > 0) {
-              return parsed;
-            }
-          }
-        } catch (e) {}
-        return JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
-      }
-
-      function saveProducts() {
-        try {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
-        } catch (e) {}
-      }
-
-      function loadMeta() {
-        try {
-          const raw = localStorage.getItem(META_STORAGE_KEY);
-          if (raw) {
-            const meta = JSON.parse(raw);
-            if (meta.adminName) editableAdminName.textContent = meta.adminName;
-            if (meta.pageTitle) editablePageTitle.textContent = meta.pageTitle;
-            if (meta.pageSubtitle) editablePageSubtitle.textContent = meta.pageSubtitle;
-          }
-        } catch (e) {}
-      }
-
-      function saveMeta() {
-        try {
-          localStorage.setItem(
-            META_STORAGE_KEY,
-            JSON.stringify({
-              adminName: editableAdminName.textContent.trim() || 'Bluecat',
-              pageTitle: editablePageTitle.textContent.trim() || 'ระบบจัดการคลังสินค้า Bluecat Store',
-              pageSubtitle: editablePageSubtitle.textContent.trim()
-            })
-          );
-          showToast('บันทึกข้อความหัวข้อเรียบร้อยแล้ว');
-        } catch (e) {}
-      }
-
-      [editableAdminName, editablePageTitle, editablePageSubtitle].forEach(function (el) {
-        el.addEventListener('blur', saveMeta);
-        el.addEventListener('keydown', function (e) {
-          if (e.key === 'Enter') {
-            e.preventDefault();
-            el.blur();
-          }
-        });
-      });
-
-      let products = loadProducts();
-      loadMeta();
-
-      function getAllCategories() {
-        const set = new Set(DEFAULT_CATEGORIES);
-        products.forEach(function (p) {
-          if (p.category) set.add(p.category);
-        });
-        return Array.from(set);
-      }
-
-      function rebuildCategoryFilter() {
-        const current = categoryFilter.value || 'all';
-        const cats = getAllCategories();
-        let html = '<option value="all">ทุกหมวดหมู่ (ทั้งหมด ' + products.length + ' รายการ)</option>';
-        cats.forEach(function (cat) {
-          html += '<option value="' + escapeHtml(cat) + '">' + escapeHtml(cat) + '</option>';
-        });
-        categoryFilter.innerHTML = html;
-        if (cats.includes(current)) {
-          categoryFilter.value = current;
-        } else {
-          categoryFilter.value = 'all';
+      function getStatusInfo(qty) {
+        const count = Number(qty) || 0;
+        if (count <= 0) {
+          return { text: 'หมด', className: 'status-empty' };
         }
+        if (count <= 5) {
+          return { text: 'ใกล้หมด', className: 'status-low' };
+        }
+        return { text: 'พร้อมจำหน่าย', className: 'status-ready' };
       }
 
-      function updateSummaries() {
+      function renderTable() {
         const query = (searchInput.value || '').trim().toLowerCase();
-        const selectedCategory = categoryFilter.value || 'all';
+        const selectedCat = categoryFilter.value || 'all';
 
-        let allProductCount = products.length;
-        let allUnitSum = 0;
-        let allValueSum = 0;
-        const uniqueCategories = new Set();
+        let totalProducts = products.length;
+        let totalUnits = 0;
+        let totalValue = 0;
 
-        let visibleProductCount = 0;
-        let visibleUnitSum = 0;
-        let visibleValueSum = 0;
+        let visibleCount = 0;
+        let visibleUnits = 0;
+        let visibleValue = 0;
+
+        const rowsHtml = [];
 
         products.forEach(function (p) {
           const price = Math.max(0, Number(p.price) || 0);
           const qty = Math.max(0, Number(p.qty) || 0);
           const rowTotal = price * qty;
 
-          allUnitSum += qty;
-          allValueSum += rowTotal;
-          if (p.category) uniqueCategories.add(p.category);
+          totalUnits += qty;
+          totalValue += rowTotal;
 
-          const textMatch =
+          const matchesSearch =
             !query ||
             p.sku.toLowerCase().includes(query) ||
             p.name.toLowerCase().includes(query) ||
-            (p.sub || '').toLowerCase().includes(query) ||
-            (p.category || '').toLowerCase().includes(query);
-          const catMatch = selectedCategory === 'all' || p.category === selectedCategory;
+            p.category.toLowerCase().includes(query);
+          const matchesCat = selectedCat === 'all' || p.category === selectedCat;
 
-          const rowEl = tbody.querySelector('tr[data-id="' + p.id + '"]');
-          if (textMatch && catMatch) {
-            if (rowEl) rowEl.style.display = '';
-            visibleProductCount += 1;
-            visibleUnitSum += qty;
-            visibleValueSum += rowTotal;
-          } else {
-            if (rowEl) rowEl.style.display = 'none';
-          }
+          if (matchesSearch && matchesCat) {
+            visibleCount += 1;
+            visibleUnits += qty;
+            visibleValue += rowTotal;
 
-          if (rowEl) {
-            rowEl.setAttribute('data-price', String(price));
-            rowEl.setAttribute('data-qty', String(qty));
-            rowEl.setAttribute('data-category', p.category);
-            const totalCell = rowEl.querySelector('.total-col');
-            if (totalCell) {
-              totalCell.textContent = formatNumber(rowTotal);
-            }
-          }
-        });
+            const status = getStatusInfo(qty);
+            const minusDisabled = qty <= 0 ? ' disabled' : '';
 
-        cardTotalProducts.textContent = formatNumber(allProductCount) + ' รายการ';
-        cardCategoryMeta.textContent = 'ครอบคลุม ' + formatNumber(uniqueCategories.size) + ' หมวดหมู่สินค้าหลัก';
-        cardTotalUnits.textContent = formatNumber(allUnitSum) + ' ชิ้น';
-        cardTotalValue.textContent = formatNumber(allValueSum) + ' บาท';
-
-        tfootSummaryLabel.textContent =
-          visibleProductCount === allProductCount
-            ? 'สรุปยอดรวมสินค้าทั้งหมด (' + formatNumber(allProductCount) + ' รายการ)'
-            : 'สรุปยอดรวมที่กรองแสดงผล (' + formatNumber(visibleProductCount) + ' จาก ' + formatNumber(allProductCount) + ' รายการ)';
-        tfootTotalQty.textContent = formatNumber(visibleUnitSum) + ' ชิ้น';
-        tfootTotalValue.textContent = formatNumber(visibleValueSum) + ' บาท';
-      }
-
-      function renderTable() {
-        const categories = getAllCategories();
-        tbody.innerHTML = products
-          .map(function (p) {
-            const rowTotal = (Number(p.price) || 0) * (Number(p.qty) || 0);
-            const statusClass = getStatusClass(p.status);
-            const catOptions = categories
-              .map(function (c) {
-                const selected = c === p.category ? ' selected' : '';
-                return '<option value="' + escapeHtml(c) + '"' + selected + '>' + escapeHtml(c) + '</option>';
-              })
-              .join('');
-
-            const statusOptions = ['พร้อมจำหน่าย', 'สินค้าใกล้หมด', 'สินค้าหมด']
-              .map(function (s) {
-                const selected = s === p.status ? ' selected' : '';
-                return '<option value="' + s + '"' + selected + '>' + s + '</option>';
-              })
-              .join('');
-
-            return (
-              '<tr data-id="' + escapeHtml(p.id) + '" data-category="' + escapeHtml(p.category) + '" data-price="' + Number(p.price) + '" data-qty="' + Number(p.qty) + '">' +
-                '<th scope="row">' +
-                  '<input type="text" class="cell-sku-input" data-field="sku" value="' + escapeHtml(p.sku) + '" aria-label="แก้ไขรหัสสินค้า ' + escapeHtml(p.sku) + '">' +
-                '</th>' +
-                '<td>' +
-                  '<input type="text" class="cell-text-input" data-field="name" value="' + escapeHtml(p.name) + '" aria-label="แก้ไขชื่อสินค้า ' + escapeHtml(p.name) + '">' +
-                  '<input type="text" class="cell-sub-input" data-field="sub" value="' + escapeHtml(p.sub) + '" placeholder="เพิ่มรายละเอียดสินค้า..." aria-label="แก้ไขรายละเอียดสินค้า">' +
-                '</td>' +
-                '<td>' +
-                  '<select class="cell-cat-select" data-field="category" aria-label="แก้ไขหมวดหมู่สินค้า">' +
-                    catOptions +
-                  '</select>' +
-                '</td>' +
-                '<td>' +
-                  '<select class="cell-status-select ' + statusClass + '" data-field="status" aria-label="แก้ไขสถานะสต็อก">' +
-                    statusOptions +
-                  '</select>' +
-                '</td>' +
+            rowsHtml.push(
+              '<tr data-id="' + escapeHtml(p.id) + '" data-price="' + price + '" data-qty="' + qty + '">' +
+                '<th scope="row" class="sku-code">' + escapeHtml(p.sku) + '</th>' +
+                '<td class="product-title">' + escapeHtml(p.name) + '</td>' +
+                '<td><span class="category-tag">' + escapeHtml(p.category) + '</span></td>' +
+                '<td><span class="status-badge ' + status.className + '">' + status.text + '</span></td>' +
+                '<td class="num-col">' + formatNumber(price) + '</td>' +
                 '<td class="num-col">' +
-                  '<input type="number" class="cell-num-input" data-field="price" min="0" step="1" value="' + Number(p.price) + '" aria-label="แก้ไขราคาต่อหน่วย">' +
-                '</td>' +
-                '<td class="num-col">' +
-                  '<div class="qty-control">' +
-                    '<button type="button" class="qty-step-btn" data-action="dec-qty" title="ลดจำนวน 1 ชิ้น" aria-label="ลดจำนวน">&minus;</button>' +
-                    '<input type="number" class="cell-qty-input" data-field="qty" min="0" step="1" value="' + Number(p.qty) + '" aria-label="แก้ไขจำนวนคงเหลือ">' +
-                    '<button type="button" class="qty-step-btn" data-action="inc-qty" title="เพิ่มจำนวน 1 ชิ้น" aria-label="เพิ่มจำนวน">+</button>' +
+                  '<div class="qty-stepper">' +
+                    '<button type="button" class="qty-btn" data-action="dec" aria-label="ลดจำนวน ' + escapeHtml(p.name) + '"' + minusDisabled + '>&minus;</button>' +
+                    '<span class="qty-number">' + formatNumber(qty) + '</span>' +
+                    '<button type="button" class="qty-btn" data-action="inc" aria-label="เพิ่มจำนวน ' + escapeHtml(p.name) + '">+</button>' +
                   '</div>' +
                 '</td>' +
-                '<td class="num-col total-col">' + formatNumber(rowTotal) + '</td>' +
-                '<td style="text-align: center;">' +
-                  '<div class="row-actions">' +
-                    '<button type="button" class="btn-edit-ghost" data-action="edit-modal" title="เปิดหน้าต่างแก้ไขละเอียด" aria-label="แก้ไขสินค้าในหน้าต่างป๊อปอัป">' +
-                      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-                        '<path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>' +
-                        '<path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>' +
-                      '</svg>' +
-                    '</button>' +
-                    '<button type="button" class="btn-danger-ghost" data-action="delete-row" title="ลบรายการสินค้านี้" aria-label="ลบสินค้านี้">' +
-                      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-                        '<polyline points="3 6 5 6 21 6"></polyline>' +
-                        '<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>' +
-                      '</svg>' +
-                    '</button>' +
+                '<td class="num-col total-cell">' + formatNumber(rowTotal) + '</td>' +
+                '<td class="action-col">' +
+                  '<div class="row-btn-group">' +
+                    '<button type="button" class="btn-row-edit" data-action="edit">แก้ไข</button>' +
+                    '<button type="button" class="btn-row-delete" data-action="delete">ลบ</button>' +
                   '</div>' +
                 '</td>' +
               '</tr>'
             );
-          })
-          .join('');
+          }
+        });
 
-        rebuildCategoryFilter();
-        updateSummaries();
+        if (rowsHtml.length === 0) {
+          tbody.innerHTML =
+            '<tr class="empty-state-row"><td colspan="8">ไม่พบรายการสินค้าที่ค้นหา</td></tr>';
+        } else {
+          tbody.innerHTML = rowsHtml.join('');
+        }
+
+        // Update Summary Cards
+        cardTotalProducts.textContent = formatNumber(totalProducts) + ' รายการ';
+        cardTotalUnits.textContent = formatNumber(totalUnits) + ' ชิ้น';
+        cardTotalValue.textContent = formatNumber(totalValue) + ' บาท';
+
+        // Update Table Footer
+        tfootSummaryLabel.textContent =
+          visibleCount === totalProducts
+            ? 'สรุปยอดรวมทั้งหมด (' + formatNumber(totalProducts) + ' รายการ)'
+            : 'สรุปยอดรวมที่แสดง (' + formatNumber(visibleCount) + ' จาก ' + formatNumber(totalProducts) + ' รายการ)';
+        tfootTotalQty.textContent = formatNumber(visibleUnits) + ' ชิ้น';
+        tfootTotalValue.textContent = formatNumber(visibleValue) + ' บาท';
       }
 
-      // Handle inline input edits directly inside the table
-      tbody.addEventListener('input', function (event) {
-        const target = event.target;
-        const row = target.closest('tr[data-id]');
-        if (!row) return;
-
-        const id = row.getAttribute('data-id');
-        const product = products.find(function (p) {
-          return p.id === id;
+      // Prevent duplicate/unnecessary saves when nothing changed in Edit Mode
+      function getFormSnapshot() {
+        return JSON.stringify({
+          sku: fieldSku.value.trim(),
+          category: fieldCategory.value,
+          name: fieldName.value.trim(),
+          price: Number(fieldPrice.value),
+          qty: Number(fieldQty.value)
         });
-        if (!product) return;
+      }
 
-        const field = target.getAttribute('data-field');
-        if (!field) return;
-
-        if (field === 'price') {
-          product.price = Math.max(0, Number(target.value) || 0);
-        } else if (field === 'qty') {
-          product.qty = Math.max(0, Number(target.value) || 0);
-          product.status = autoStatusFromQty(product.qty);
-          const statusSelect = row.querySelector('[data-field="status"]');
-          if (statusSelect) {
-            statusSelect.value = product.status;
-            statusSelect.className = 'cell-status-select ' + getStatusClass(product.status);
-          }
-        } else if (field === 'status') {
-          product.status = target.value;
-          target.className = 'cell-status-select ' + getStatusClass(product.status);
-        } else if (field === 'category') {
-          product.category = target.value;
+      function updateSaveButtonState() {
+        modalError.classList.remove('show');
+        if (fieldId.value) {
+          // Editing existing product: only enable Save if something changed
+          saveProductBtn.disabled = getFormSnapshot() === originalSnapshot;
         } else {
-          product[field] = target.value;
+          // Adding new product
+          saveProductBtn.disabled = false;
         }
+      }
 
-        saveProducts();
-        updateSummaries();
+      [fieldSku, fieldCategory, fieldName, fieldPrice, fieldQty].forEach(function (input) {
+        input.addEventListener('input', updateSaveButtonState);
+        input.addEventListener('change', updateSaveButtonState);
       });
 
-      tbody.addEventListener('change', function (event) {
-        if (event.target.matches('[data-field]')) {
-          showToast('บันทึกการแก้ไขและอัปเดตยอดรวมแล้ว');
+      // Open Add Product Modal
+      addProductBtn.addEventListener('click', function () {
+        const nextIndex = products.length + 1;
+        const nextSku = 'BC-' + String(nextIndex).padStart(3, '0');
+
+        productDialogTitle.textContent = 'เพิ่มสินค้าใหม่';
+        fieldId.value = '';
+        fieldSku.value = nextSku;
+        fieldCategory.value = 'อุปกรณ์คอมพิวเตอร์';
+        fieldName.value = '';
+        fieldPrice.value = '';
+        fieldQty.value = '1';
+        modalError.classList.remove('show');
+        originalSnapshot = '';
+        saveProductBtn.disabled = false;
+        isSaving = false;
+
+        productDialog.showModal();
+        fieldName.focus();
+      });
+
+      // Open Edit Product Modal
+      function openEditModal(product) {
+        productDialogTitle.textContent = 'แก้ไขข้อมูลสินค้า';
+        fieldId.value = product.id;
+        fieldSku.value = product.sku;
+        fieldCategory.value = product.category;
+        fieldName.value = product.name;
+        fieldPrice.value = product.price;
+        fieldQty.value = product.qty;
+        modalError.classList.remove('show');
+
+        originalSnapshot = getFormSnapshot();
+        saveProductBtn.disabled = true;
+        isSaving = false;
+
+        productDialog.showModal();
+        fieldName.focus();
+      }
+
+      cancelProductBtn.addEventListener('click', function () {
+        productDialog.close();
+      });
+
+      // Save Product (Add or Edit)
+      productForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        if (isSaving) return;
+
+        const sku = fieldSku.value.trim();
+        const category = fieldCategory.value;
+        const name = fieldName.value.trim();
+        const priceVal = Number(fieldPrice.value);
+        const qtyVal = Number(fieldQty.value);
+
+        if (!sku || !name) {
+          modalError.textContent = 'กรุณากรอกรหัสสินค้าและชื่อสินค้าให้ครบถ้วน';
+          modalError.classList.add('show');
+          return;
+        }
+
+        if (fieldPrice.value === '' || isNaN(priceVal) || priceVal < 0) {
+          modalError.textContent = 'ราคาต่อหน่วยต้องเป็นตัวเลขที่ไม่ติดลบ';
+          modalError.classList.add('show');
+          return;
+        }
+
+        if (fieldQty.value === '' || isNaN(qtyVal) || qtyVal < 0) {
+          modalError.textContent = 'จำนวนคงเหลือต้องเป็นตัวเลขที่ไม่ติดลบ';
+          modalError.classList.add('show');
+          return;
+        }
+
+        isSaving = true;
+        saveProductBtn.disabled = true;
+
+        const price = Math.floor(priceVal);
+        const qty = Math.floor(qtyVal);
+        const editingId = fieldId.value;
+
+        if (editingId) {
+          const target = products.find(function (p) {
+            return p.id === editingId;
+          });
+          if (target) {
+            target.sku = sku;
+            target.category = category;
+            target.name = name;
+            target.price = price;
+            target.qty = qty;
+          }
+          saveProductsToStorage();
+          renderTable();
+          productDialog.close();
+          showFeedback('บันทึกการแก้ไขสินค้า "' + name + '" เรียบร้อยแล้ว');
+        } else {
+          products.push({
+            id: String(Date.now()),
+            sku: sku,
+            name: name,
+            category: category,
+            price: price,
+            qty: qty
+          });
+          saveProductsToStorage();
+          renderTable();
+          productDialog.close();
+          showFeedback('เพิ่มสินค้า "' + name + '" เรียบร้อยแล้ว');
+        }
+
+        isSaving = false;
+      });
+
+      // Confirmation Dialog Helper
+      function openConfirmDialog(title, message, confirmBtnLabel, onConfirm) {
+        confirmDialogTitle.textContent = title;
+        confirmDialogMessage.textContent = message;
+        confirmActionBtn.textContent = confirmBtnLabel;
+        pendingConfirmCallback = onConfirm;
+        confirmDialog.showModal();
+      }
+
+      cancelConfirmBtn.addEventListener('click', function () {
+        pendingConfirmCallback = null;
+        confirmDialog.close();
+      });
+
+      confirmActionBtn.addEventListener('click', function () {
+        if (typeof pendingConfirmCallback === 'function') {
+          const callback = pendingConfirmCallback;
+          pendingConfirmCallback = null;
+          confirmDialog.close();
+          callback();
         }
       });
 
-      // Handle stepper (+/-), Edit Modal, and Delete buttons in table rows
+      // Table Row Actions (+, -, Edit, Delete)
       tbody.addEventListener('click', function (event) {
         const btn = event.target.closest('button[data-action]');
         if (!btn) return;
 
         const row = btn.closest('tr[data-id]');
         if (!row) return;
+
         const id = row.getAttribute('data-id');
         const product = products.find(function (p) {
           return p.id === id;
@@ -1934,138 +1559,59 @@
 
         const action = btn.getAttribute('data-action');
 
-        if (action === 'inc-qty' || action === 'dec-qty') {
-          const delta = action === 'inc-qty' ? 1 : -1;
-          product.qty = Math.max(0, (Number(product.qty) || 0) + delta);
-          product.status = autoStatusFromQty(product.qty);
-
-          const qtyInput = row.querySelector('[data-field="qty"]');
-          if (qtyInput) qtyInput.value = product.qty;
-
-          const statusSelect = row.querySelector('[data-field="status"]');
-          if (statusSelect) {
-            statusSelect.value = product.status;
-            statusSelect.className = 'cell-status-select ' + getStatusClass(product.status);
-          }
-
-          saveProducts();
-          updateSummaries();
-          showToast('ปรับจำนวน ' + product.sku + ' เป็น ' + product.qty + ' ชิ้น');
-        } else if (action === 'edit-modal') {
-          openModalForEdit(product);
-        } else if (action === 'delete-row') {
-          products = products.filter(function (p) {
-            return p.id !== id;
-          });
-          saveProducts();
+        if (action === 'inc') {
+          product.qty = Math.max(0, (Number(product.qty) || 0) + 1);
+          saveProductsToStorage();
           renderTable();
-          showToast('ลบสินค้า ' + product.sku + ' ออกจากคลังแล้ว');
+          showFeedback('เพิ่มจำนวน "' + product.name + '" เป็น ' + product.qty + ' ชิ้น');
+        } else if (action === 'dec') {
+          if (product.qty <= 0) return;
+          product.qty = Math.max(0, (Number(product.qty) || 0) - 1);
+          saveProductsToStorage();
+          renderTable();
+          showFeedback('ลดจำนวน "' + product.name + '" เหลือ ' + product.qty + ' ชิ้น');
+        } else if (action === 'edit') {
+          openEditModal(product);
+        } else if (action === 'delete') {
+          openConfirmDialog(
+            'ยืนยันการลบสินค้า',
+            'คุณต้องการลบสินค้า "' + product.name + '" (' + product.sku + ') ออกจากรายการใช่หรือไม่?',
+            'ยืนยันการลบ',
+            function () {
+              products = products.filter(function (p) {
+                return p.id !== id;
+              });
+              saveProductsToStorage();
+              renderTable();
+              showFeedback('ลบสินค้า "' + product.name + '" เรียบร้อยแล้ว');
+            }
+          );
         }
       });
 
-      function openModalForAdd() {
-        const nextNum = products.length + 1;
-        const nextSku = 'BC-' + String(nextNum).padStart(3, '0');
-        modalTitle.textContent = 'เพิ่มสินค้าใหม่เข้าคลัง';
-        modalProductId.value = '';
-        modalSku.value = nextSku;
-        modalCategory.value = 'อุปกรณ์คอมพิวเตอร์';
-        modalName.value = '';
-        modalSub.value = '';
-        modalPrice.value = '';
-        modalQty.value = '10';
-        modalStatus.value = 'พร้อมจำหน่าย';
-        productModal.showModal();
-        modalName.focus();
-      }
-
-      function openModalForEdit(product) {
-        modalTitle.textContent = 'แก้ไขข้อมูลสินค้า (' + product.sku + ')';
-        modalProductId.value = product.id;
-        modalSku.value = product.sku;
-        modalCategory.value = product.category;
-        modalName.value = product.name;
-        modalSub.value = product.sub || '';
-        modalPrice.value = product.price;
-        modalQty.value = product.qty;
-        modalStatus.value = product.status;
-        productModal.showModal();
-        modalName.focus();
-      }
-
-      openAddModalBtn.addEventListener('click', openModalForAdd);
-      closeModalBtn.addEventListener('click', function () {
-        productModal.close();
-      });
-      cancelModalBtn.addEventListener('click', function () {
-        productModal.close();
-      });
-
-      productModalForm.addEventListener('submit', function (event) {
-        event.preventDefault();
-        const id = modalProductId.value;
-        const sku = modalSku.value.trim() || 'BC-NEW';
-        const category = modalCategory.value.trim() || 'อุปกรณ์ทั่วไป';
-        const name = modalName.value.trim() || 'สินค้าใหม่';
-        const sub = modalSub.value.trim();
-        const price = Math.max(0, Number(modalPrice.value) || 0);
-        const qty = Math.max(0, Number(modalQty.value) || 0);
-        const status = modalStatus.value || autoStatusFromQty(qty);
-
-        if (id) {
-          const existing = products.find(function (p) {
-            return p.id === id;
-          });
-          if (existing) {
-            existing.sku = sku;
-            existing.category = category;
-            existing.name = name;
-            existing.sub = sub;
-            existing.price = price;
-            existing.qty = qty;
-            existing.status = status;
-          }
-          showToast('อัปเดตข้อมูลสินค้า ' + sku + ' เรียบร้อยแล้ว');
-        } else {
-          products.push({
-            id: String(Date.now()),
-            sku: sku,
-            name: name,
-            sub: sub,
-            category: category,
-            status: status,
-            price: price,
-            qty: qty
-          });
-          showToast('เพิ่มสินค้าใหม่ ' + sku + ' เรียบร้อยแล้ว');
-        }
-
-        saveProducts();
-        renderTable();
-        productModal.close();
-      });
-
-      // Reset to default Workshop #2 data
+      // Reset to Default Data with Confirmation
       resetDefaultBtn.addEventListener('click', function () {
-        products = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
-        editableAdminName.textContent = 'Bluecat';
-        editablePageTitle.textContent = 'ระบบจัดการคลังสินค้า Bluecat Store';
-        editablePageSubtitle.textContent =
-          'สรุปข้อมูลรายการสินค้า จำนวนคงเหลือ และมูลค่ารวมของสินค้าทั้งหมดในคลัง (แก้ไขราคา จำนวน ชื่อสินค้า หรือเพิ่มสินค้าใหม่ได้ทันที)';
-        try {
-          localStorage.removeItem(STORAGE_KEY);
-          localStorage.removeItem(META_STORAGE_KEY);
-        } catch (e) {}
-        searchInput.value = '';
-        categoryFilter.value = 'all';
-        renderTable();
-        showToast('รีเซ็ตข้อมูลกลับเป็นค่าเริ่มต้น (6 รายการ / 240,200 บาท) แล้ว');
+        openConfirmDialog(
+          'ยืนยันการคืนค่าเริ่มต้น',
+          'ข้อมูลสินค้าที่คุณแก้ไขจะถูกเปลี่ยนกลับเป็นข้อมูลเริ่มต้นทั้งหมด 6 รายการ คุณต้องการดำเนินการต่อหรือไม่?',
+          'คืนค่าเริ่มต้น',
+          function () {
+            products = JSON.parse(JSON.stringify(DEFAULT_PRODUCTS));
+            try {
+              localStorage.removeItem(STORAGE_KEY);
+            } catch (e) {}
+            searchInput.value = '';
+            categoryFilter.value = 'all';
+            renderTable();
+            showFeedback('คืนค่าข้อมูลสินค้าเริ่มต้น (6 รายการ) เรียบร้อยแล้ว');
+          }
+        );
       });
 
-      searchInput.addEventListener('input', updateSummaries);
-      categoryFilter.addEventListener('change', updateSummaries);
+      searchInput.addEventListener('input', renderTable);
+      categoryFilter.addEventListener('change', renderTable);
 
-      // Initial render
+      // Initial Render
       renderTable();
     })();
   </script>
